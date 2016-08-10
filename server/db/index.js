@@ -9,6 +9,8 @@ var LearnMore = require('./models/learn_more');
 
 User.belongsToMany(Question, {through: AnsweredQuestion});
 Question.belongsToMany(User, {through: AnsweredQuestion});
-LearnMore.belongsTo(Question, {as: 'link'});
+
+LearnMore.belongsToMany(Question, {through: 'link'});
+Question.belongsToMany(LearnMore, {through: 'link'});
 
 
