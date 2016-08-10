@@ -2,6 +2,8 @@
 var Sequelize = require('sequelize');
 
 var db = require('../_db');
+var TestCase = require('./test_case');
+var LearnMore = require('./learn_more');
 
 module.exports = db.define('question', {
 	text: {
@@ -24,4 +26,8 @@ module.exports = db.define('question', {
 		type: Sequelize.STRING
 	}
 
+}, {
+	defaultScope: {
+		include: [TestCase, LearnMore]
+	}
 })
