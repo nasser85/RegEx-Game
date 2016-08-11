@@ -47,12 +47,12 @@ var seedUsers = function () {
 
 var seedQuestions = function () {
   var questions = [
-    { 
+    {
       text: 'Match some, but not all!',
       category: 'match_some',
       difficulty: 5,
       hint: '',
-      answer: '(cats/dogs)',
+      answer: '(cats|dogs)',
       forceAnswer: false,
       testCases: [
         { content: 'i love cats', match: true },
@@ -60,7 +60,7 @@ var seedQuestions = function () {
         { content: 'i love logs', match: false },
         { content: 'i love cogs', match: false }]
     },
-    { 
+    {
       text: 'Match some, but not all!',
       category: 'match_some',
       difficulty: 4,
@@ -73,7 +73,7 @@ var seedQuestions = function () {
         { content: 'Next Mission: successful upon capture of target', match: false }
       ]
     },
-    { 
+    {
       text: 'Match some, but not all!',
       category: 'match_some',
       difficulty: 3,
@@ -89,7 +89,7 @@ var seedQuestions = function () {
         { content: 'pan', match: false }
       ]
     },
-    { 
+    {
       text: 'Match all!',
       category: 'match_all',
       difficulty: 3,
