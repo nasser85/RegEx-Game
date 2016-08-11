@@ -1,5 +1,9 @@
 'use strict';
 var router = require('express').Router();
+var db = require('../../../db');
+var User = db.model('user');
+var AnsweredQuestion = db.model('answeredQuestion');
+
 module.exports = router;
 var _ = require('lodash');
 
@@ -30,3 +34,73 @@ router.get('/secret-stash', ensureAuthenticated, function (req, res) {
     res.send(_.shuffle(theStash));
 
 });
+
+router.get('/', function(req, res, next){
+    User.findAll()
+    .then(function(users){
+        res.send(users);
+    })
+    .catch(next);
+})
+
+
+router.param('userId', function(req, res, next, userId){
+    User.findById(userId, {include: [AnsweredQuestion]})
+    .then(function(user){
+        if(!user) {
+            res.sendStatus(404);
+        }else{
+            req.user = user;
+        }
+        next();
+    })
+    .catch(next);
+})
+
+router.get('/:userId', function(req, res, next){
+    res.send(req.user)
+})
+
+
+router.put('/:userId', function(req, res, next){
+    req.user.update(req.body)
+    .then(function(updateduser){
+        res.status(204).send(updateduser);
+    })
+    .catch(next);
+})
+
+router.delete('/:userId', function(req, res, next){
+    req.user.destroy()
+    .then(function(removedUser){  //do we need this?
+        res.sendStatus(410)
+    })
+})
+
+router.post('/:userId/addanswer', function(req, res, next){
+    req.user.addQuestion(req.body.questionId, {user_answer: req.body.user_answer})
+    .then(function(){
+        res.sendStatus(201);
+    })
+    .catch(next);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
