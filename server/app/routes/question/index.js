@@ -1,16 +1,16 @@
 'use strict'
 
-var router = require('express').Router();
-var db = require('../../../db');
-var Question = db.model('question');
-var LearnMore = db.model('learnMore');
-var AnsweredQuestion = db.model('answeredQuestion');
+const router = require('express').Router();
+const db = require('../../../db');
+const Question = db.model('question');
+const AnsweredQuestion = db.model('answeredQuestion');
+const TestCase = db.model('testCase');
 
 module.exports = router;
 
 
-router.params('id', function(req, res, next, id){
-	Question.findById(id, {include: [AnsweredQuestion]}) //too slow?
+router.param('id', function(req, res, next, id){
+	Question.findById(id) //too slow?
 	.then(function(question){
 		if(!question) {
 			res.sendStatus(404);
@@ -31,41 +31,32 @@ router.get('/', function(req, res, next){
 	.catch(next);
 })
 
-
 router.post('/', function(req, res, next){
-	var question;
-	Question.create(req.body)
-	.then(function(createdQuestion){
-		question = createdQuestion;
-		return createdQuestion.addLearnMore(req.body.learnMoreId); //test this.
+		Question.create(req.body, {
+		include: [TestCase]
 	})
-	.then(function(){
-		res.status(201).send(question);
+	.then(function(createdQuestion){
+		res.status(201).send(createdQuestion);
 	})
 	.catch(next);
-})
+});
 
 router.get('/:id', function(req, res, next){
-	return res.send(req.question);
+	res.send(req.question);
 })
 
 
 router.put('/:id', function(req, res, next){
-	var question;
 	req.question.update(req.body)
 	.then(function(updatedQuestion){
-		question = updatedQuestion;
-		return updatedQuestion.setLearnMore(req.body.learnMoreId); //test this!!
-	})
-	.then(function(){
-		res.status(204).send(question);
-	})
+		res.send(updatedQuestion)
+		})
 	.catch(next);
 })
 
 router.delete('/:id', function(req, res, next){
 	req.question.destroy()
-	.then(function(removedQuestion){  //do we need this?
+	.then(function(removedQuestion){
 		res.sendStatus(410)
 	})
 })
