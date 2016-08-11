@@ -4,5 +4,11 @@
 			<h2>{{currentQuestion.text}}</h2>
 			<p>{{currentQuestion.answer}}</p>
 		</li>
+		<form>
+	    Answer:<br>
+	    <input type="text" ng-model="userform.answer"><br>
+	    <br><br>
+	    <button ng-click="submit(userform.answer, user, currentQuestion)">Submit</button>
+	  </form>
 	</ul>
 </div>
