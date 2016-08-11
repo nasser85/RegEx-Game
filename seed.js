@@ -22,7 +22,6 @@ var db = require('./server/db');
 var User = db.model('user');
 var Question = db.model('question');
 var TestCase = db.model('testCase');
-var LearnMore = db.model('learnMore');
 var Promise = require('sequelize').Promise;
 
 var seedUsers = function () {
@@ -59,10 +58,7 @@ var seedQuestions = function () {
         { content: 'i love cats', match: true },
         { content: 'i love dogs', match: true },
         { content: 'i love logs', match: false },
-        { content: 'i love cogs', match: false }],
-      learnMore: {
-        url: 'http://www.google.com'
-      }
+        { content: 'i love cogs', match: false }]
     },
     { 
       text: 'Match some, but not all!',
@@ -75,10 +71,7 @@ var seedQuestions = function () {
         { content: 'Mission: successful', match: true },
         { content: 'Last Mission: unsuccessful', match: false },
         { content: 'Next Mission: successful upon capture of target', match: false }
-      ],
-      learnMore: {
-        url: 'http://www.google.com'
-      }
+      ]
     },
     { 
       text: 'Match some, but not all!',
@@ -94,10 +87,7 @@ var seedQuestions = function () {
         { content: 'dcan', match: false },
         { content: 'rman', match: false },
         { content: 'pan', match: false }
-      ],
-      learnMore: {
-        url: 'http://www.google.com'
-      }
+      ]
     },
     { 
       text: 'Match all!',
@@ -110,60 +100,42 @@ var seedQuestions = function () {
         { content: 'abc123xyz', match: true },
         { content: 'define "123"', match: true },
         { content: 'var g=123', match: true }
-      ],
-      learnMore: {
-        url: 'http://www.google.com'
-      }
+      ]
     },
     { text: 'Matches beginning of input. If the multiline flag is set to true, also matches immediately after a line break character',
      category: 'validation',
      difficulty: 1,
      hint: '',
      answer: '^',
-     forceAnswer: true,
-     learnMore: {
-       url: 'https://developer.mozilla.org'
-     }
+     forceAnswer: true
    },
    { text: 'Matches end of input. If the multiline flag is set to true, also matches immediately before a line break character',
      category: 'validation',
      difficulty: 1,
      hint: '',
      answer: '$',
-     forceAnswer: true,
-     learnMore: {
-       url: 'https://developer.mozilla.org'
-     }
+     forceAnswer: true
    },
    { text: 'Matches the preceding expression 0 or more times. Equivalent to {0,}',
      category: 'validation',
      difficulty: 1,
      hint: '',
      answer: '*',
-     forceAnswer: true,
-     learnMore: {
-       url: 'https://developer.mozilla.org'
-     }
+     forceAnswer: true
    },
    { text: 'Matches the preceding expression 1 or more times. Equivalent to {1,}',
      category: 'validation',
      difficulty: 1,
      hint: '',
      answer: '+',
-     forceAnswer: true,
-     learnMore: {
-       url: 'https://developer.mozilla.org'
-     }
+     forceAnswer: true
    },
    { text: 'Matches the preceding expression 0 or 1 times. Equivalent to {0,1}',
      category: 'validation',
      difficulty: 1,
      hint: '',
      answer: '?',
-     forceAnswer: true,
-     learnMore: {
-       url: 'https://developer.mozilla.org'
-     }
+     forceAnswer: true
    }
   ];
 
