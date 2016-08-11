@@ -141,7 +141,7 @@ var seedQuestions = function () {
 
   var creatingQuestions = questions.map(function (questionObj) {
       return Question.create(questionObj, {
-        include: [TestCase, LearnMore]
+        include: [TestCase]
       });
   });
 
