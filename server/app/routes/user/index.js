@@ -43,9 +43,20 @@ router.get('/', function(req, res, next){
     .catch(next);
 })
 
-
+router.post('/login', function(req, res, next) {
+    User.findOne({
+        where: {
+            email: req.body.email,
+            password: req.body.password
+        }
+    })
+    .then(function(foundUser) {
+        res.send(foundUser);
+    })
+    .catch(next);
+})
 router.param('userId', function(req, res, next, userId){
-    User.findById(userId, {include: [AnsweredQuestion]})
+    User.findById(userId)
     .then(function(user){
         if(!user) {
             res.sendStatus(404);

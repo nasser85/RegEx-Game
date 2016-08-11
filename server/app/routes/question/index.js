@@ -1,16 +1,16 @@
 'use strict'
-
 const router = require('express').Router();
 const db = require('../../../db');
 const Question = db.model('question');
 const AnsweredQuestion = db.model('answeredQuestion');
 const TestCase = db.model('testCase');
 
+
 module.exports = router;
 
 
 router.param('id', function(req, res, next, id){
-	Question.findById(id) //too slow?
+	Question.findById(id)
 	.then(function(question){
 		if(!question) {
 			res.sendStatus(404);

@@ -136,7 +136,7 @@ var seedQuestions = function () {
      hint: '',
      answer: '?',
      forceAnswer: true
-    }
+   }
   ];
 
   var creatingQuestions = questions.map(function (questionObj) {
