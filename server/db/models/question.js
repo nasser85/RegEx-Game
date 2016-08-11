@@ -24,6 +24,9 @@ module.exports = db.define('question', {
 	},
 	answer: {
 		type: Sequelize.STRING
+	},
+	forceAnswer: {
+		type: Sequelize.BOOLEAN
 	}
 
 }, {
