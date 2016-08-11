@@ -4,12 +4,13 @@ var router = require('express').Router();
 var db = require('../../../db');
 var Question = db.model('question');
 var LearnMore = db.model('learnMore');
+var AnsweredQuestion = db.model('answeredQuestion');
 
 module.exports = router;
 
 
 router.params('id', function(req, res, next, id){
-	Question.findById(id, {include: [LearnMore]})
+	Question.findById(id, {include: [AnsweredQuestion]}) //too slow?
 	.then(function(question){
 		if(!question) {
 			res.sendStatus(404);
@@ -62,6 +63,12 @@ router.put('/:id', function(req, res, next){
 	.catch(next);
 })
 
+router.delete('/:id', function(req, res, next){
+	req.question.destroy()
+	.then(function(removedQuestion){  //do we need this?
+		res.sendStatus(410)
+	})
+})
 
 
 
