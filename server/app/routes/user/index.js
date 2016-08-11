@@ -44,8 +44,8 @@ router.get('/', function(req, res, next){
 })
 
 
-router.params('id', function(req, res, next, id){
-    User.findById(id, {include: [AnsweredQuestion]})
+router.param('userId', function(req, res, next, userId){
+    User.findById(userId, {include: [AnsweredQuestion]})
     .then(function(user){
         if(!user) {
             res.sendStatus(404);
@@ -57,12 +57,12 @@ router.params('id', function(req, res, next, id){
     .catch(next);
 })
 
-router.get('/:id', function(req, res, next){
+router.get('/:userId', function(req, res, next){
     res.send(req.user)
 })
 
 
-router.put('/:id', function(req, res, next){
+router.put('/:userId', function(req, res, next){
     req.user.update(req.body)
     .then(function(updateduser){
         res.status(204).send(updateduser);
@@ -70,12 +70,37 @@ router.put('/:id', function(req, res, next){
     .catch(next);
 })
 
-router.delete('/:id', function(req, res, next){
+router.delete('/:userId', function(req, res, next){
     req.user.destroy()
     .then(function(removedUser){  //do we need this?
         res.sendStatus(410)
     })
 })
+
+router.post('/:userId/addanswer', function(req, res, next){
+    req.user.addQuestion(req.body.questionId, {user_answer: req.body.user_answer})
+    .then(function(){
+        res.sendStatus(201);
+    })
+    .catch(next);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
