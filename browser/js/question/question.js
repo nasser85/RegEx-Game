@@ -19,18 +19,7 @@ app.controller('QuestionCtrl', function($scope, questions, UserFactory, AuthServ
 	var randomIndex = Math.floor((Math.random() * questions.length));
 	$scope.currentQuestion = questions[randomIndex];
 	$scope.user = user;
-	// AuthService.getLoggedInUser()
-	// .then(function (user) {
-	// 	$scope.user = user;
-	// 	return $scope.user;
-	// })
-	// .then(function (user) {
-	// 	$scope.submit = function(answer, questionId) {
-	// 		return UserFactory.submitAnswer(answer, user, questionId);
-	// 	}
-	// 	console.log($scope.submit);
-	// })
-	// .catch($log);
+	
 	$scope.submit = UserFactory.submitAnswer;
 	console.log($scope.user);
 

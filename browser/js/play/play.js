@@ -16,6 +16,9 @@ app.config(function ($stateProvider) {
 
 app.controller('PlayCtrl', function ($scope, questions, user) {
     $scope.questions = questions;
+    var randomIndex = Math.floor((Math.random() * questions.length));
+    $scope.currentQuestion = questions[randomIndex];
+    console.log($scope.currentQuestion);
     $scope.user = user;
 
     const gameConfig = {
