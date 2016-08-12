@@ -31,6 +31,18 @@ body {
     clear: both;
   }
 }
+
+.transparent {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+bomb-view{
+    position: absolute;
+    top: 120px;
+    z-index: 2;
+}
+
+
 #container {
 margin: 100px auto;
 width: 688px;
