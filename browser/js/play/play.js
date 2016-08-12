@@ -3,10 +3,20 @@ app.config(function ($stateProvider) {
         url: '/play',
         templateUrl: 'js/play/play.html',
         controller: 'PlayCtrl',
+        resolve: {
+            questions : function(QuestionFactory){
+                return QuestionFactory.fetchAll();
+            },
+            user : function(AuthService) {
+                return AuthService.getLoggedInUser();
+            }
+        }
     });
 });
 
-app.controller('PlayCtrl', function ($scope){
+app.controller('PlayCtrl', function ($scope, questions, user) {
+    $scope.questions = questions;
+    $scope.user = user;
 
     const gameConfig = {
       width: 800,
@@ -39,10 +49,9 @@ app.controller('PlayCtrl', function ($scope){
     }
 
     function preload() {
-        game.load.image('desert', 'assets/desert.png');
-        game.load.image('ground', 'assets/platform.png');
-        game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-        game.load.spritesheet('bomb', 'assets/bombs.png', 128, 128);
+        game.load.image('desert', 'desert.png');
+        game.load.spritesheet('dude', 'dude.png', 32, 48);
+        game.load.spritesheet('bomb', 'bombs.png', 128, 128);
     }
 
     function create() {
