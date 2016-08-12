@@ -55,7 +55,7 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         for (var i = 0; i < n; i++)
         {
             //  Create a bomb inside of the 'bombs' group
-            var bomb = bombs.create(randombomb(64, gameConfig.width-64), 0, 'bomb');
+            bomb = bombs.create(randombomb(64, gameConfig.width-64), 0, 'bomb');
             bomb.scale.setTo(.5,.5);
             bomb.stopFalling = randombomb(64, gameConfig.height-64);
             //  Let gravity do its thing
@@ -63,6 +63,7 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
             //  This just gives each bomb a slightly random bounce value
             bomb.body.bounce.y = 0.4 + Math.random() * 0.2;
             bomb.question = $scope.questions[$scope.questionIndex];
+            bomb.expirationTime = Date.now() + 1000*(i+300);
             bombArr.push(bomb);
             $scope.incrementQuestionIndex();
         }
@@ -84,6 +85,7 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         game.load.image('desert', 'desert.png');
         game.load.spritesheet('dude', 'dude.png', 32, 48);
         game.load.spritesheet('bomb', 'bombs.png', 128, 128);
+        game.load.spritesheet('explosion', 'explosion.png', 147.2, 106.8);
     }
 
     function create() {
@@ -97,7 +99,7 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         bombs = game.add.group();
         bombs.enableBody = true;
         createBombs(5);
-
+        console.dir(bombArr);
         // The player and its settings
         player = game.add.sprite(32, game.world.height - 150, 'dude');
         //  We need to enable physics on the player
@@ -111,6 +113,8 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         player.animations.add('right', [5, 6, 7, 8], 10, true);
         player.animations.add('down', [4, 3, 0, 1], 10, true);
 
+
+
     }
 
     function update() {
@@ -120,12 +124,18 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         game.physics.arcade.overlap(player, bombs, collectbomb, null, this)
 
         bombArr.forEach(bomb => {
-          if(bomb.position.y >= bomb.stopFalling) {
-            bomb.body.velocity.x =0;
-            bomb.body.velocity.y =0;
-            bomb.body.gravity.y = 0;
-          }
-        })
+            if (bomb.alive) {
+              if(bomb.position.y >= bomb.stopFalling) {
+                bomb.body.velocity.x =0;
+                bomb.body.velocity.y =0;
+                bomb.body.gravity.y = 0;
+              }
+
+              if (bomb.expirationTime <= Date.now()) {
+                bomb.kill();
+              }
+            }
+        });
 
     //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
