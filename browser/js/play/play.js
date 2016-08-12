@@ -20,6 +20,14 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
     $scope.currentQuestion = questions[randomIndex];
     console.log($scope.currentQuestion);
     $scope.user = user;
+    $scope.currentBomb = null;
+    $scope.questionIndex = 0;
+
+    $scope.incrementQuestionIndex = function () {
+        var newIndex = $scope.questionIndex + 1;
+        newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
+            $scope.questionIndex = newIndex;
+    };
 
     const gameConfig = {
       width: 800,
@@ -42,7 +50,27 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
       return Math.floor(Math.random() * (max-min+min));
     }
 
+    function createBombs (n) {
+
+        for (var i = 0; i < n; i++)
+        {
+            //  Create a bomb inside of the 'bombs' group
+            var bomb = bombs.create(randombomb(64, gameConfig.width-64), 0, 'bomb');
+            bomb.scale.setTo(.5,.5);
+            bomb.stopFalling = randombomb(64, gameConfig.height-64);
+            //  Let gravity do its thing
+            bomb.body.gravity.y = 300;
+            //  This just gives each bomb a slightly random bounce value
+            bomb.body.bounce.y = 0.4 + Math.random() * 0.2;
+            bomb.question = $scope.questions[$scope.questionIndex];
+            bombArr.push(bomb);
+            $scope.incrementQuestionIndex();
+        }
+    }
+
     function collectbomb (player, bomb) {
+        $scope.currentBomb = bomb;
+
         // Removes the bomb from the screen
         bomb.kill();
 
@@ -64,6 +92,11 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         game.add.sprite(0, 0, 'desert');
         // add the score
         scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+        bombs = game.add.group();
+        bombs.enableBody = true;
+        createBombs(5);
+
         // The player and its settings
         player = game.add.sprite(32, game.world.height - 150, 'dude');
         //  We need to enable physics on the player
@@ -77,21 +110,6 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         player.animations.add('right', [5, 6, 7, 8], 10, true);
         player.animations.add('down', [4, 3, 0, 1], 10, true);
 
-        bombs = game.add.group();
-        bombs.enableBody = true;
-        //  Here we'll create 12 of them evenly spaced apart
-        for (var i = 0; i < 5; i++)
-        {
-            //  Create a bomb inside of the 'bombs' group
-            var bomb = bombs.create(randombomb(64, gameConfig.width-64), 0, 'bomb');
-            bomb.scale.setTo(.5,.5);
-            bomb.stopFalling = randombomb(64, gameConfig.height-64);
-            //  Let gravity do its thing
-            bomb.body.gravity.y = 300;
-            //  This just gives each bomb a slightly random bounce value
-            bomb.body.bounce.y = 0.4 + Math.random() * 0.2;
-            bombArr.push(bomb)
-        }
     }
 
     function update() {
