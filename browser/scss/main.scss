@@ -7,12 +7,28 @@
 body {
   background: #fdfdfd;
 }
+h2 {
+	font-family: ‘Courier New’, Courier, monospace;
+	color: white;
+}
+.buttons {
+	margin-top: 10%;
+}
+.questions {
+		margin-top: 20%;
+		position: absolute;
+		z-index: 6;
+	}
 
 .thumbnail {
 	border: 0 none;
 	box-shadow: none;
 
 	height: 100%;
+	
+	img {
+		width: 100%;
+	}
 	#keyboard {
 		display: inline;
 		.key {
@@ -32,8 +48,12 @@ body {
   }
 }
 
+.control {
+	margin: 10px;
+}
 .transparent {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0);
+
 }
 
 bomb-view{
@@ -41,7 +61,11 @@ bomb-view{
     top: 120px;
     z-index: 2;
 }
-
+.blurry {
+	   -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  filter: blur(10px);
+}
 
 #container {
 margin: 100px auto;
@@ -50,7 +74,8 @@ width: 688px;
 #write {
 margin: 0 0 5px;
 padding: 5px;
-width: 671px;
+width: 20%;
+margin-left: 40%;
 height: 50px;
 font: 1em/1.5 Verdana, Sans-Serif;
 background: #fff;

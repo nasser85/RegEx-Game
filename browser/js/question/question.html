@@ -1,19 +1,22 @@
-<div class="magictime slideRightRetourn transparent" id='bomb-view'>
+<div class="magictime swashIn transparent" id='bomb-view'>
 	<nav>
 	</nav>
 
   
-    <div class="thumbnail col-xs-12 col-sm-12 col-md-12 transparent">
-      <div class="col-xs-6 col-sm-6 col-md-6 transparent">
+    <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent">
+      
       	
-        <h3>{{currentBomb.question.text}}</h3>
-        <p>{{currentBomb.question.answer}}</p>
-        <div class="shake transparent">
-        	<img src="http://vignette3.wikia.nocookie.net/cswikia/images/0/01/W_c4_css.png/revision/latest?cb=20151122041050"></img>
+        
+        <div class="shake shake-constant transparent">
+        	<img src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
     	</div>
+    </div>
+    <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent questions">
+        <h2 class="text-center"><kbd>{{currentBomb.question.text}}</kbd></h2>
+        <h2 class="text-center"><kbd>{{currentBomb.question.answer}}</kbd></h2>
         <div id="container" class="transparent">
     <textarea id="write" ng-model="userform.answer" rows="1" cols="6"></textarea>
-    <ul id="keyboard">
+    <!-- <ul id="keyboard">
         <li class="symbol"><span class="off">`</span><span class="on">~</span></li>
         <li class="symbol"><span class="off">1</span><span class="on">!</span></li>
         <li class="symbol"><span class="off">2</span><span class="on">@</span></li>
@@ -68,16 +71,17 @@
         <li class="symbol"><span class="off">/</span><span class="on">?</span></li>
         <li class="right-shift lastitem">shift</li>
         <li class="space lastitem">&nbsp;</li>
-    </ul>
+    </ul> -->
 </div>
+</div>
+<div class='col-xs-12 col-sm-2 col-md-2 transparent buttons'>
         <p>
-        	<a href="#" ng-click="submit(userform.answer, user, currentQuestion)" class="button button-3d-caution button-circle shake-horizontal">DIFFUSE</a>
-        	<a href="#" class="button button-3d-highlight button-circle shake-vertical">HINT</a>
-        	<a href="#" class="button button-3d-action button-circle shake-slow">LEAVE</a>
+        	<a href="#" ng-click="submit(userform.answer, user, currentQuestion)" class="button button-3d-primary button-circle shake-horizontal control ">DIFFUSE</a>
+        	<a href="#" class="button button-3d-primary button-circle shake-vertical control">HINT</a>
+        	<a href="#" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane">LEAVE</a>
         </p>
       </div>
   	</div>
-    </div>
 
 
 </div>
