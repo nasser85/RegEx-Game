@@ -7,12 +7,39 @@
 body {
   background: #fdfdfd;
 }
+h2 {
+	font-size: 30px;
+	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+		   -webkit-text-stroke-width: 1px;
+		   -webkit-text-stroke-color: black;
+}
+.buttons {
+	margin-top: 10%;
+}
+.questions {
+		margin-top: 20%;
+		position: absolute;
+		z-index: 6;
+		th {
+			text-align: center;
+			font-size: 25px;
+		}
+		td {
+			font-size: 20px;
+			text-align: center;
+			color: white;
+		}
+	}
 
 .thumbnail {
 	border: 0 none;
 	box-shadow: none;
 
 	height: 100%;
+	
+	img {
+		width: 100%;
+	}
 	#keyboard {
 		display: inline;
 		.key {
@@ -32,8 +59,12 @@ body {
   }
 }
 
+.control {
+	margin: 10px;
+}
 .transparent {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0);
+
 }
 
 bomb-view{
@@ -41,7 +72,16 @@ bomb-view{
     top: 120px;
     z-index: 2;
 }
-
+.blurry {
+	   -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  filter: blur(10px);
+}
+.not-blurry {
+	   -webkit-filter: blur(0px);
+  -moz-filter: blur(0px);
+  filter: blur(0px);
+}
 
 #container {
 margin: 100px auto;
@@ -50,7 +90,8 @@ width: 688px;
 #write {
 margin: 0 0 5px;
 padding: 5px;
-width: 671px;
+width: 20%;
+margin-left: 40%;
 height: 50px;
 font: 1em/1.5 Verdana, Sans-Serif;
 background: #fff;
