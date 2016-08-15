@@ -19,48 +19,7 @@ h2 {
 		   -webkit-text-stroke-width: 1px;
 		   -webkit-text-stroke-color: black;
 }
-.play-crash {
- 
- /* describe which keyframes are part of the animation /
- -webkit-animation-name:car-crash-row1, car-crash-row2, car-crash-row3, car-crash-row4, car-crash-row5;
- 
- / total animation duration /
- -webkit-animation-duration:0.2s;
- 
- / starts animation of each keyframe on /
- -webkit-animation-delay:0s, 0.2s, 0.4s, 0.6s, 0.8s;
- 
- / how animation transition between keyframes /
- -webkit-animation-timing-function: steps(5), steps(5), steps(5), steps(5), steps(5);
- 
- / how should animation apply styles */
- -webkit-animation-fill-mode: forwards;
-}
 
-@-webkit-keyframes car-crash-row1 {
-   0%    { background-position: 0px 0px; }
-   100%  { background-position: -1500px 0px; }
-}
-
-@-webkit-keyframes car-crash-row2 {
-   0%    { background-position: 0px -250px; }
-   100%  { background-position: -1500px -250px; }
-}
-
-@-webkit-keyframes car-crash-row3 {
-   0%    { background-position: 0px -500px; }
-   100%  { background-position: -1500px -500px; }
-}
-
-@-webkit-keyframes car-crash-row4 {
-   0%    { background-position: 0px -750px; }
-   100%  { background-position: -1500px -750px; }
-}
-
-@-webkit-keyframes car-crash-row5 {
-   0%    { background-position: 0px -1000px; }
-   100%  { background-position: -1500px -1000px; }
-}
 .buttons {
 	margin-top: 10%;
 }
