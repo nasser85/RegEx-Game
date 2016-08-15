@@ -1,10 +1,10 @@
 <div class="jumbotron">
-	<div ng-if="diffuse(userform.answer, currentBomb.question)">
+	<div ng-if="correct">
 		<h1>Correct!</h1>
 		 <p>You diffused the Bomb!</p>
 	</div>
 
-	<div ng-if="!diffuse(userform.answer, currentBomb.question)">
+	<div ng-if="!correct">
 		<h1>Incorrect!</h1>
 		 <p>Kaboom!</p>
 	</div>
