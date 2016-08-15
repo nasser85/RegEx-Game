@@ -14,7 +14,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($scope, questions, user) {
+app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.questions = questions;
     // var randomIndex = Math.floor((Math.random() * questions.length));
     // $scope.currentQuestion = questions[randomIndex];
@@ -22,6 +22,9 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
     $scope.user = user;
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
+
+    $scope.diffuse = BombFactory.diffuse;
+
 
     $scope.incrementQuestionIndex = function () {
         let newIndex = $scope.questionIndex + 1;
@@ -85,9 +88,19 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
 
     function collectbomb (player, bomb) {
         $scope.currentBomb = bomb;
+        console.log('$scope.currentBomb', $scope.currentBomb)
         $scope.$evalAsync();
         // Removes the bomb from the screen
         bomb.kill();
+        $scope.testCaseArr = [];
+
+        // $scope.trueArr = [{true:"true..", false:"false..."}];
+        // $scope.falseArr = [];
+
+        $scope.currentBomb.question.testCases.forEach(function(testCase){
+            $scope.testCaseArr[$scope.testCaseArr.length -1].true
+        })
+
 
         //  Add and update the score
         score += gameConfig.scoreIncrement;
