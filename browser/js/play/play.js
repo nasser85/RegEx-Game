@@ -22,9 +22,16 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.user = user;
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
+    $scope.answered = false;
+    $scope.diffuse = function(answer, question){
+        BombFactory.diffuse(answer, question)
+        $scope.answered = true;
+    }
 
-    $scope.diffuse = BombFactory.diffuse;
-
+    $scope.leave = function(){
+        $scope.currentBomb = null;
+        $scope.answered = false;
+    }
 
     $scope.incrementQuestionIndex = function () {
         let newIndex = $scope.questionIndex + 1;
@@ -92,14 +99,32 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
         $scope.$evalAsync();
         // Removes the bomb from the screen
         bomb.kill();
-        $scope.testCaseArr = [];
-
-        // $scope.trueArr = [{true:"true..", false:"false..."}];
-        // $scope.falseArr = [];
-
+        var testArr = [{true: null, false: null}];
+        //NEEDS TO BE FIXED
         $scope.currentBomb.question.testCases.forEach(function(testCase){
-            $scope.testCaseArr[$scope.testCaseArr.length -1].true
+            if(testCase.match){
+                if(testArr[testArr.length -1].true){
+                    testArr.push({true: testCase.content})
+                }else{
+                    testArr[testArr.length -1].true = testCase.content;   
+                }
+
+            }else{
+
+                if(testArr[testArr.length -1].false){
+                    testArr.push({false: testCase.content})
+                }else{
+                    testArr[testArr.length -1].false = testCase.content;   
+                }
+            }
         })
+        var startArr = testArr.filter(function(obj){
+            return obj.true && obj.false;
+        })
+        var endArr = testArr.filter(function(obj){
+            return !obj.true || !obj.false;
+        })
+        $scope.testCaseArr = startArr.concat(endArr);
 
 
         //  Add and update the score

@@ -27,7 +27,7 @@ app.factory("BombFactory", function(){
 	// }
 
 	bombFactory.leave = function(currentBomb){
-		currentBomb = null;
+		return currentBomb = null;
 	}
 
 	return bombFactory;
