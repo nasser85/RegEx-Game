@@ -1,5 +1,11 @@
+@font-face {
+    font-family: gameFont;
+    src: url(PressStart2P.ttf);
+}
+
 * {
   box-sizing: border-box;
+  font-family: gameFont ;
 }
 
 
@@ -159,6 +165,18 @@ list-style: none;
   padding-top: 60px;
   margin: 0 auto;
 }
+
+.jumbotron{
+    font-family: gameFont;
+    margin-top: 20%;
+    margin-left: 40%;
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+    padding: 25px;
+    border-radius: 30%;
+}
+
 
 
 @import 'directives/main';
