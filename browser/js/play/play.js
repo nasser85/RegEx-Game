@@ -23,17 +23,21 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
 
-    $scope.incrementQuestionIndex = function () {
-        let newIndex = $scope.questionIndex + 1;
-        newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
-            $scope.questionIndex = newIndex;
-    };
-
     const gameConfig = {
       width: 800,
       height: 600,
       scoreIncrement: 10
     }
+
+    RegexGame = RegexGame || {};
+    RegexGame.game = new Phaser.Game(gameConfig.width, gameConfig.height, Phaser.AUTO, 'playGame');
+
+    $scope.incrementQuestionIndex = function () {
+        let newIndex = $scope.questionIndex + 1;
+        newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
+            $scope.questionIndex = newIndex;
+    }
+
     let bombs;
     let platforms;
     let player;
@@ -44,21 +48,11 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
     let scoreText;
     let explosion = null;
     let bombAudio;
-    let game = new Phaser.Game(gameConfig.width, gameConfig.height, Phaser.AUTO, 'playGame', { preload: preload, create: create, update: update });
-
 
     function randombomb(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max-min+min));
-    }
-
-    function preload() {
-        game.load.image('desert', 'desert.png');
-        game.load.spritesheet('dude', 'dude.png', 32, 48);
-        game.load.spritesheet('bomb', 'bombs.png', 128, 128);
-        game.load.spritesheet('explosion', 'explosion2.png', 128, 128);
-        game.load.audio('bombExplode', 'time_bomb_short.mp3');
     }
 
     function createBombs (n) {
@@ -76,7 +70,7 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
             bomb.question = $scope.questions[$scope.questionIndex];
             bomb.expirationTime = Date.now() + 1000*(i+3);
             bomb.body.collideWorldBounds = true;
-            bomb.explosion = game.add.sprite(bomb.position.x-32, bomb.position.y-32, 'explosion');
+            bomb.explosion = this.game.add.sprite(bomb.position.x-32, bomb.position.y-32, 'explosion');
             bomb.explosion.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10, false);
             bombArr.push(bomb);
             $scope.incrementQuestionIndex();
@@ -94,24 +88,27 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         scoreText.text = 'Score: ' + score;
     }
 
-    function create() {
-        //  We're going to be using physics, so enable the Arcade Physics system
-        game.scale.pageAlignHorizontally = true;
-        game.scale.pageAlignVertically = true;
-        game.scale.refresh();
-        game.physics.startSystem(Phaser.Physics.ARCADE);
-        //  A simple background for our game
-        game.add.sprite(0, 0, 'desert');
-        // add the score
-        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+//title screen
+    RegexGame.Game = function(){};
 
-        bombs = game.add.group();
+    RegexGame.Game.prototype = {
+      create: function() {
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVertically = true;
+        this.scale.refresh();
+        this.physics.startSystem(Phaser.Physics.ARCADE);
+        //  A simple background for our game
+        this.add.sprite(0, 0, 'desert');
+        // add the score
+        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+        bombs = this.add.group();
         bombs.enableBody = true;
-        createBombs(5);
+        createBombs.call(this, 5);
         // The player and its settings
-        player = game.add.sprite(32, game.world.height - 150, 'dude');
+        player = this.add.sprite(32, this.world.height - 150, 'dude');
         //  We need to enable physics on the player
-        game.physics.arcade.enable(player);
+        this.physics.arcade.enable(player);
         //  Player physics properties. Give the little guy a slight bounce.
         player.body.bounce.y = 0;
         player.body.gravity.y = 0;
@@ -121,18 +118,18 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
         player.animations.add('right', [5, 6, 7, 8], 10, true);
         player.animations.add('down', [4, 3, 0, 1], 10, true);
         //add sound
-        bombAudio = game.add.audio('bombExplode');
+        bombAudio = this.add.audio('bombExplode');
         bombAudio.allowMultiple = true;
         bombAudio.addMarker('playExplosionSound', 1, 3);
+        console.log('game is ', this);
 
 
-    }
-
-    function update() {
-        game.physics.arcade.collide(player, platforms);
-        game.physics.arcade.collide(bombs, platforms);
-        cursors = game.input.keyboard.createCursorKeys();
-        game.physics.arcade.overlap(player, bombs, collectbomb, null, this)
+      },
+      update: function() {
+        this.physics.arcade.collide(player, platforms);
+        this.physics.arcade.collide(bombs, platforms);
+        cursors = this.input.keyboard.createCursorKeys();
+        this.physics.arcade.overlap(player, bombs, collectbomb, null, this)
 
         bombArr.forEach(bomb => {
             if (bomb.alive) {
@@ -141,7 +138,7 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
                 bomb.body.gravity.y = 0;
               }
               if (bomb.expirationTime <= Date.now()) {
-                bomb.explosion = game.add.sprite(bomb.position.x-32, bomb.position.y-32, 'explosion');
+                bomb.explosion = this.add.sprite(bomb.position.x-32, bomb.position.y-32, 'explosion');
                 bomb.explosion.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10, false);
                 bomb.explosion.animations.play('explode');
                 bombAudio.play('playExplosionSound');
@@ -186,5 +183,13 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
             player.animations.stop();
             player.frame = 4;
         }
-      }
+      },
+    };
+
+    RegexGame.game.state.add('Boot', RegexGame.Boot);
+    RegexGame.game.state.add('Preload', RegexGame.Preload);
+    RegexGame.game.state.add('MainMenu', RegexGame.MainMenu);
+    RegexGame.game.state.add('Game', RegexGame.Game);
+    RegexGame.game.state.start('Boot');
+
 })
