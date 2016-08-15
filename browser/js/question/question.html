@@ -12,8 +12,30 @@
     	</div>
     </div>
     <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent questions">
-        <h2 class="text-center"><kbd>{{currentBomb.question.text}}</kbd></h2>
-        <h2 class="text-center"><kbd>{{currentBomb.question.answer}}</kbd></h2>
+        <h2 class="text-center">{{currentBomb.question.text}}</h2>
+        <h4 class="text-center">{{currentBomb.question.answer}}</h4>
+        <table class="table table-sm table-inverse">
+          <thead>
+            <tr>
+              <th><kbd>Match These</kbd></th>
+              <th><kbd>Avoid These</kbd></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class='table-success'>
+              <td><kbd>blah</kbd></td>
+              <td><kbd>blah 2</kbd></td>
+            </tr>
+            <tr class='table-warning'>
+              <td><kbd>whatevs</kbd></td>
+              <td><kbd>I dunno</kbd></td>
+            </tr>
+            <tr class='table-danger'>
+              <td><kbd>another random thing</kbd></td>
+              <td><kbd>blah blah</kbd></td>
+            </tr>
+          </tbody>
+        </table>
         <div id="container" class="transparent">
     <textarea id="write" ng-model="userform.answer" rows="1" cols="6"></textarea>
     <!-- <ul id="keyboard">
