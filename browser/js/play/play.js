@@ -23,13 +23,13 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
     $scope.answered = false;
-    $scope.correct = true;
+    $scope.correct = 0;
     $scope.diffuse = function(answer, question){
         BombFactory.diffuse(answer, question)
         if (BombFactory.diffuse(answer, question)) {
-            $scope.correct = true;
+            $scope.correct = 1;
         } else {
-            $scope.correct = false;
+            $scope.correct = 2;
         }
         $scope.answered = true;
     }
@@ -37,7 +37,7 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.leave = function(){
         $scope.currentBomb = null;
         $scope.answered = false;
-        $scope.correct = true;
+        $scope.correct = 0;
     }
 
     $scope.incrementQuestionIndex = function () {
