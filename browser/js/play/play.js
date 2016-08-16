@@ -24,6 +24,7 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.questionIndex = 0;
     $scope.answered = false;
     $scope.correct = true;
+    $scope.testCaseArr = [];
     $scope.diffuse = function(answer, question){
         BombFactory.diffuse(answer, question)
         if (BombFactory.diffuse(answer, question)) {
@@ -101,36 +102,36 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
 
     function collectbomb (player, bomb) {
         $scope.currentBomb = bomb;
+        $scope.testCaseArr = [];
         console.log('$scope.currentBomb', $scope.currentBomb)
         $scope.$evalAsync();
         // Removes the bomb from the screen
         bomb.kill();
-        var testArr = [{true: null, false: null}];
+        
         //NEEDS TO BE FIXED
+        var falseArr = [];
+        var trueArr = [];
+        var testArr = [];
         $scope.currentBomb.question.testCases.forEach(function(testCase){
             if(testCase.match){
-                if(testArr[testArr.length -1].true){
-                    testArr.push({true: testCase.content})
-                }else{
-                    testArr[testArr.length -1].true = testCase.content;   
-                }
+                trueArr.push(testCase.content);
 
             }else{
-
-                if(testArr[testArr.length -1].false){
-                    testArr.push({false: testCase.content})
-                }else{
-                    testArr[testArr.length -1].false = testCase.content;   
-                }
+                falseArr.push(testCase.content);
             }
         })
-        var startArr = testArr.filter(function(obj){
-            return obj.true && obj.false;
-        })
-        var endArr = testArr.filter(function(obj){
-            return !obj.true || !obj.false;
-        })
-        $scope.testCaseArr = startArr.concat(endArr);
+        if (trueArr.length >= falseArr.length) {
+            for (var i = 0; i < trueArr.length; i++) {
+                testArr.push({true: trueArr[i], false: falseArr[i]});
+            }
+        } else {
+            for (var j = 0; j < falseArr.length; j++) {
+                testArr.push({true: trueArr[j], false: falseArr[j]});
+            }
+        }
+        
+        $scope.testCaseArr = testArr;
+        console.log($scope.testCaseArr);
 
 
         //  Add and update the score
