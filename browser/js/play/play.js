@@ -37,6 +37,7 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.leave = function(){
         $scope.currentBomb = null;
         $scope.answered = false;
+        $scope.correct = true;
     }
 
     $scope.incrementQuestionIndex = function () {
