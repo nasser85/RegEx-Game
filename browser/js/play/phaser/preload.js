@@ -20,6 +20,7 @@ RegexGame.Preload.prototype = {
     this.load.spritesheet('bomb', 'bombs.png', 128, 128);
     this.load.spritesheet('explosion', 'explosion2.png', 128, 128);
     this.load.audio('bombExplode', 'time_bomb_short.mp3');
+    this.load.audio('menuBumper', '/sound/menu_bumper.mp3');
 
   },
   create: function() {

@@ -1,11 +1,12 @@
-/*var RegexGame = RegexGame || {};
+var RegexGame = RegexGame || {};
 
-let gameConfig = {
+/*let gameConfig = {
   width: 800,
   height: 600,
   scoreIncrement: 10
-}
+}*/
 
+//initialize variables for the game
 let bombs;
 let platforms;
 let player;
@@ -56,7 +57,7 @@ function collectbomb (player, bomb) {
     scoreText.text = 'Score: ' + score;
 }
 
-//title screen
+//main game state
 RegexGame.Game = function(){};
 
 RegexGame.Game.prototype = {
@@ -65,9 +66,7 @@ RegexGame.Game.prototype = {
     this.scale.pageAlignVertically = true;
     this.scale.refresh();
     this.physics.startSystem(Phaser.Physics.ARCADE);
-    //  A simple background for our game
     this.add.sprite(0, 0, 'desert');
-    // add the score
     scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
     bombs = this.add.group();
@@ -153,4 +152,4 @@ RegexGame.Game.prototype = {
     }
   },
 };
-*/
+

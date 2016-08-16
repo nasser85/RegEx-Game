@@ -39,20 +39,20 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
         $scope.answered = false;
     }
 
+    $scope.incrementQuestionIndex = function () {
+            let newIndex = $scope.questionIndex + 1;
+            newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
+                $scope.questionIndex = newIndex;
+    }
+
     const gameConfig = {
       width: 800,
       height: 600,
       scoreIncrement: 10
     }
 
-    RegexGame = RegexGame || {};
     RegexGame.game = new Phaser.Game(gameConfig.width, gameConfig.height, Phaser.AUTO, 'playGame');
 
-    $scope.incrementQuestionIndex = function () {
-        let newIndex = $scope.questionIndex + 1;
-        newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
-            $scope.questionIndex = newIndex;
-    }
 
     let bombs;
     let platforms;
@@ -102,24 +102,24 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
         var testArr = [{true: null, false: null}];
         //NEEDS TO BE FIXED
         $scope.currentBomb.question.testCases.forEach(function(testCase){
-            if(testCase.match){
-                if(testArr[testArr.length -1].true){
-                    testArr.push({true: testCase.content})
+            if(testCase.match){ // how does this test agains the input? no arg?
+                if(testArr[testArr.length -1].true){ // if last el in testarr.true is truthy
+                    testArr.push({true: testCase.content}) //push a new object onto the array.
                 }else{
-                    testArr[testArr.length -1].true = testCase.content;   
+                    testArr[testArr.length -1].true = testCase.content; // make the existing object's true property equal to the content.
                 }
 
-            }else{
+            }else{ //it was wrong, add to the false prop similar to above.
 
-                if(testArr[testArr.length -1].false){
+                if(testArr[testArr.length -1].false){ //
                     testArr.push({false: testCase.content})
                 }else{
-                    testArr[testArr.length -1].false = testCase.content;   
+                    testArr[testArr.length -1].false = testCase.content;
                 }
             }
         })
         var startArr = testArr.filter(function(obj){
-            return obj.true && obj.false;
+            return obj.true && obj.false; // filter for when both true and false are truthy??
         })
         var endArr = testArr.filter(function(obj){
             return !obj.true || !obj.false;
