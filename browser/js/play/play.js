@@ -14,7 +14,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
+app.controller('PlayCtrl', function ($timeout, $scope, questions, user, BombFactory) {
     $scope.questions = questions;
     // var randomIndex = Math.floor((Math.random() * questions.length));
     // $scope.currentQuestion = questions[randomIndex];
@@ -32,11 +32,11 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
             $scope.correct = false;
         }
         $scope.answered = true;
-    }
-
-    $scope.leave = function(){
-        $scope.currentBomb = null;
-        $scope.answered = false;
+        
+        $timeout(function(){
+            $scope.currentBomb = null;
+            $scope.answered = false;
+        }, 3000);
     }
 
     $scope.incrementQuestionIndex = function () {
