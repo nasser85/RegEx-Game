@@ -68,7 +68,7 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
             //  This just gives each bomb a slightly random bounce value
             bomb.body.bounce.y = 0.4 + Math.random() * 0.2;
             bomb.question = $scope.questions[$scope.questionIndex];
-            bomb.expirationTime = Date.now() + 1000*(i+3);
+            bomb.expirationTime = Date.now() + 1000*(i+300);
             bomb.body.collideWorldBounds = true;
             bomb.explosion = this.game.add.sprite(bomb.position.x-32, bomb.position.y-32, 'explosion');
             bomb.explosion.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10, false);
