@@ -90,6 +90,48 @@ var seedQuestions = function () {
       ]
     },
     {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 2,
+      hint: '',
+      answer: '[^b]og',
+      forceAnswer: false,
+      testCases: [
+        { content: 'hog', match: true },
+        { content: 'dog', match: true },
+        { content: 'bog', match: false }
+      ]
+    },
+    {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 3,
+      hint: '',
+      answer: 'waz{3,5}',
+      forceAnswer: false,
+      testCases: [
+        { content: 'wazzzzzup', match: true },
+        { content: 'wazzzup', match: true },
+        { content: 'wazup', match: false }
+      ]
+    },
+    {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 2,
+      hint: '',
+      answer: '[A-C]',
+      forceAnswer: false,
+      testCases: [
+        { content: 'Ana', match: true },
+        { content: 'Bob', match: true },
+        { content: 'Cpc', match: true },
+        { content: 'aax', match: false },
+        { content: 'bby', match: false },
+        { content: 'ccz', match: false }
+      ]
+    },
+    {
       text: 'Match all!',
       category: 'match_all',
       difficulty: 3,
@@ -100,6 +142,19 @@ var seedQuestions = function () {
         { content: 'abc123xyz', match: true },
         { content: 'define "123"', match: true },
         { content: 'var g=123', match: true }
+      ]
+    },
+    {
+      text: 'Match all!',
+      category: 'match_all',
+      difficulty: 1,
+      hint: '',
+      answer: "abc",
+      forceAnswer: false,
+      testCases: [
+        { content: 'abc', match: true },
+        { content: 'abcde"', match: true },
+        { content: 'abcdefg', match: true }
       ]
     },
     { text: 'Matches beginning of input. If the multiline flag is set to true, also matches immediately after a line break character',
