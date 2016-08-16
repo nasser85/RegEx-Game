@@ -1,0 +1,14 @@
+<div class="jumbotron">
+	<div ng-if="correct">
+		<h1>Correct!</h1>
+		 <p>You diffused the Bomb!</p>
+	</div>
+
+	<div ng-if="!correct">
+		<h1>Incorrect!</h1>
+		 <p>Kaboom!</p>
+	</div>
+ 
+ 
+ <p><a ng-click="leave()" class="btn btn-primary btn-lg" href="#" role="button">Back to Game</a></p>
+</div>

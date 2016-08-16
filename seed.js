@@ -63,9 +63,9 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 4,
+      difficulty: 2,
       hint: '',
-      answer: '^M, [^t]$',
+      answer: '^M',
       forceAnswer: false,
       testCases: [
         { content: 'Mission: successful', match: true },
@@ -78,7 +78,7 @@ var seedQuestions = function () {
       category: 'match_some',
       difficulty: 3,
       hint: '',
-      answer: '[cmf]an',
+      answer: '^[cmf]an',
       forceAnswer: false,
       testCases: [
         { content: 'can', match: true },

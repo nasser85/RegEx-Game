@@ -2,16 +2,14 @@
 	<nav>
 	</nav>
 
-  
+
     <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent">
-      
-      	
-        
+
         <div class="shake shake-constant transparent">
-        	<img src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
+        	<img ng-class="!correct ? 'magictime vanishOut' : 'not-blurry'" src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
     	</div>
     </div>
-    <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent questions">
+    <div ng-if="!answered" class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent questions">
         <h2 class="text-center">{{currentBomb.question.text}}</h2>
         <h4 class="text-center">{{currentBomb.question.answer}}</h4>
         <table class="table table-sm table-inverse">
@@ -22,18 +20,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr class='table-success'>
-              <td><kbd>blah</kbd></td>
-              <td><kbd>blah 2</kbd></td>
+            <tr ng-repeat="testCase in testCaseArr" class='table-success'>
+              <td><kbd>{{testCase.true}}</kbd></td>
+              <td><kbd>{{testCase.false}}</kbd></td>
             </tr>
-            <tr class='table-warning'>
+            <!-- <tr class='table-warning'>
               <td><kbd>whatevs</kbd></td>
               <td><kbd>I dunno</kbd></td>
             </tr>
             <tr class='table-danger'>
               <td><kbd>another random thing</kbd></td>
               <td><kbd>blah blah</kbd></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
         <div id="container" class="transparent">
@@ -94,13 +92,14 @@
         <li class="right-shift lastitem">shift</li>
         <li class="space lastitem">&nbsp;</li>
     </ul> -->
+    </div>
 </div>
-</div>
-<div class='col-xs-12 col-sm-2 col-md-2 transparent buttons'>
+<diffuse-result ng-if="answered" ></diffuse-result>
+<div ng-if="!answered" class='col-xs-12 col-sm-2 col-md-2 transparent buttons'>
         <p>
-        	<a href="#" ng-click="submit(userform.answer, user, currentQuestion)" class="button button-3d-primary button-circle shake-horizontal control ">DIFFUSE</a>
+        	<a href="#" ng-click="diffuse(userform.answer, currentBomb.question)" class="button button-3d-primary button-circle shake-horizontal control ">DIFFUSE</a>
         	<a href="#" class="button button-3d-primary button-circle shake-vertical control">HINT</a>
-        	<a href="#" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane">LEAVE</a>
+        	<a href="#" ng-click="leave()" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane">LEAVE</a>
         </p>
       </div>
   	</div>

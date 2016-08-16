@@ -14,7 +14,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($scope, questions, user) {
+app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.questions = questions;
     // var randomIndex = Math.floor((Math.random() * questions.length));
     // $scope.currentQuestion = questions[randomIndex];
@@ -22,6 +22,22 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
     $scope.user = user;
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
+    $scope.answered = false;
+    $scope.correct = true;
+    $scope.diffuse = function(answer, question){
+        BombFactory.diffuse(answer, question)
+        if (BombFactory.diffuse(answer, question)) {
+            $scope.correct = true;
+        } else {
+            $scope.correct = false;
+        }
+        $scope.answered = true;
+    }
+
+    $scope.leave = function(){
+        $scope.currentBomb = null;
+        $scope.answered = false;
+    }
 
     const gameConfig = {
       width: 800,
@@ -79,9 +95,37 @@ app.controller('PlayCtrl', function ($scope, questions, user) {
 
     function collectbomb (player, bomb) {
         $scope.currentBomb = bomb;
+        console.log('$scope.currentBomb', $scope.currentBomb)
         $scope.$evalAsync();
         // Removes the bomb from the screen
         bomb.kill();
+        var testArr = [{true: null, false: null}];
+        //NEEDS TO BE FIXED
+        $scope.currentBomb.question.testCases.forEach(function(testCase){
+            if(testCase.match){
+                if(testArr[testArr.length -1].true){
+                    testArr.push({true: testCase.content})
+                }else{
+                    testArr[testArr.length -1].true = testCase.content;   
+                }
+
+            }else{
+
+                if(testArr[testArr.length -1].false){
+                    testArr.push({false: testCase.content})
+                }else{
+                    testArr[testArr.length -1].false = testCase.content;   
+                }
+            }
+        })
+        var startArr = testArr.filter(function(obj){
+            return obj.true && obj.false;
+        })
+        var endArr = testArr.filter(function(obj){
+            return !obj.true || !obj.false;
+        })
+        $scope.testCaseArr = startArr.concat(endArr);
+
 
         //  Add and update the score
         score += gameConfig.scoreIncrement;
