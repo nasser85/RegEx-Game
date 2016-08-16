@@ -23,8 +23,14 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
     $scope.answered = false;
+    $scope.correct = true;
     $scope.diffuse = function(answer, question){
         BombFactory.diffuse(answer, question)
+        if (BombFactory.diffuse(answer, question)) {
+            $scope.correct = true;
+        } else {
+            $scope.correct = false;
+        }
         $scope.answered = true;
     }
 

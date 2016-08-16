@@ -6,7 +6,7 @@
     <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent">
 
         <div class="shake shake-constant transparent">
-        	<img src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
+        	<img ng-class="!correct ? 'magictime vanishOut' : 'not-blurry'" src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
     	</div>
     </div>
     <div ng-if="!answered" class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent questions">
@@ -95,7 +95,7 @@
     </div>
 </div>
 <diffuse-result ng-if="answered" ></diffuse-result>
-<div class='col-xs-12 col-sm-2 col-md-2 transparent buttons'>
+<div ng-if="!answered" class='col-xs-12 col-sm-2 col-md-2 transparent buttons'>
         <p>
         	<a href="#" ng-click="diffuse(userform.answer, currentBomb.question)" class="button button-3d-primary button-circle shake-horizontal control ">DIFFUSE</a>
         	<a href="#" class="button button-3d-primary button-circle shake-vertical control">HINT</a>
