@@ -16,15 +16,14 @@ app.config(function ($stateProvider) {
 
 app.controller('PlayCtrl', function ($timeout, $scope, questions, user, BombFactory) {
     $scope.questions = questions;
-    // var randomIndex = Math.floor((Math.random() * questions.length));
-    // $scope.currentQuestion = questions[randomIndex];
-    // console.log($scope.currentQuestion);
+    $scope.userform = {};
     $scope.user = user;
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
     $scope.answered = false;
     $scope.correct = 0;
     $scope.diffuse = function(answer, question){
+        console.log(answer, question);
         BombFactory.diffuse(answer, question)
         if (BombFactory.diffuse(answer, question)) {
             $scope.correct = 1;
