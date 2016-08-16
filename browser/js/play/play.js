@@ -37,8 +37,8 @@ app.controller('PlayCtrl', function ($timeout, $scope, questions, user, BombFact
         $timeout(function(){
             $scope.currentBomb = null;
             $scope.answered = false;
-            $scope.correct = true;
-        }, 3000);
+            $scope.correct = 0;
+        }, 2000);
 
     }
 
