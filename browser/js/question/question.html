@@ -6,7 +6,9 @@
     <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent">
 
         <div class="shake shake-constant transparent">
-        	<img ng-class="!correct ? 'magictime vanishOut' : 'not-blurry'" src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
+        <div ng-class="correct===1 ? 'magictime foolishOut' : 'not-blurry'" >
+        	<img ng-class="correct===2 ? 'magictime vanishOut' : 'not-blurry'" src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
+        </div>
     	</div>
     </div>
     <div ng-if="!answered" class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent questions">
