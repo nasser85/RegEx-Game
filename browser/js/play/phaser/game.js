@@ -95,9 +95,10 @@ console.log('scope in game.js?', RegexGame)
         // add the score
         scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
-        bombs = this.add.group();
-        bombs.enableBody = true;
-        createBombs.call(this, 5);
+        bombs = new BombGroup(this.game, ['q1', 'q2', 'q3'], 'bomb');
+        // bombs = this.add.group();
+        // bombs.enableBody = true;
+        //createBombs.call(this, 5);
         // The player and its settings
         player = this.add.sprite(32, this.world.height - 150, 'dude');
         //  We need to enable physics on the player
@@ -124,21 +125,21 @@ console.log('scope in game.js?', RegexGame)
         cursors = this.input.keyboard.createCursorKeys();
         this.physics.arcade.overlap(player, bombs, collectbomb, null, this)
 
-        bombArr.forEach(bomb => {
-            if (bomb.alive) {
-              if(bomb.position.y >= bomb.stopFalling) {
-                bomb.body.velocity.y =0;
-                bomb.body.gravity.y = 0;
-              }
-              if (bomb.expirationTime <= Date.now()) {
-                bomb.explosion = this.add.sprite(bomb.position.x-32, bomb.position.y-32, 'explosion');
-                bomb.explosion.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10, false);
-                bomb.explosion.animations.play('explode');
-                bombAudio.play('playExplosionSound');
-                bomb.kill();
-              }
-            }
-        });
+        // bombArr.forEach(bomb => {
+        //     if (bomb.alive) {
+        //       if(bomb.position.y >= bomb.stopFalling) {
+        //         bomb.body.velocity.y =0;
+        //         bomb.body.gravity.y = 0;
+        //       }
+        //       if (bomb.expirationTime <= Date.now()) {
+        //         bomb.explosion = this.add.sprite(bomb.position.x-32, bomb.position.y-32, 'explosion');
+        //         bomb.explosion.animations.add('explode', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10, false);
+        //         bomb.explosion.animations.play('explode');
+        //         bombAudio.play('playExplosionSound');
+        //         bomb.kill();
+        //       }
+        //     }
+        // });
 
     //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
