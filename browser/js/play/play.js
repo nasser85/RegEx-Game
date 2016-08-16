@@ -32,11 +32,21 @@ app.controller('PlayCtrl', function ($timeout, $scope, questions, user, BombFact
             $scope.correct = false;
         }
         $scope.answered = true;
+
         
         $timeout(function(){
             $scope.currentBomb = null;
             $scope.answered = false;
+            $scope.correct = true;
         }, 3000);
+
+    }
+
+
+    $scope.leave = function(){
+        $scope.currentBomb = null;
+        $scope.answered = false;
+        $scope.correct = true;
     }
 
     $scope.incrementQuestionIndex = function () {
