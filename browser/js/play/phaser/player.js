@@ -25,36 +25,29 @@ Player.prototype.update = function() {
   this.body.velocity.x = 0;
   this.body.velocity.y = 0;
 
-  if (cursors.left.isDown)
-  {
-      //  Move to the left
-      this.body.velocity.x = -150;
-      this.animations.play('left');
-  }
-  else if (cursors.right.isDown)
-  {
-      //  Move to the right
-      this.body.velocity.x = 150;
-      this.animations.play('right');
-  }
-  //  Allow the this to jump if they are touching the ground.
-  else if (cursors.up.isDown)
-  {
-      this.body.velocity.y = -100;
-      this.animations.play('down');
-  }
+  if (cursors.left.isDown) {
 
+    this.body.velocity.x = -150;
+    this.animations.play('left');
 
-  else if (cursors.down.isDown)
-  {
-      this.body.velocity.y = 100;
-      this.animations.play('down');
-  }
+  } else if (cursors.right.isDown) {
 
-  else
-  {
-      //  Stand still
-      this.animations.stop();
-      this.frame = 4;
+    this.body.velocity.x = 150;
+    this.animations.play('right');
+
+  } else if (cursors.up.isDown) {
+
+    this.body.velocity.y = -100;
+    this.animations.play('down');
+
+  } else if (cursors.down.isDown) {
+
+    this.body.velocity.y = 100;
+    this.animations.play('down');
+
+  } else {
+
+    this.animations.stop();
+    this.frame = 4;
   }
 };

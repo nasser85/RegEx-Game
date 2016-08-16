@@ -32,6 +32,7 @@ BombGroup.prototype.update = function () {
     }
 
     if (bomb.expirationTime <= Date.now()) {
+      var explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
       bomb.kill();
     }
   })
@@ -43,7 +44,7 @@ BombGroup.prototype.engage = function (player, bomb) {
   bomb.kill();
 
   // var testArr = [{true: null, false: null}];
-  //NEEDS TO BE FIXED
+  // NEEDS TO BE FIXED
   // this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
   //     if(testCase.match){ // how does this test agains the input? no arg?
   //         if(testArr[testArr.length -1].true){ // if last el in testarr.true is truthy
