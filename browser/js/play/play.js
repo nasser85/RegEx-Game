@@ -25,6 +25,12 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
     $scope.answered = false;
     $scope.correct = true;
     $scope.testCaseArr = [];
+
+    $scope.leave = function(){
+        $scope.currentBomb = null;
+        $scope.answered = false;
+    }
+
     $scope.diffuse = function(answer, question){
         BombFactory.diffuse(answer, question)
         if (BombFactory.diffuse(answer, question)) {
@@ -33,11 +39,6 @@ app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
             $scope.correct = false;
         }
         $scope.answered = true;
-    }
-
-    $scope.leave = function(){
-        $scope.currentBomb = null;
-        $scope.answered = false;
     }
 
     $scope.incrementQuestionIndex = function () {
