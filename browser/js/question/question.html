@@ -1,6 +1,4 @@
 <div class="magictime swashIn transparent" id='bomb-view'>
-	<nav>
-	</nav>
 
 
     <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent">
@@ -11,15 +9,13 @@
         </div>
     	</div>
     </div>
-    <div ng-if="!answered" class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent questions">
+    <div ng-if="!answered" class="col-xs-12 col-sm-10 col-md-10 transparent questions">
         <div class="panel panel-info">
           <div class="panel-body">
             <h3 class="text-center">{{currentBomb.question.text}}</h3>
           </div>
         </div>
-            
         
-        <h4 class="text-center">{{currentBomb.question.answer}}</h4>
         <table ng-show="!currentBomb.question.forceAnswer"class="table table-sm table-inverse">
           <thead>
             <tr>
@@ -35,8 +31,8 @@
           </tbody>
         </table>
         <div id="container" class="transparent">
-    <textarea id="write" ng-model="userform.answer" rows="1" cols="6"></textarea>
-    </div>
+            <input autofocus="autofocus" ng-model="userform.answer" class="textbox" type="text"> 
+        </div>
 </div>
 <diffuse-result ng-if="answered" ></diffuse-result>
 <div ng-if="!answered" class='col-xs-12 col-sm-2 col-md-2 transparent buttons'>
