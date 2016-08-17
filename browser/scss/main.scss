@@ -17,6 +17,16 @@ body {
     margin-left: 20%;
     width: 60%;
 }
+.alert {
+    font-family: gameFont;
+    margin-top: 20%;
+    width: 60%;
+    margin-left: 20%;
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+    padding: 25px;
+}
 h3 {
 	font-size: 20px;
 	-webkit-text-fill-color: black; /* Will override color (regardless of order) */
