@@ -65,7 +65,7 @@ BombGroup.prototype.update = function () {
 
 BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.currentBomb = bomb;
-  console.log(this.game.scope);
+  // console.log(this.game.scope);
 
   var testArr = [{true: null, false: null}];
   //NEEDS TO BE FIXED
