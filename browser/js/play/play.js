@@ -14,29 +14,39 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($scope, questions, user, BombFactory) {
+app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory) {
     $scope.questions = questions;
-    // var randomIndex = Math.floor((Math.random() * questions.length));
-    // $scope.currentQuestion = questions[randomIndex];
-    // console.log($scope.currentQuestion);
+    $scope.userform = {};
     $scope.user = user;
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
     $scope.answered = false;
-    $scope.correct = true;
-    $scope.diffuse = function(answer, question){
-        BombFactory.diffuse(answer, question)
-        if (BombFactory.diffuse(answer, question)) {
-            $scope.correct = true;
+    $scope.correct = 0;
+    $scope.diffuse = function(answer, question, userid){
+        // console.log(answer, question, userid);
+        let diffused = BombFactory.diffuse(answer, question);
+        if (diffused) {
+            $scope.correct = 1;
+            BombFactory.storeUserAnswer(answer, question, userid)
+            .catch($log.error);
         } else {
-            $scope.correct = false;
+            $scope.correct = 2;
         }
         $scope.answered = true;
+        $scope.userform.answer = null;
+        
+        $timeout(function(){
+            $scope.currentBomb = null;
+            $scope.answered = false;
+            $scope.correct = 0;
+        }, 2000);
+
     }
 
     $scope.leave = function(){
         $scope.currentBomb = null;
         $scope.answered = false;
+        $scope.correct = 0;
     }
 
     $scope.incrementQuestionIndex = function () {
