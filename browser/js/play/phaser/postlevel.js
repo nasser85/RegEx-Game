@@ -15,10 +15,5 @@ RegexGame.PostLevel.prototype = {
     t.anchor.set(0.5);
 
     setTimeout(function(){this.game.state.start('MainMenu')}.bind(this),2000)
-  }/*,
-  update: function() {
-    if(this.game.input.activePointer.justPressed()) {
-      this.game.state.start('Game');
-    }
-  }*/
+  }
 };

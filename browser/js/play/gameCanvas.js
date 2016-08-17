@@ -2,7 +2,7 @@ app.directive('gameCanvas', function($window, $injector) {
 
   var linkFn = function(scope, ele, attrs) {
 
-    scope.gameConfig = {
+    RegexGame.gameConfig = {
       width: 800,
       height: 600,
       scoreIncrement: 10,
@@ -12,7 +12,7 @@ app.directive('gameCanvas', function($window, $injector) {
       numBombs: 5
     }
 
-    RegexGame.game = new Phaser.Game(scope.gameConfig.width, scope.gameConfig.height, Phaser.AUTO, 'playGame');
+    RegexGame.game = new Phaser.Game(RegexGame.gameConfig.width, RegexGame.gameConfig.height, Phaser.AUTO, 'playGame');
 
     RegexGame.game.scope = scope;
 
