@@ -1,12 +1,9 @@
-<div class="jumbotron magictime slideUpRetourn">
-	<div ng-if="correct===1">
-		<h1>Correct!</h1>
-		 <p>You diffused the Bomb!</p>
+<div class="magictime spaceInUp">
+    <div ng-if="correct===1"  class="alert alert-info">
+	  <strong>Correct!</strong> You successfully diffused the bomb!
 	</div>
-
-	<div ng-if="correct===2">
-		<h1>Incorrect!</h1>
-		 <p>Kaboom!</p>
+    <div ng-if="correct===2"  class="alert alert-warning">
+	  <strong>Incorrect!</strong> The bomb is still active!
 	</div>
 
 </div>

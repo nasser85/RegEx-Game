@@ -7,14 +7,20 @@
 
         <div class="shake shake-constant transparent">
         <div ng-class="correct===1 ? 'magictime foolishOut' : 'not-blurry'" >
-        	<img ng-class="correct===2 ? 'magictime vanishOut' : 'not-blurry'" src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
+        	<img ng-class="correct===2 ? 'magictime holeOut' : 'not-blurry'" src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
         </div>
     	</div>
     </div>
     <div ng-if="!answered" class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent questions">
-        <h2 class="text-center">{{currentBomb.question.text}}</h2>
+        <div class="panel panel-info">
+          <div class="panel-body">
+            <h3 class="text-center">{{currentBomb.question.text}}</h3>
+          </div>
+        </div>
+            
+        
         <h4 class="text-center">{{currentBomb.question.answer}}</h4>
-        <table class="table table-sm table-inverse">
+        <table ng-show="!currentBomb.question.forceAnswer"class="table table-sm table-inverse">
           <thead>
             <tr>
               <th><kbd>Match These</kbd></th>
@@ -36,7 +42,6 @@
 <div ng-if="!answered" class='col-xs-12 col-sm-2 col-md-2 transparent buttons'>
         <p>
         	<a href="#" ng-click="diffuse(userform.answer, currentBomb.question, user.id)" class="button button-3d-primary button-circle shake-horizontal control ">DIFFUSE</a>
-        	<a href="#" class="button button-3d-primary button-circle shake-vertical control">HINT</a>
         	<a href="#" ng-click="leave()" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane">LEAVE</a>
         </p>
       </div>

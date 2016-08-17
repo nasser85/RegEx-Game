@@ -64,32 +64,30 @@ BombGroup.prototype.update = function () {
 BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.currentBomb = bomb;
 
-  var testArr = [{true: null, false: null}];
+ console.log(this.game.scope.currentBomb);
+  var trueArr = [];
+  var falseArr = [];
+  var testArr = [];
 
+  //NEEDS TO BE FIXED
   this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
-      if(testCase.match){
-          if(testArr[testArr.length -1].true){
-              testArr.push({true: testCase.content})
-          }else{
-              testArr[testArr.length -1].true = testCase.content;
-          }
+            if(testCase.match){
+                trueArr.push(testCase.content);
 
-      }else{
-
-          if(testArr[testArr.length -1].false){
-              testArr.push({false: testCase.content})
-          }else{
-              testArr[testArr.length -1].false = testCase.content;
-          }
-      }
-  })
-  var startArr = testArr.filter(function(obj){
-      return obj.true && obj.false;
-  })
-  var endArr = testArr.filter(function(obj){
-      return !obj.true || !obj.false;
-  })
-  this.game.scope.testCaseArr = startArr.concat(endArr);
+            }else{
+                falseArr.push(testCase.content);
+            }
+        })
+        if (trueArr.length >= falseArr.length) {
+            for (var i = 0; i < trueArr.length; i++) {
+                testArr.push({true: trueArr[i], false: falseArr[i]});
+            }
+        } else {
+            for (var j = 0; j < falseArr.length; j++) {
+                testArr.push({true: trueArr[j], false: falseArr[j]});
+            }
+        }
+  this.game.scope.testCaseArr = testArr;
 
   this.game.scope.$evalAsync();
 };
