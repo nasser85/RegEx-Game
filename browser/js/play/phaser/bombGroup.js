@@ -17,7 +17,7 @@ var BombGroup = function (game, arrQuestions, image) {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.gravity.y = 300;
     sprite.question = arrQuestions[i];
-    sprite.expirationTime = Date.now() + 1000*(300 * i);
+    sprite.expirationTime = Date.now() + 1000*(i);
     if(sprite.expirationTime > RegexGame.gameConfig.timeLimit) RegexGame.gameConfig.timeLimit = sprite.expirationTime;
     var bombTimer = new Timer(game, sprite);
     sprite.enableBody = true;
@@ -28,14 +28,20 @@ var BombGroup = function (game, arrQuestions, image) {
 BombGroup.prototype = Object.create(Phaser.Group.prototype);
 BombGroup.prototype.constructor = BombGroup;
 
-BombGroup.prototype.updateNumCorrect = function(){
-  this.numCorrect++;
+BombGroup.prototype.transitionState = function(nextState){
+
+  setTimeout(function(){ this.game.state.start(nextState, false, false, levelStatus)}.bind(this), RegexGame.gameConfig.levelTimePad);
+
 }
 
 BombGroup.prototype.update = function () {
+  //things to check for each cycle
   let bombsAlive = false;
+  let numDisarmed = 0; // will only check alive bombs. They only die if they expire.
+
   this.forEachAlive(function (bomb) {
     bombsAlive = true;
+    if(bomb.question.disarmed) numDisarmed++;
     if (bomb.correct) this.updateNumCorrect; //
     if (bomb.position.y >= bomb.heightToStopFalling) {
       bomb.body.velocity.y = 0;
@@ -48,38 +54,29 @@ BombGroup.prototype.update = function () {
     }
   }.bind(this))
 
-// 0 question answered correctly before they expire.
-  if(!bombsAlive){
-        setTimeout(function(){levelStatus = 'lost'}.bind(this), RegexGame.gameConfig.levelTimePad);
-  }
+// 0 question answered correctly before they expire, or time limit passed - you DUMBLOSER!
+  if(!bombsAlive || Date.now() >= RegexGame.gameConfig.timeLimit) this.transitionState('GameOver');
 
-  // all questions answeredd correctly before timelimit.
-
-  // answer minimum bombs correctly before timelimit- compare minCorrectAnswers vs. timeLimit
-
-  // answer less than min bombs correctly before timelimit - compare minCorrectAnswers
-
-  if(levelStatus) this.game.state.start('PostLevel', false, false, levelStatus);
+  else if(numDisarmed === this.children.length-1) this.transitionState('NextWave');
 
 };
 
 BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.currentBomb = bomb;
-  console.log(this.game.scope);
 
   var testArr = [{true: null, false: null}];
-  //NEEDS TO BE FIXED
+
   this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
-      if(testCase.match){ // how does this test agains the input? no arg?
-          if(testArr[testArr.length -1].true){ // if last el in testarr.true is truthy
-              testArr.push({true: testCase.content}) //push a new object onto the array.
+      if(testCase.match){
+          if(testArr[testArr.length -1].true){
+              testArr.push({true: testCase.content})
           }else{
-              testArr[testArr.length -1].true = testCase.content; // make the existing object's true property equal to the content.
+              testArr[testArr.length -1].true = testCase.content;
           }
 
-      }else{ //it was wrong, add to the false prop similar to above.
+      }else{
 
-          if(testArr[testArr.length -1].false){ //
+          if(testArr[testArr.length -1].false){
               testArr.push({false: testCase.content})
           }else{
               testArr[testArr.length -1].false = testCase.content;
@@ -87,7 +84,7 @@ BombGroup.prototype.engage = function (player, bomb) {
       }
   })
   var startArr = testArr.filter(function(obj){
-      return obj.true && obj.false; // filter for when both true and false are truthy??
+      return obj.true && obj.false;
   })
   var endArr = testArr.filter(function(obj){
       return !obj.true || !obj.false;
@@ -95,7 +92,6 @@ BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.testCaseArr = startArr.concat(endArr);
 
   this.game.scope.$evalAsync();
-  //bomb.kill();
 };
 
   //  Add and update the score

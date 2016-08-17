@@ -5,10 +5,9 @@ app.directive('gameCanvas', function($window, $injector) {
     RegexGame.gameConfig = {
       width: 800,
       height: 600,
-      scoreIncrement: 10,
-      minCorrectAnswers: 3,
+      //scoreIncrement: 10,
       timeLimit: 0,
-      levelTimePad: 1000,
+      levelTimePad: 2000,
       numBombs: 5
     }
 
@@ -18,7 +17,7 @@ app.directive('gameCanvas', function($window, $injector) {
 
     RegexGame.game.state.add('Boot', RegexGame.Boot);
     RegexGame.game.state.add('Preload', RegexGame.Preload);
-    RegexGame.game.state.add('PostLevel', RegexGame.PostLevel);
+    RegexGame.game.state.add('GameOver', RegexGame.GameOver);
     RegexGame.game.state.add('MainMenu', RegexGame.MainMenu);
     RegexGame.game.state.add('Game', RegexGame.Game);
     RegexGame.game.state.start('Boot');
