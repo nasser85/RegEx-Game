@@ -17,7 +17,7 @@ var BombGroup = function (game, arrQuestions, image) {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.gravity.y = 300;
     sprite.question = arrQuestions[i];
-    sprite.expirationTime = Date.now() + 1000*(300 * i);
+    sprite.expirationTime = Date.now() + 1000*(3*i);
     if(sprite.expirationTime > RegexGame.gameConfig.timeLimit) RegexGame.gameConfig.timeLimit = sprite.expirationTime;
     var bombTimer = new Timer(game, sprite);
     sprite.enableBody = true;
@@ -28,14 +28,20 @@ var BombGroup = function (game, arrQuestions, image) {
 BombGroup.prototype = Object.create(Phaser.Group.prototype);
 BombGroup.prototype.constructor = BombGroup;
 
-BombGroup.prototype.updateNumCorrect = function(){
-  this.numCorrect++;
+BombGroup.prototype.transitionState = function(nextState){
+
+  setTimeout(function(){ this.game.state.start(nextState, false, false, levelStatus)}.bind(this), RegexGame.gameConfig.levelTimePad);
+
 }
 
 BombGroup.prototype.update = function () {
+  //things to check for each cycle
   let bombsAlive = false;
+  let numDisarmed = 0; // will only check alive bombs. They only die if they expire.
+
   this.forEachAlive(function (bomb) {
     bombsAlive = true;
+    if(bomb.question.disarmed) numDisarmed++;
     if (bomb.correct) this.updateNumCorrect; //
     if (bomb.position.y >= bomb.heightToStopFalling) {
       bomb.body.velocity.y = 0;
@@ -48,23 +54,16 @@ BombGroup.prototype.update = function () {
     }
   }.bind(this))
 
-// 0 question answered correctly before they expire.
-  if(!bombsAlive){
-        setTimeout(function(){levelStatus = 'lost'}.bind(this), RegexGame.gameConfig.levelTimePad);
-  }
-
-  // all questions answeredd correctly before timelimit.
-
-  // answer minimum bombs correctly before timelimit- compare minCorrectAnswers vs. timeLimit
-
-  // answer less than min bombs correctly before timelimit - compare minCorrectAnswers
-
-  if(levelStatus) this.game.state.start('PostLevel', false, false, levelStatus);
+// 0 question answered correctly before they expire, or time limit passed - you DUMBLOSER!
+  if(!bombsAlive || Date.now() >= RegexGame.gameConfig.timeLimit) this.transitionState('GameOver');
+// or you answered them all SMARTYPANTS
+  else if(numDisarmed === this.children.length-1) this.transitionState('NextWave');
 
 };
 
 BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.currentBomb = bomb;
+
  console.log(this.game.scope.currentBomb);
   var trueArr = [];
   var falseArr = [];
@@ -91,7 +90,6 @@ BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.testCaseArr = testArr;
 
   this.game.scope.$evalAsync();
-  //bomb.kill();
 };
 
   //  Add and update the score
