@@ -19,12 +19,14 @@ app.controller('PlayCtrl', function ($timeout, $scope, questions, user, BombFact
     // var randomIndex = Math.floor((Math.random() * questions.length));
     // $scope.currentQuestion = questions[randomIndex];
     // console.log($scope.currentQuestion);
+    $scope.userform = {};
     $scope.user = user;
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
     $scope.answered = false;
     $scope.correct = 0;
     $scope.diffuse = function(answer, question){
+        console.log(question.testCases);
         BombFactory.diffuse(answer, question)
         if (BombFactory.diffuse(answer, question)) {
             $scope.correct = 1;
@@ -32,7 +34,7 @@ app.controller('PlayCtrl', function ($timeout, $scope, questions, user, BombFact
             $scope.correct = 2;
         }
         $scope.answered = true;
-
+        $scope.userform.answer = null;
         
         $timeout(function(){
             $scope.currentBomb = null;
