@@ -17,7 +17,7 @@ var BombGroup = function (game, arrQuestions, image) {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.gravity.y = 300;
     sprite.question = arrQuestions[i];
-    sprite.expirationTime = Date.now() + 1000*(i);
+    sprite.expirationTime = Date.now() + 1000*(3*i);
     if(sprite.expirationTime > RegexGame.gameConfig.timeLimit) RegexGame.gameConfig.timeLimit = sprite.expirationTime;
     var bombTimer = new Timer(game, sprite);
     sprite.enableBody = true;
@@ -56,7 +56,7 @@ BombGroup.prototype.update = function () {
 
 // 0 question answered correctly before they expire, or time limit passed - you DUMBLOSER!
   if(!bombsAlive || Date.now() >= RegexGame.gameConfig.timeLimit) this.transitionState('GameOver');
-
+// or you answered them all SMARTYPANTS
   else if(numDisarmed === this.children.length-1) this.transitionState('NextWave');
 
 };
