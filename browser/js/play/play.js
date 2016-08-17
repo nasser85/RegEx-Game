@@ -22,6 +22,11 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     $scope.questionIndex = 0;
     $scope.answered = false;
     $scope.correct = 0;
+    $scope.leave = function(){
+        $scope.currentBomb = null;
+        $scope.answered = false;
+        $scope.correct = 0;
+    }
     $scope.diffuse = function(answer, question, userid){
         question.disarmed = false;
         console.log(answer, question, userid);
@@ -43,19 +48,13 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
             $scope.answered = true;
             $scope.userform.answer = null;
             $timeout(function(){
-                $scope.currentBomb = null;
-                $scope.answered = false;
-                $scope.correct = 0;
+                $scope.leave();
             }, 2000);
         }
 
     }
 
-    $scope.leave = function(){
-        $scope.currentBomb = null;
-        $scope.answered = false;
-        $scope.correct = 0;
-    }
+    
 
     $scope.incrementQuestionIndex = function () {
             let newIndex = $scope.questionIndex + 1;

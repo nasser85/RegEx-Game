@@ -90,6 +90,7 @@ BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.testCaseArr = testArr;
 
   this.game.scope.$evalAsync();
+  
 };
 
   //  Add and update the score
