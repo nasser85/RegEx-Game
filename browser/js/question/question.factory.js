@@ -22,6 +22,11 @@ app.factory('QuestionFactory', function($http, $log){
 		return $http.put(baseUrl + question.id, question)
 	}
 
+	questionFactory.getQuestions = function (numQuestions, difficultyLevel) {
+		return $http.post(baseUrl, { numQuestions: numQuestions, difficultyLevel: difficultyLevel })
+			.then(getData);
+	};
+
 	return questionFactory;
 
 })
