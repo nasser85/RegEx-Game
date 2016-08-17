@@ -5,7 +5,7 @@ app.config(function ($stateProvider) {
         controller: 'PlayCtrl',
         resolve: {
             questions : function(QuestionFactory){
-                return QuestionFactory.fetchAll();
+                return QuestionFactory.getQuestions(4,1);
             },
             user : function(AuthService) {
                 return AuthService.getLoggedInUser();
@@ -16,6 +16,7 @@ app.config(function ($stateProvider) {
 
 app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory) {
     $scope.questions = questions;
+    $scope.currentWave = 1;
     $scope.userform = {};
     $scope.user = user;
     $scope.currentBomb = null;
