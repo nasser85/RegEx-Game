@@ -34,7 +34,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
         }
         $scope.answered = true;
         $scope.userform.answer = null;
-        
+
         $timeout(function(){
             $scope.currentBomb = null;
             $scope.answered = false;
