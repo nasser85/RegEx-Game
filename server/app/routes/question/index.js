@@ -29,16 +29,24 @@ router.get('/', function(req, res, next){
 		res.send(allQuestions);
 	})
 	.catch(next);
-})
+});
 
-router.post('/', function(req, res, next){
+router.post('/', function(req, res, next) {
+	if (req.body.numQuestions && req.body.difficultyLevel) {
+		Question.getQuestions(req.body.numQuestions, req.body.difficultyLevel)
+		.then(function (questions) {
+			res.send(questions);
+		})
+		.catch(next);
+	} else {
 		Question.create(req.body, {
-		include: [TestCase]
-	})
-	.then(function(createdQuestion){
-		res.status(201).send(createdQuestion);
-	})
-	.catch(next);
+			include: [TestCase]
+		})
+		.then(function (createdQuestion) {
+			res.status(201).send(createdQuestion);
+		})
+		.catch(next);
+	}
 });
 
 router.get('/:id', function(req, res, next){

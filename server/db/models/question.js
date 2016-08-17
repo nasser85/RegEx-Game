@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 var TestCase = require('./test_case');
 
-module.exports = db.define('question', {
+var Question = db.define('question', {
 	text: {
 		type: Sequelize.TEXT
 	},
@@ -31,5 +31,22 @@ module.exports = db.define('question', {
 }, {
 	defaultScope: {
 		include: [TestCase]
+	},
+	classMethods: {
+		getQuestions: function (numQuestions, difficultyLevel) {
+			return Question.findAll({
+				where: {
+					difficulty: {
+						$lte: difficultyLevel
+					}
+				},
+				limit: numQuestions,
+				order: [
+					Sequelize.fn( 'RANDOM' ),
+				]
+			})
+		}
 	}
-})
+});
+
+module.exports = Question;
