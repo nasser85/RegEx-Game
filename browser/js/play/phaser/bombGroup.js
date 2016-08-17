@@ -66,33 +66,28 @@ BombGroup.prototype.update = function () {
 BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.currentBomb = bomb;
   console.log(this.game.scope);
-
-  var testArr = [{true: null, false: null}];
+  var trueArr = [];
+  var falseArr = [];
+  var testArr = [];
   //NEEDS TO BE FIXED
   this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
-      if(testCase.match){ // how does this test agains the input? no arg?
-          if(testArr[testArr.length -1].true){ // if last el in testarr.true is truthy
-              testArr.push({true: testCase.content}) //push a new object onto the array.
-          }else{
-              testArr[testArr.length -1].true = testCase.content; // make the existing object's true property equal to the content.
-          }
+            if(testCase.match){
+                trueArr.push(testCase.content);
 
-      }else{ //it was wrong, add to the false prop similar to above.
-
-          if(testArr[testArr.length -1].false){ //
-              testArr.push({false: testCase.content})
-          }else{
-              testArr[testArr.length -1].false = testCase.content;
-          }
-      }
-  })
-  var startArr = testArr.filter(function(obj){
-      return obj.true && obj.false; // filter for when both true and false are truthy??
-  })
-  var endArr = testArr.filter(function(obj){
-      return !obj.true || !obj.false;
-  })
-  this.game.scope.testCaseArr = startArr.concat(endArr);
+            }else{
+                falseArr.push(testCase.content);
+            }
+        })
+        if (trueArr.length >= falseArr.length) {
+            for (var i = 0; i < trueArr.length; i++) {
+                testArr.push({true: trueArr[i], false: falseArr[i]});
+            }
+        } else {
+            for (var j = 0; j < falseArr.length; j++) {
+                testArr.push({true: trueArr[j], false: falseArr[j]});
+            }
+        }
+  this.game.scope.testCaseArr = testArr;
 
   this.game.scope.$evalAsync();
   //bomb.kill();

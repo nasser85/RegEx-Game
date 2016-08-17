@@ -13,13 +13,19 @@
 body {
   background: #fdfdfd;
 }
-h2 {
-	font-size: 30px;
-	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
-		   -webkit-text-stroke-width: 1px;
+.panel {
+    margin-left: 20%;
+    width: 60%;
+}
+h3 {
+	font-size: 20px;
+	-webkit-text-fill-color: black; /* Will override color (regardless of order) */
 		   -webkit-text-stroke-color: black;
 }
 
+#question-div {
+    background-color: black;
+}
 .buttons {
 	margin-top: 10%;
 }
