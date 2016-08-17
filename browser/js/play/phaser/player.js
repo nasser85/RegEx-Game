@@ -2,6 +2,8 @@ var Player = function (game, x, y, image) {
 
     Phaser.Sprite.call(this, game, x, y, image);
 
+    this.anchor.set(0.5);
+
     game.physics.arcade.enable(this);
 
     this.body.bounce.y = 0;

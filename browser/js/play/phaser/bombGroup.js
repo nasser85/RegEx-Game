@@ -16,6 +16,7 @@ var BombGroup = function (game, arrQuestions, image) {
     sprite.body.gravity.y = 300;
     sprite.question = arrQuestions[i];
     sprite.expirationTime = Date.now() + 1000*(3 * i);
+    var bombTimer = new Timer(game, sprite);
     sprite.enableBody = true;
     sprite.body.collideWorldBounds = true;
   }
