@@ -23,23 +23,31 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     $scope.answered = false;
     $scope.correct = 0;
     $scope.diffuse = function(answer, question, userid){
-        // console.log(answer, question, userid);
+        question.disarmed = false;
+        console.log(answer, question, userid);
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
             $scope.correct = 1;
-            BombFactory.storeUserAnswer(answer, question, userid)
-            .catch($log.error);
+            // BombFactory.storeUserAnswer(answer, question, userid)
+            // .catch($log.error);
+            $scope.answered = true;
+            $scope.userform.answer = null;
+            $timeout(function(){
+                $scope.currentBomb = null;
+                $scope.answered = false;
+                $scope.correct = 0;
+                question.disarmed = true;
+            }, 2000);
         } else {
             $scope.correct = 2;
+            $scope.answered = true;
+            $scope.userform.answer = null;
+            $timeout(function(){
+                // $scope.currentBomb = null;
+                $scope.answered = false;
+                $scope.correct = 0;
+            }, 2000);
         }
-        $scope.answered = true;
-        $scope.userform.answer = null;
-
-        $timeout(function(){
-            $scope.currentBomb = null;
-            $scope.answered = false;
-            $scope.correct = 0;
-        }, 2000);
 
     }
 

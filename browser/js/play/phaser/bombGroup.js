@@ -69,6 +69,7 @@ BombGroup.prototype.engage = function (player, bomb) {
   var trueArr = [];
   var falseArr = [];
   var testArr = [];
+
   //NEEDS TO BE FIXED
   this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
             if(testCase.match){

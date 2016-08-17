@@ -134,26 +134,13 @@ var seedQuestions = function () {
     {
       text: 'Match all!',
       category: 'match_all',
-      difficulty: 3,
-      hint: '',
-      answer: "\d+",
-      forceAnswer: false,
-      testCases: [
-        { content: 'abc123xyz', match: true },
-        { content: 'define "123"', match: true },
-        { content: 'var g=123', match: true }
-      ]
-    },
-    {
-      text: 'Match all!',
-      category: 'match_all',
       difficulty: 1,
       hint: '',
       answer: "abc",
       forceAnswer: false,
       testCases: [
         { content: 'abc', match: true },
-        { content: 'abcde"', match: true },
+        { content: 'abcde', match: true },
         { content: 'abcdefg', match: true }
       ]
     },

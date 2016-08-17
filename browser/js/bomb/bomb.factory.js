@@ -5,8 +5,7 @@ app.factory("BombFactory", function($http){
 
 	bombFactory.diffuse = function(userAnswer, question){
 		var result = true;
-		
-		if(question.category === 'match_some' || question.category === 'match_all'){
+		if(question.category === 'match_some'){
 		let regexAnswer = new RegExp(userAnswer);
 			question.testCases.forEach(function(testCase){
 				if(testCase.match){
@@ -19,14 +18,22 @@ app.factory("BombFactory", function($http){
 					}
 				}
 			})
-			console.log(result);
 		return result;	
+
 		}else if(question.category === 'validation'){
 			if(question.answer !== userAnswer){
 				result = false;
 			}
-			console.log('inside validation diffuse', result);
 			return result;
+
+		}else if(question.category === 'match_all'){
+			let regexAnswer = new RegExp(userAnswer);
+			for(var i = 0; i < question.testCases.length; i++){
+				if(regexAnswer.test(question.testCases[i].content) == false){
+					return false;
+				}
+			}
+			return true;
 		}
 	}
 
