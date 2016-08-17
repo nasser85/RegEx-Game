@@ -94,7 +94,7 @@ console.log('scope in game.js?', RegexGame)
 
         bombs = this.add.group();
         bombs.enableBody = true;
-        createBombs.call(this, 5);
+        createBombs.call(this, 20);
         // The player and its settings
         player = this.add.sprite(32, this.world.height - 150, 'dude');
         //  We need to enable physics on the player

@@ -23,7 +23,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     $scope.answered = false;
     $scope.correct = 0;
     $scope.diffuse = function(answer, question, userid){
-        console.log(answer, question, userid);
+        // console.log(answer, question, userid);
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
             $scope.correct = 1;
