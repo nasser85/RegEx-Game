@@ -32,5 +32,4 @@ app.factory("BombFactory", function(){
 
 	return bombFactory;
 
-
 });
