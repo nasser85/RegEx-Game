@@ -37,7 +37,6 @@ BombGroup.prototype.init = function(){
 }
 
 BombGroup.prototype.update = function () {
-  console.log(this.children);
   //things to check for each cycle
   let bombsAlive = false;
   let numDisarmed = 0; // will only check alive bombs. They only die if they expire.

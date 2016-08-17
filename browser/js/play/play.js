@@ -17,6 +17,7 @@ app.config(function ($stateProvider) {
 app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory) {
     $scope.questions = questions;
     $scope.currentWave = 1;
+    $scope.getNewQuestions = function(){console.log('hey')};
     $scope.userform = {};
     $scope.user = user;
     $scope.currentBomb = null;

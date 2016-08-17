@@ -9,10 +9,9 @@ RegexGame.NextWave.prototype = {
   },
   init: function(){
     this.game.scope.currentWave++;
-    this.game.scope.$evalAsync();
+    this.game.scope.getNewQuestions();
   },
   create: function() {
-    console.log(this.game.scope.currentWave);
    //show the space tile, repeated
     this.background = this.game.add.sprite(0, 0, 'desert');
 
