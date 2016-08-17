@@ -74,6 +74,15 @@ let seedQuestion4 = {
         { content: 'i #4 cogs', match: false }]
 }
 
+let arrQuestions = [
+  { category: 'match_some', difficulty: 4 },
+  { category: 'match_some', difficulty: 2 },
+  { category: 'match_some', difficulty: 1 },
+  { category: 'match_some', difficulty: 1 },
+  { category: 'match_some', difficulty: 1 },
+  { category: 'match_some', difficulty: 1 },
+  { category: 'match_some', difficulty: 1 }
+];
 
 describe('These are Question Routes: they are working and they can', function () {
 
@@ -115,6 +124,26 @@ describe('These are Question Routes: they are working and they can', function ()
         expect(response.body.text).to.equal('baaaaalllahhhh')
       });
     });
+  });
+
+  it('invokes the getQuestions method when a post request with the "numQuestions" and "difficultyLevel" properties is made', function () {
+    return Promise.all(arrQuestions.map(obj => Question.create(obj)))
+    .then(function () {
+      return agent.post('/api/question/')
+      .send({ numQuestions: 99, difficultyLevel: 3 })
+      .then(function (response) {
+        var questions = response.body.map(question => question.difficulty)
+        var countOfOnes = questions.reduce(function (x, y) {
+          return parseInt(y) === 1 ? x + 1 : x;
+        }, 0);
+        var countOfTwos = questions.reduce(function (x, y) {
+          return parseInt(y) === 2 ? x + 1 : x;
+        }, 0);
+        expect(questions).to.have.length(6);
+        expect(countOfOnes).to.equal(5);
+        expect(countOfTwos).to.equal(1);
+      })
+    })
   });
 
 
