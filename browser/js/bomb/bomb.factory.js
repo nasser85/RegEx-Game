@@ -1,5 +1,5 @@
 
-app.factory("BombFactory", function(){
+app.factory("BombFactory", function($http){
 
 	var bombFactory = {};
 
@@ -22,9 +22,13 @@ app.factory("BombFactory", function(){
 		console.log(result);
 	return result;
 	}
-	// bombFactory.hint = function(){
 
-	// }
+	bombFactory.storeUserAnswer = function(answer, question, userid){
+		return $http.post('/api/user/'+ userid +'/addanswer', {
+			questionId: question.id,
+			user_answer: answer
+		})
+	}
 
 	bombFactory.leave = function(currentBomb){
 		return currentBomb = null;
