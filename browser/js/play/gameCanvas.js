@@ -5,10 +5,8 @@ app.directive('gameCanvas', function($window, $injector) {
     RegexGame.gameConfig = {
       width: 800,
       height: 600,
-      //scoreIncrement: 10,
       timeLimit: 0,
-      levelTimePad: 2000,
-      numBombs: 5
+      levelTimePad: 2000
     }
 
     RegexGame.game = new Phaser.Game(RegexGame.gameConfig.width, RegexGame.gameConfig.height, Phaser.AUTO, 'playGame');
@@ -20,6 +18,7 @@ app.directive('gameCanvas', function($window, $injector) {
     RegexGame.game.state.add('GameOver', RegexGame.GameOver);
     RegexGame.game.state.add('MainMenu', RegexGame.MainMenu);
     RegexGame.game.state.add('Game', RegexGame.Game);
+    RegexGame.game.state.add('NextWave', RegexGame.NextWave);
     RegexGame.game.state.start('Boot');
 
     var w = angular.element($window);

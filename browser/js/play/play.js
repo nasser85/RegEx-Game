@@ -5,7 +5,7 @@ app.config(function ($stateProvider) {
         controller: 'PlayCtrl',
         resolve: {
             questions : function(QuestionFactory){
-                return QuestionFactory.fetchAll();
+                return QuestionFactory.getQuestions(4,1);
             },
             user : function(AuthService) {
                 return AuthService.getLoggedInUser();
@@ -14,8 +14,14 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory) {
+app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, QuestionFactory) {
     $scope.questions = questions;
+    $scope.currentWave = 1;
+    $scope.getNewQuestions = function(){
+        QuestionFactory.getQuestions(4, $scope.currentWave)
+        .then(result => $scope.questions = result)
+        .catch($log.error);
+    };
     $scope.userform = {};
     $scope.user = user;
     $scope.currentBomb = null;
@@ -48,7 +54,6 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
 
     $scope.diffuse = function(answer, question, userid){
         question.disarmed = false;
-        console.log(answer, question, userid);
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
             $scope.correct = 1;
