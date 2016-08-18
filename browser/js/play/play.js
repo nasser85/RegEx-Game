@@ -78,8 +78,6 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
 
     }
 
-    
-
     $scope.incrementQuestionIndex = function () {
         let newIndex = $scope.questionIndex + 1;
         newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
@@ -88,6 +86,13 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
 
     $scope.saveToDatabase = function(score, userId){
         UserFactory.storeScore(score, userId)
+        .then(function(){
+            return ScoreFactory.fetchTop10()
+        })
+        .then(function(top10){
+            $scope.topScores = top10;
+            $scope.scoreSubmitted = true;
+        })
         .catch($log.error);
         $scope.scoreSubmitted = true;
     }

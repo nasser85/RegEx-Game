@@ -4,7 +4,7 @@ module.exports = router;
 
 router.use('/user', require('./user'));
 router.use('/question', require('./question'));
-
+router.use('/score', require('./score'));
 // Make sure this is after all of
 // the registered routes!
 router.use(function (req, res, next) {

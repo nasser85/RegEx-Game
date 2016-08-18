@@ -6,7 +6,14 @@
 		<button ng-show='!scoreSubmitted' ng-click='saveToDatabase(score, user.id)'>Save Your Score</button> 
 		<!-- <div>Enter Your User Name</div>
 		<input></input> -->
-	<div ng-show='scoreSubmitted'>Show Higest 10 here</div>
+	<div ng-show='scoreSubmitted'>
+		<div id='top-score-container'>
+			<div ng-repeat="score in topScores">
+				<div>{{score}}</div>
+			</div>
+			
+		</div>
+	</div>
 		<button ng-click='backToGame()'>Close Score Board</button> 
 		
 </div>
