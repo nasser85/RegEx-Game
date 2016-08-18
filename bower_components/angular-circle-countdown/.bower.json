@@ -1,0 +1,33 @@
+{
+  "name": "angular-circle-countdown",
+  "homepage": "https://github.com/shakogegia/angular-circle-countdown",
+  "authors": [
+    "Gego <shalva.gegia@gmail.com>"
+  ],
+  "description": "Circle countdown for angular",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.x",
+    "jquery": "~2.0.3",
+    "jquery-knob": "~1.2.3"
+  },
+  "_release": "32d35ca407",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "32d35ca407634f7057a42218417f126c3851cd7e"
+  },
+  "_source": "https://github.com/shakogegia/angular-circle-countdown.git",
+  "_target": "*",
+  "_originalSource": "angular-circle-countdown",
+  "_direct": true
+}
