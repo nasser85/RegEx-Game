@@ -17,10 +17,10 @@ RegexGame.Preload.prototype = {
    //load game assets
     this.load.image('smiley', 'smiley.png');
     this.load.image('desert', 'desert.png');
-    this.load.spritesheet('regularDude', 'regularDude.gif', 31.8, 48)
+    this.load.spritesheet('regularDude', 'regularDude.png', 32, 48)
     this.load.spritesheet('bomb', 'bombs.png', 128, 128,2);
     this.load.spritesheet('explosion', 'explosion2.png', 128, 128);
-    this.load.audio('bombExplode', 'time_bomb_short.mp3');
+    this.load.audio('bombExplode', '/sound/time_bomb_short.mp3');
     this.load.audio('menuBumper', '/sound/menu_bumper.mp3');
     this.load.audio('battleTune', '/sound/Battle_Draft.mp3');
 
