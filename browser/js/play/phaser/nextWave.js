@@ -5,7 +5,7 @@ RegexGame.NextWave = function(){
 
 RegexGame.NextWave.prototype = {
   startNextWave: function(){
-      this.game.state.start('Game');
+      this.game.state.start('Game', true, false);
   },
   init: function(){
     this.game.scope.currentWave++;

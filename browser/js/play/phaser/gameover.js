@@ -3,7 +3,7 @@ RegexGame.GameOver = function(){
 
 RegexGame.GameOver.prototype = {
   tryAgain: function(){
-      this.game.state.start('Game');
+      this.game.scope.restartGame();
   },
   makeText: function(text, yoffset, style){
     let txt = this.game.add.text(this.game.width/2, this.game.height/2+yoffset, text, style);

@@ -39,6 +39,7 @@ var RegexGame = RegexGame || {};
       /*scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });*/
 
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
+      bombs.forEach(bomb => console.log(bomb.question.id, bomb.question.disarmed));
 
       player = new Player(this.game, 32, this.world.height - 150, 'regularDude');
     },
