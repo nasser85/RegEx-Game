@@ -5,7 +5,7 @@ app.config(function ($stateProvider) {
         controller: 'PlayCtrl',
         resolve: {
             questions : function(QuestionFactory){
-                return QuestionFactory.getQuestions(2,1);
+                return QuestionFactory.getQuestions(4,1);
             },
             user : function(AuthService) {
                 return AuthService.getLoggedInUser();
@@ -18,7 +18,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     $scope.questions = questions;
     $scope.currentWave = 1;
     $scope.getNewQuestions = function(){
-        QuestionFactory.getQuestions(2, $scope.currentWave)
+        QuestionFactory.getQuestions(4, $scope.currentWave)
         .then(result => $scope.questions = result)
         .catch($log.error);
     };

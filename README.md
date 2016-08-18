@@ -1,18 +1,24 @@
 [![Stories in Ready](https://badge.waffle.io/nasser85/RegEx-Game.png?label=ready&title=Ready)](https://waffle.io/nasser85/RegEx-Game)
 # RegEx-Game
 ## Overview
-This is an early draft of a game to practice RegEx, and will have two main components:
+This is an second draft of a game to practice RegEx, and will have two main components:
 * Play Game
-* My Account
+* My Account (not active yet)
 
 ### Play Game
 This is an Angular state that uses a mix of Phaser.io and Angular directives to create the game experience. Phaser.io is used for the main levels and map, and a directive will be used for the bomb defuse view.
 
-The 'Play Game' tab previews the current, very simple functionality. You will see 5 bombs drop - each with a very short timer after which it will explode. If you collide with one of them in time, you will transition to the bomb defuse view.
-
-Neither does very much at the moment.
+Gameplay will be waves of bombs dropping with increasing levels of difficulty.
 
 ### My Account (does not exist yet)
 For registered users, you will be able to see
 * Your previous answers to questions
 * See other answers to the same questions from other users.
+
+### Major updates since first review:
+* Enhanced bomb diffuse view, including
+** Timer
+** Improved CSS
+* Massive modularization of Phaser and Angular code
+* Nearly complete scaffolding for supporting inifinite waves of bombs (until we run out of questions) both on front and back end (ability to ask DB for next wave of questions and attach them to the DOM)
+

@@ -18,6 +18,11 @@ var RegexGame = RegexGame || {};
 
   RegexGame.Game.prototype = {
     create: function() {
+      //start tunes
+      let music = this.add.audio('battleTune');
+      music.addMarker('playBattleTune',0,300)
+      music.play('playBattleTune');
+
       this.scale.pageAlignHorizontally = true;
       this.scale.pageAlignVertically = true;
       this.scale.refresh();
