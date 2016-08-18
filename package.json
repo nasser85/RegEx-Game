@@ -1,7 +1,7 @@
 {
-  "name": "FullstackGeneratedApp",
+  "name": "RegexGame",
   "version": "1.0.0",
-  "description": "A generated project at Fullstack Academy",
+  "description": "Fullstack Academy Capstone Project by Jay Moon, Nasser Abouelazm, Sam Severance, Sean Han",
   "main": "server/start.js",
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js",
