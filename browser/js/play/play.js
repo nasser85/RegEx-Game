@@ -28,6 +28,30 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     $scope.questionIndex = 0;
     $scope.answered = false;
     $scope.correct = 0;
+
+    $scope.counter = 0;
+    $scope.onTimeout = function(){
+        if ($scope.currentBomb && $scope.counter === 0) {
+            $scope.correct = 3;
+            $scope.answered = true;
+            $timeout(function(){
+                $scope.leave();
+            }, 2000);
+            currentTimeout = 0;
+        } else {
+            $scope.counter-= 1;
+            currentTimeout = $timeout($scope.onTimeout,1000);
+        }
+        
+    }
+    var currentTimeout = $timeout($scope.onTimeout,1000);
+
+    $scope.leave = function(){
+        $scope.currentBomb = null;
+        $scope.answered = false;
+        $scope.correct = 0;
+    }
+
     $scope.diffuse = function(answer, question, userid){
         question.disarmed = false;
         let diffused = BombFactory.diffuse(answer, question);
@@ -48,19 +72,13 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
             $scope.answered = true;
             $scope.userform.answer = null;
             $timeout(function(){
-                $scope.currentBomb = null;
-                $scope.answered = false;
-                $scope.correct = 0;
+                $scope.leave();
             }, 2000);
         }
 
     }
 
-    $scope.leave = function(){
-        $scope.currentBomb = null;
-        $scope.answered = false;
-        $scope.correct = 0;
-    }
+    
 
     $scope.incrementQuestionIndex = function () {
             let newIndex = $scope.questionIndex + 1;

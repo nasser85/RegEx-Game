@@ -93,6 +93,7 @@ BombGroup.prototype.engage = function (player, bomb) {
               }
           }
     this.game.scope.testCaseArr = testArr;
+    this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
 
     this.game.scope.$evalAsync();
   }
