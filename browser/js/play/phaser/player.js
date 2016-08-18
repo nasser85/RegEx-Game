@@ -12,7 +12,8 @@ var Player = function (game, x, y, image) {
 
     this.animations.add('left', [0, 1, 2, 3], 10, true);
     this.animations.add('right', [5, 6, 7, 8], 10, true);
-    this.animations.add('down', [4, 3, 0, 1], 10, true);
+    this.animations.add('down', [4, 4, 4, 4], 10, true);
+    this.animations.add('up', [4, 4, 4, 4], 10, true);
 
     game.add.existing(this);
 };
@@ -40,7 +41,7 @@ Player.prototype.update = function() {
   } else if (cursors.up.isDown) {
 
     this.body.velocity.y = -300;
-    this.animations.play('down');
+    this.animations.play('up');
 
   } else if (cursors.down.isDown) {
 
