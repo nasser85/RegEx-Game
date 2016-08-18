@@ -14,7 +14,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, QuestionFactory) {
+app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, UserFactory, QuestionFactory, ScoreFactory) {
     $scope.questions = questions;
     $scope.currentWave = 1;
     $scope.getNewQuestions = function(){
@@ -53,7 +53,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     }
 
     $scope.diffuse = function(answer, question, userid){
-        question.disarmed = false;
+       
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
             $scope.correct = 1;
@@ -81,9 +81,19 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     
 
     $scope.incrementQuestionIndex = function () {
-            let newIndex = $scope.questionIndex + 1;
-            newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
-                $scope.questionIndex = newIndex;
+        let newIndex = $scope.questionIndex + 1;
+        newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
+            $scope.questionIndex = newIndex;
+    }
+
+    $scope.saveToDatabase = function(score, userId){
+        UserFactory.storeScore(score, userId)
+        .catch($log.error);
+        $scope.scoreSubmitted = true;
+    }
+
+    $scope.backToGame = function(){
+        $scope.saveScore = false;
     }
 
 })

@@ -96,6 +96,13 @@ router.post('/:userId/addanswer', function(req, res, next){
     .catch(next);
 })
 
+router.post('/:userId/saveScore', function(req, res, next){
+    req.user.createScore({score: req.body.score})
+    .then(function(){
+        res.sendStatus(201);
+    })
+    .catch(next);
+})
 
 
 

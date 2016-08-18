@@ -30,6 +30,12 @@ app.factory('UserFactory', function($http, $log){
 		return $http.post(baseUrl + user.id + '/addanswer', {user_answer:answer, questionId: question.id})
 	}
 
+	userFactory.storeScore = function(score, userid){
+		return $http.post('/api/user/'+ userid +'/saveScore', {
+			score: score
+		})
+	}
+
 	return userFactory;
 
 })

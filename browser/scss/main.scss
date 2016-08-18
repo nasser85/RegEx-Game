@@ -232,6 +232,21 @@ list-style: none;
     padding: 25px;
     border-radius: 30%;
 }
+save-score{
+    padding-top:10%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    
+}
+#save-score {
+    margin:10px auto;
+    width: 800px;
+    height: 600px;
+}
 
 
 

@@ -13,7 +13,8 @@ var BombGroup = function (game, arrQuestions, image) {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.gravity.y = 300;
     sprite.question = arrQuestions[i];
-    sprite.expirationTime = Date.now() + 30000 + 1000*(20*i);
+    // sprite.expirationTime = Date.now() + 30000 + 1000*(20*i);
+    sprite.expirationTime = Date.now() + 10*(20*i);
     if(sprite.expirationTime > RegexGame.gameConfig.timeLimit) RegexGame.gameConfig.timeLimit = sprite.expirationTime;
     var bombTimer = new Timer(game, sprite);
     sprite.enableBody = true;
@@ -94,7 +95,8 @@ BombGroup.prototype.engage = function (player, bomb) {
           }
     this.game.scope.testCaseArr = testArr;
     this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
-
+  
+    this.game.scope.currentBomb.question.disarmed = false;
     this.game.scope.$evalAsync();
     var textBox = document.getElementById("text-answer");
    

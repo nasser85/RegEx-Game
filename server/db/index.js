@@ -5,7 +5,8 @@ module.exports = db;
 var User = require('./models/user');
 var Question = require('./models/question');
 var TestCase = require('./models/test_case');
-var AnsweredQuestion = require('./models/answered_question')
+var AnsweredQuestion = require('./models/answered_question');
+var Score = require('./models/score');
 
 User.belongsToMany(Question, {through: AnsweredQuestion});  // Project.belongsToMany(User, {through: 'UserProject'});
 Question.belongsToMany(User, {through: AnsweredQuestion});  // User.belongsToMany(Project, {through: 'UserProject'});
@@ -17,3 +18,9 @@ Question.hasMany(TestCase); // Project.hasMany(User, {as: 'Workers'})   This wil
 
 Question.hasMany(AnsweredQuestion);
 AnsweredQuestion.belongsTo(Question);
+
+//for score board
+// User.belongsToMany(Score, {through: 'user_score'});
+Score.belongsTo(User);
+User.hasMany(Score); //instance of user has setScore ?
+
