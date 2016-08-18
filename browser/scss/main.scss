@@ -35,9 +35,9 @@ body {
 
 
 .panel {
-    margin-top: 0;
-    margin-left: 20%;
-    width: 60%;
+   
+    margin: 0 auto;
+    width: 100%;
 }
 .alert {
     font-family: gameFont;
@@ -59,10 +59,11 @@ h3 {
     background-color: black;
 }
 .buttons {
-	margin-top: 10%;
+	/*margin-top: 0%;*/
+    margin-left: 30%;
 }
 .questions {
-		margin-top: 20%;
+		margin-top: 30%;
 		position: absolute;
 		z-index: 6;
 		th {
@@ -113,7 +114,7 @@ h3 {
 }
 
 bomb-view{
-    padding-top:10%;
+    padding-top:0%;
     position: absolute;
     top: 0;
     right: 0;
@@ -138,10 +139,16 @@ bomb-view{
   filter: blur(0px);
 }
 
-#container {
-margin: 100px auto;
-width: 688px;
+.input-container {
+margin: 0 auto;
+width: 100%;
+
 }
+
+.input-margin {
+   height: 100px;
+}
+
 #write {
 margin: 0 0 5px;
 padding: 5px;

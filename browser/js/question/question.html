@@ -1,7 +1,7 @@
 <div class="magictime swashIn transparent" id='bomb-view'>
 
 
-    <div class="thumbnail col-xs-12 col-sm-10 col-md-10 transparent">
+    <div class="thumbnail col-xs-12 col-sm-12 col-md-12 transparent">
 
         <div class="shake shake-constant transparent">
         <div ng-class="correct===1 ? 'magictime foolishOut' : 'not-blurry'" >
@@ -9,7 +9,7 @@
         </div>
     	</div>
     </div>
-    <div ng-if="!answered" class="col-xs-12 col-sm-10 col-md-10 transparent questions">
+    <div ng-if="!answered" class="col-xs-12 col-sm-12 col-md-12 transparent questions">
         <div class="panel panel-info">
            <div class='panel-heading text-center'>This bomb explodes in {{counter}} seconds</div> 
           <div class="panel-body">
@@ -31,17 +31,33 @@
             </tr>
           </tbody>
         </table>
-        <div id="container" class="transparent">
-            <input autofocus="autofocus" ng-model="userform.answer" class="textbox" type="text"> 
+        <div class='row'>
+          <div ng-if='currentBomb.question.forceAnswer' class='input-margin'></div>
+          <div class="transparent col-md-12 col-sm-12 input-container" >
+                <input autofocus="autofocus" ng-model="userform.answer" class="textbox " type="text"> 
+              <div ng-if="!answered" class='transparent buttons'>
+              
+              <div class='col-md-12 col-sm-12'>
+                <a href="#" ng-click="diffuse(userform.answer, currentBomb.question, user.id)" class="button button-3d-primary button-circle shake-horizontal control ">DIFFUSE</a>
+                <a href="#" ng-click="leave()" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane">LEAVE</a>
+              </div>
+              </div>
+          </div>
         </div>
 </div>
 <diffuse-result ng-if="answered" ></diffuse-result>
-<div ng-if="!answered" class='col-xs-12 col-sm-2 col-md-2 transparent buttons'>
-        <p>
-        	<a href="#" ng-click="diffuse(userform.answer, currentBomb.question, user.id)" class="button button-3d-primary button-circle shake-horizontal control ">DIFFUSE</a>
-        	<a href="#" ng-click="leave()" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane">LEAVE</a>
-        </p>
-      </div>
+
+      <!-- <div ng-if="!answered" class='col-xs-12 col-sm-12 col-md-12 transparent buttons'>
+       <p>
+           <a href="#" ng-click="diffuse(userform.answer, currentBomb.question, user.id)" class="button button-3d-primary button-circle shake-horizontal control col-xs-12 col-sm-4 col-md-4">DIFFUSE</a>
+           <div id="container" class="transparent col-xs-12 col-sm-4 col-md-4">
+               <input autofocus="autofocus" ng-model="userform.answer" class="textbox" type="text"> 
+           </div>
+           <a href="#" ng-click="leave()" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane col-xs-12 col-sm-4 col-md-4">LEAVE</a>
+       </p>
+     </div>
+ -->
+
   	</div>
 
 
