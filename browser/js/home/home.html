@@ -1,9 +1,28 @@
 <section id="home">
   <h1>RegEx Race</h1>
+  <h3 ng-if="user">Hey, {{user.user_name}}!</h3>
   <h3>How Many Bombs Can You Diffuse?</h3>
     <ul class='list-unstyled'>
-      <li ui-sref='play'>Play Game</li>
-      <li ui-sref='Login'>Login</li>
-      <li ui-sref='Signup'>Need an Account?</li>
+      <li><button ui-sref='play' class="button button-rounded button-flat-primary button-large">Play Game</button></li>
+      <li ng-if="!user"><button ui-sref='login' class="button button-rounded button-flat-action button-large">Login</button></li>
+      <li ng-if="user"><button ng-click='logout()' class="button button-rounded button-flat-royal button-large">Logout</button></li>
+      <li ng-if="!user">Don't Have an Account? <button ui-sref='signup' class="button button-rounded button-flat-royal button-large">Sign Up</button></li>
+      <li ng-if="!user">
+	 	<div class="col-xs-4 col-sm-4 col-md-4">
+	        <a href="/auth/google" class="btn btn-social-icon btn-google">
+			    <span class="fa fa-google"></span>
+			</a>
+		</div>
+	   	<div class="col-xs-4 col-sm-4 col-md-4">
+	        <a href="/auth/facebook" class="btn btn-social-icon btn-facebook">
+			    <span class="fa fa-facebook"></span>
+			</a>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4">
+	        <a href="https://github.com/nasser85/RegEx-Game" class="btn btn-social-icon btn-github">
+			    <span class="fa fa-github"></span>
+			</a>
+		</div>
+	      </li>
     </ul>
 </section>
