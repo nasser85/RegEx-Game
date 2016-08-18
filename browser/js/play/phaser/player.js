@@ -29,22 +29,22 @@ Player.prototype.update = function() {
 
   if (cursors.left.isDown) {
 
-    this.body.velocity.x = -150;
+    this.body.velocity.x = -300;
     this.animations.play('left');
 
   } else if (cursors.right.isDown) {
 
-    this.body.velocity.x = 150;
+    this.body.velocity.x = 300;
     this.animations.play('right');
 
   } else if (cursors.up.isDown) {
 
-    this.body.velocity.y = -100;
+    this.body.velocity.y = -300;
     this.animations.play('down');
 
   } else if (cursors.down.isDown) {
 
-    this.body.velocity.y = 100;
+    this.body.velocity.y = 300;
     this.animations.play('down');
 
   } else {

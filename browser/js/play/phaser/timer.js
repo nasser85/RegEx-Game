@@ -24,7 +24,10 @@ Timer.prototype.timeRemaining = function () {
 
 
 Timer.prototype.update = function () {
-  if (this.associatedBomb.alive) {
+  if(this.associatedBomb.question.disarmed){
+    this.setText('Solved!');
+    this.style.fill = '#00FF00';
+  } else if (this.associatedBomb.alive) {
     this.setText(this.timeRemaining());
     this.x = this.associatedBomb.x;
     this.y = this.associatedBomb.y - 30;

@@ -15,9 +15,10 @@ RegexGame.Preload.prototype = {
     this.load.setPreloadSprite(this.preloadBar);
 
    //load game assets
+    this.load.image('smiley', 'smiley.png');
     this.load.image('desert', 'desert.png');
     this.load.spritesheet('dude', 'dude.png', 32, 48);
-    this.load.spritesheet('bomb', 'bombs.png', 128, 128);
+    this.load.spritesheet('bomb', 'bombs.png', 128, 128,2);
     this.load.spritesheet('explosion', 'explosion2.png', 128, 128);
     this.load.audio('bombExplode', 'time_bomb_short.mp3');
     this.load.audio('menuBumper', '/sound/menu_bumper.mp3');
