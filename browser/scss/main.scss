@@ -113,9 +113,19 @@ h3 {
 }
 
 bomb-view{
+    padding-top:10%;
     position: absolute;
-    top: 120px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 2;
+    
+}
+#bomb-view {
+    margin:0 auto;
+    width: 800px;
+    height: 600px;
 }
 .blurry {
 	   -webkit-filter: blur(10px);
@@ -201,7 +211,7 @@ list-style: none;
         }
 
 #main {
-  padding-top: 20px;
+  padding-top: 10%;
   margin: 0 auto;
 }
 
