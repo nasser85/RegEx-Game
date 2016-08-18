@@ -87,7 +87,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     $scope.saveToDatabase = function(score, userId){
         UserFactory.storeScore(score, userId)
         .then(function(){
-            return ScoreFactory.fetchTop10()
+            return ScoreFactory.fetchTop10();
         })
         .then(function(top10){
             $scope.topScores = top10;
