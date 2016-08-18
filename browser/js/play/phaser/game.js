@@ -17,6 +17,12 @@ var RegexGame = RegexGame || {};
   RegexGame.Game = function () {};
 
   RegexGame.Game.prototype = {
+    init: function(){
+      this.game.paused = false;
+    },
+    togglePause: function(){
+      this.game.paused = !this.game.paused;
+    },
     create: function() {
       //start tunes
       let music = this.add.audio('battleTune');
@@ -34,7 +40,7 @@ var RegexGame = RegexGame || {};
 
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
 
-      player = new Player(this.game, 32, this.world.height - 150, 'dude');
+      player = new Player(this.game, 32, this.world.height - 150, 'regularDude');
     },
     update: function() {
       cursors = this.input.keyboard.createCursorKeys();
