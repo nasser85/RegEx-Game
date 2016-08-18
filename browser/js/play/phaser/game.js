@@ -19,6 +19,7 @@ var RegexGame = RegexGame || {};
   RegexGame.Game.prototype = {
     init: function(){
       this.game.paused = false;
+      this.game.scope.scoreSubmitted = false;
     },
     togglePause: function(){
       this.game.paused = !this.game.paused;
