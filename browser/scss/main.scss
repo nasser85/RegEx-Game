@@ -263,6 +263,10 @@ save-score{
     bottom: 0;
     left: 0;
     z-index: 9;
+    input {
+        padding: 8px;
+        margin: 2px;
+    }
     
 }
 #save-score {
