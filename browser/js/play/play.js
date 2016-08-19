@@ -14,8 +14,11 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion) {
+
+app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
+
     $scope.questions = questions;
+    $scope.score = 0;
     $scope.currentWave = 1;
     $scope.getNewQuestions = function(){
         QuestionFactory.getQuestions(4, $scope.currentWave)
@@ -53,13 +56,14 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     }
 
     $scope.diffuse = function(answer, question, userid){
-        question.disarmed = false;
+        console.log('inside diffuge, score', $scope.score)
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
             $scope.correct = 1;
             // BombFactory.storeUserAnswer(answer, question, userid)
             // .catch($log.error);
             $scope.answered = true;
+            $scope.score += 100;
             $scope.userform.answer = null;
             $timeout(function(){
                 $scope.currentBomb = null;
@@ -78,12 +82,28 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
 
     }
 
-
-
     $scope.incrementQuestionIndex = function () {
-            let newIndex = $scope.questionIndex + 1;
-            newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
-                $scope.questionIndex = newIndex;
+        let newIndex = $scope.questionIndex + 1;
+        newIndex === $scope.questions.length ? $scope.questionIndex = 0 :
+            $scope.questionIndex = newIndex;
+    }
+
+    $scope.saveToDatabase = function(score, userId){
+        UserFactory.storeScore(score, userId)
+        .then(function(){
+            return ScoreFactory.fetchTop10();
+        })
+        .then(function(top10){
+            $scope.topScores = top10;
+            $scope.scoreSubmitted = true;
+        })
+        .catch($log.error);
+        $scope.scoreSubmitted = true;
+    }
+
+    $scope.backToGame = function(){
+        $scope.saveScore = false;
+        $scope.score = 0;
     }
 
     $scope.generatedQuestion = new GeneratedQuestion().anyDigit().digitWithinRange();

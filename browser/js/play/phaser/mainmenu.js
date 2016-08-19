@@ -12,7 +12,7 @@ RegexGame.MainMenu.prototype = {
    //show the space tile, repeated
     this.background = this.game.add.sprite(0, 0, 'desert');
 
-    let textStyle = { font: "30px Arial", fill: "#000", align: "center" };
+    let textStyle = { font: "25px gameFont", fill: "#000", align: "center" };
 
     //start game text
     let text1 = "CLICK TO BRING ON THE REGEX!";

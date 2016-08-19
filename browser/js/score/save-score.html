@@ -1,0 +1,40 @@
+<div class="magictime swashIn transparent" id="save-score">
+	<div>
+		<h2>Your Score: {{score}}</h2>
+		<button ng-show='!scoreSubmitted' ng-click='saveToDatabase(score, user.id)'>Save Your Score</button> 
+	</div>
+		<!-- <div>Enter Your User Name</div>
+		<input></input> -->
+	<div ng-show='scoreSubmitted'>
+		<div id='top-score-container'>
+
+			<table>
+			  <tr>
+			  	<th><h3>Rank</h3></th>
+			    <th><h3>User</h3></th>
+			    <th><h3>Score</h3></th>
+			    <th><h3>Date</h3></th>
+			  </tr>
+			   
+			  <tr ng-repeat = "score in topScores">
+			  	<td><h4>{{ $index + 1 }}<h4></td>
+			    <td><h4>{{ score.user.user_name }}<h4></td>
+			    <td><h4>{{ score.score }}<h4></td>
+			    <td><h4>{{ score.createdAt.slice(0, 10) }}<h4></td>
+			  </tr>
+			</table>
+
+
+
+<!-- 
+			<div ng-repeat="score in topScores">
+				<span>{{score.score}}</span>
+				<span>{{score.user.user_name}}</span>
+			</div> -->
+			
+		</div>
+	</div>
+
+	<button ng-click='backToGame()'>Close Score Board</button> 
+		
+</div>
