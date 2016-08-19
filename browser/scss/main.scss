@@ -54,8 +54,10 @@ inputs-moz-placeholder {
 }
 
 body {
-  background: #fdfdfd;
+  background: darken(rgba(115, 38, 77, 1.3), 2%);
   background-image: url(city.gif);
+  background-repeat: no-repeat;
+  background-height: 100%;
 
 }
 

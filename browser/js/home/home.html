@@ -5,6 +5,7 @@
     <ul class='list-unstyled'>
       <li><button ui-sref='play' class="button button-rounded button-flat-primary button-large">Play Game</button></li>
       <li ng-if="!user"><button ui-sref='login' class="button button-rounded button-flat-action button-large">Login</button></li>
+      <li ng-if="user"><button ui-sref='account' class="button button-rounded button-flat-action button-large">Account</button></li>
       <li ng-if="user"><button ng-click='logout()' class="button button-rounded button-flat-royal button-large">Logout</button></li>
       <li ng-if="!user">Don't Have an Account? <button ui-sref='signup' class="button button-rounded button-flat-royal button-large">Sign Up</button></li>
       <li ng-if="!user">
