@@ -8,6 +8,20 @@
   box-sizing: border-box;
   font-family: gameFont ;
 }
+
+#account {
+    .row {
+        margin-top: 5%;
+        h5 {
+            padding: 20px;
+            color: cyan;
+            text-align: center;
+        }
+        .button {
+            margin-top: 20px;
+        }
+    }
+}
 .sign-up-form {
   width: 100%;
   margin-left: 40%;
