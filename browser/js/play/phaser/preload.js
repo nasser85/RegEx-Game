@@ -15,6 +15,10 @@ RegexGame.Preload.prototype = {
     this.load.setPreloadSprite(this.preloadBar);
 
    //load game assets
+    this.load.tilemap('simpleCity_Layer1', '/maps/simpleCity_SimpleCity_Layer1.csv', null, Phaser.Tilemap.CSV);
+    this.load.tilemap('simpleCity_Layer2', '/maps/simpleCity_SimpleCity_Layer2.csv', null, Phaser.Tilemap.CSV);
+    this.load.image('tileset1', 'TileA5.png')
+    this.load.image('tileset2', 'TileB.png')
     this.load.image('smiley', 'smiley.png');
     this.load.image('desert', 'desert.png');
     this.load.spritesheet('regularDude', 'regularDude.png', 32, 48)
