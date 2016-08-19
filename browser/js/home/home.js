@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeCtrl', function($scope, $rootScope, AuthService, AUTH_EVENTS) {
+app.controller('HomeCtrl', function($scope, $rootScope, AuthService, AUTH_EVENTS, $state) {
 	$scope.user = null;
 
     $scope.isLoggedIn = function () {
