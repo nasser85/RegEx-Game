@@ -76,25 +76,26 @@ BombGroup.prototype.engage = function (player, bomb) {
 
     //NEEDS TO BE FIXED
     this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
-              if(testCase.match){
-                  trueArr.push(testCase.content);
+      if(testCase.match){
+          trueArr.push(testCase.content);
 
-              }else{
-                  falseArr.push(testCase.content);
-              }
-          })
-          if (trueArr.length >= falseArr.length) {
-              for (var i = 0; i < trueArr.length; i++) {
-                  testArr.push({true: trueArr[i], false: falseArr[i]});
-              }
-          } else {
-              for (var j = 0; j < falseArr.length; j++) {
-                  testArr.push({true: trueArr[j], false: falseArr[j]});
-              }
+      }else{
+          falseArr.push(testCase.content);
+      }
+    })
+      if (trueArr.length >= falseArr.length) {
+          for (var i = 0; i < trueArr.length; i++) {
+              testArr.push({true: trueArr[i], false: falseArr[i]});
           }
+      } else {
+          for (var j = 0; j < falseArr.length; j++) {
+              testArr.push({true: trueArr[j], false: falseArr[j]});
+          }
+      }
     this.game.scope.testCaseArr = testArr;
     this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
-
+  
+    this.game.scope.currentBomb.question.disarmed = false;
     this.game.scope.$evalAsync();
     var textBox = document.getElementById("text-answer");
    

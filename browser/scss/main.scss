@@ -8,6 +8,20 @@
   box-sizing: border-box;
   font-family: gameFont ;
 }
+
+#account {
+    .row {
+        margin-top: 5%;
+        h5 {
+            padding: 20px;
+            color: cyan;
+            text-align: center;
+        }
+        .button {
+            margin-top: 20px;
+        }
+    }
+}
 .sign-up-form {
   width: 100%;
   margin-left: 40%;
@@ -214,61 +228,6 @@ border: 5px solid black;
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;
 }
-#keyboard {
-margin: 0;
-padding: 0;
-list-style: none;
-}
-    #keyboard li {
-    float: left;
-    margin: 0 5px 5px 0;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #f9f9f9;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    }
-        .capslock, .tab, .left-shift {
-        clear: left;
-        }
-            #keyboard .tab, #keyboard .delete {
-            width: 70px;
-            }
-            #keyboard .capslock {
-            width: 80px;
-            }
-            #keyboard .return {
-            width: 77px;
-            }
-            #keyboard .left-shift {
-            width: 95px;
-            }
-            #keyboard .right-shift {
-            width: 109px;
-            }
-        .lastitem {
-        margin-right: 0;
-        }
-        .uppercase {
-        text-transform: uppercase;
-        }
-        #keyboard .space {
-        clear: left;
-        width: 681px;
-        }
-        .on {
-        display: none;
-        }
-        #keyboard li:hover {
-        position: relative;
-        top: 1px;
-        left: 1px;
-        border-color: #e5e5e5;
-        cursor: pointer;
-        }
 
 #main {
   padding-top: 0%;
@@ -285,8 +244,33 @@ list-style: none;
     padding: 25px;
     border-radius: 30%;
 }
+save-score{
+    padding-top:10%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    
+}
+#save-score {
+    margin:10px auto;
+    width: 800px;
+    height: 600px;
+    text-align: center;
+}
+#top-score-container{
+    table {text-align: center;}
 
+    th , td {
+      border-collapse: collapse;
+      padding: 5px 10px;
+      text-align: center;
+    }
 
+    
+}
 
 @import 'directives/main';
 @import 'home/main';

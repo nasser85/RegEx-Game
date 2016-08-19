@@ -22,6 +22,7 @@ var RegexGame = RegexGame || {};
   RegexGame.Game.prototype = {
     init: function(){
       this.game.paused = false;
+      this.game.scope.scoreSubmitted = false;
     },
     togglePause: function(){
       this.game.paused = !this.game.paused;
@@ -36,10 +37,10 @@ var RegexGame = RegexGame || {};
       this.scale.pageAlignVertically = true;
       this.scale.refresh();
       this.physics.startSystem(Phaser.Physics.ARCADE);
-
       //create base map
       map = this.add.tilemap('simpleCity_Layer1');
       map.addTilesetImage('streetTiles');
+      scoreText = this.add.text(16, 16, 'Score: '+ score, { font: '25px gameFont', fill: '#000' });
 
       layer = map.createLayer(0);
       layer.resizeWorld();
@@ -66,7 +67,12 @@ var RegexGame = RegexGame || {};
 
       //deal with collisions
       this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
+<<<<<<< HEAD
       this.physics.arcade.collide(player, layer2);
       this.physics.arcade.collide(bombs,layer2)
+=======
+      scoreText.text = 'Score: ' + this.game.scope.score;
+
+>>>>>>> master
     }
   };
