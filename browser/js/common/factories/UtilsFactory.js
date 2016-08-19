@@ -30,6 +30,12 @@ app.factory('Utils', function () {
     },
     stringOfCharacters: function (arrCodePoints) {
       return this.arrayOfCharacters(arrCodePoints).join('');
+    },
+    firstElement: function (arr) {
+      return arr[0];
+    },
+    lastElement: function (arr) {
+      return arr[arr.length - 1];
     }
   };
 });

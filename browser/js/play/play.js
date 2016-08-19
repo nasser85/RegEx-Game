@@ -86,8 +86,26 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
                 $scope.questionIndex = newIndex;
     }
 
-    $scope.generatedQuestion = new GeneratedQuestion().anyDigit().digitWithinRange();
-    console.log($scope.generatedQuestion.text);
-    console.log($scope.generatedQuestion.match);
-    console.log($scope.generatedQuestion.doNotMatch);
+    $scope.generatedQuestion = new GeneratedQuestion()['anyWhitespace']()['anyNonWhitespace']();
+
+    function checkAnswer (arrRegexes, q) {
+      arrRegexes.forEach(function (re, i) {
+
+        var matchTest = q.match[i].every(function (element) {
+          return re.test(element);
+        });
+
+        var dontMatchTest = re.test(q.doNotMatch[i])
+
+        console.log(matchTest, 'matchTest', q.match[i]);
+        console.log(dontMatchTest, 'dontMatchTest', q.doNotMatch[i]);
+        if (matchTest && !dontMatchTest) {
+          console.log('you got it right');
+        } else {
+          console.log('incorrect');
+        }
+      });
+    }
+
+    checkAnswer([/\s/, /\S/], $scope.generatedQuestion);
 })

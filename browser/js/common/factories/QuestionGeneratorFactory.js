@@ -42,26 +42,44 @@ app.factory('GeneratedQuestion', function (CharacterCodeFactory, Utils) {
   };
 
   Question.prototype.digitWithinRange = function () {
-    var range = Utils.randomRange(48, 57, 3, 8);
+    var lower = Utils.firstElement(Codes.allDigits);
+    var upper = Utils.lastElement(Codes.allDigits);
+    var range = Utils.randomRange(lower, upper, 3, 8);
 
     var text = `A digit in the range of ${Utils.fromCodePoint(range[0])} to ${Utils.fromCodePoint(range[range.length - 1])}`;
 
     return this.generate(text, Codes.allCharacters, range);
   };
 
-  function checkAnswer (re, q) {
-    console.log(q);
-    var matchTest = q.match[0].every(function (element) {
-      return re.test(element);
-    });
-    var dontMatchTest = re.test(q.doNotMatch[0])
+  Question.prototype.lowercaseLetterWithinRange = function () {
+    var lower = Utils.firstElement(Codes.lowercaseLetters);
+    var upper = Utils.lastElement(Codes.lowercaseLetters);
+    var range = Utils.randomRange(lower, upper, 3, 20);
 
-    console.log(matchTest, 'matchTest');
-    console.log(dontMatchTest, 'dontMatchTest');
-    return matchTest && !dontMatchTest ? 'you got it right' : 'incorrect';
-  }
+    var text = `A letter in the range of ${Utils.fromCodePoint(range[0])} to ${Utils.fromCodePoint(range[range.length - 1])}`;
 
-  // console.log(checkAnswer(/\d/, q));
+    return this.generate(text, Codes.allCharacters, range);
+  };
+
+  Question.prototype.uppercaseLetterWithinRange = function () {
+    var lower = Utils.firstElement(Codes.uppercaseLetters);
+    var upper = Utils.lastElement(Codes.uppercaseLetters);
+    var range = Utils.randomRange(lower, upper, 3, 20);
+
+    var text = `A letter in the range of ${Utils.fromCodePoint(range[0])} to ${Utils.fromCodePoint(range[range.length - 1])}`;
+
+    return this.generate(text, Codes.allCharacters, range);
+  };
+
+  Question.prototype.anyWhitespace = function () {
+    return this.generate('Every whitespace character', Codes.allCharacters, Codes.whitespace);
+  };
+
+  Question.prototype.anyNonWhitespace = function () {
+    var text = 'Every character that is not whitespace';
+
+    return this.generate(text, Codes.allCharacters, Utils.difference(Codes.allCharacters, Codes.whitespace));
+  };
 
   return Question;
 });
