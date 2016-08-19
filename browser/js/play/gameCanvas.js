@@ -28,7 +28,7 @@ app.directive('gameCanvas', function($window, $injector) {
   };
 
   return {
-    template: '<div ng-class="currentBomb ? \'blurry\' : \'not-blurry\'" id=\'playGame\' balls></div><bomb-view ng-if="currentBomb" ></bomb-view>',
+    template: '<div><h4>Welcome, {{user.user_name}}</h4></div><div ng-class="currentBomb ? \'blurry\' : \'not-blurry\'" id=\'playGame\' balls></div><bomb-view ng-if="currentBomb" ></bomb-view>',
     link: linkFn
   }
 })
