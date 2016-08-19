@@ -1,10 +1,10 @@
 <div class="magictime swashIn transparent" id="save-score">
 	<div>
 		<h2>Your Score: {{score}}</h2>
-		<button ng-show='!scoreSubmitted' ng-click='saveToDatabase(score, user.id)'>{{user? 'Save Score': 'Sign Up to Save Score' }}</button> 
+		<h4 ng-show='!user' ui-sref='signup'>Sign up to save Score!</h4>
+		<sign-up ng-show='!user'></sign-up>
+		<button ng-show='!scoreSubmitted && user' ng-click='saveToDatabase(score, user.id)'>Save Your Score</button> 
 	</div>
-		<!-- <div>Enter Your User Name</div>
-		<input></input> -->
 	<div ng-show='scoreSubmitted'>
 		<div id='top-score-container'>
 
