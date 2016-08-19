@@ -17,25 +17,53 @@ var RegexGame = RegexGame || {};
   let layer2;
   let things;
   //set up the actual game state
-  RegexGame.Game = function () {};
+  RegexGame.Game = function () {
 
-  RegexGame.Game.prototype = {
-    generateMap: function(){
-
-
-    },
-    init: function(){
-      this.game.mapConfig = {
-        map: {
+      this.mapConfig = {
+        mapA: {
           tilemap: 'simpleCity_Layer1',
           tilesetImage: 'streetTiles',
           obstacles: {
             a: {
-
-            }
+              tilemap: 'simpleCity_Layer2',
+              tilesetImage: 'accessoryTiles',
+              collision: [124,125,140,141,158,159,198,199,200]
+            },
+            b: {
+              tilemap: 'simpleCity_Layer3',
+              tilesetImage: 'carTiles',
+              collision: [9,10,11,12,13,41,51,52,53,54,55,56,83,84,85]
+            },
+            c: null
           }
         }
       };
+
+  };
+
+  RegexGame.Game.prototype = {
+    getRandProp: function(obj){
+        let keys = Object.keys(obj);
+        return obj[keys[Math.floor(Math.random() * keys.length)]];
+    },
+    generateMap: function(){
+
+      let randMap = this.getRandProp(this.mapConfig);
+
+      map = this.add.tilemap(randMap.tilemap);
+      map.addTilesetImage(randMap.tilesetImage);
+      layer = map.createLayer(0);
+      layer.resizeWorld();
+
+      let randObstacle = this.getRandProp(randMap.obstacles);
+      if(randObstacle) {
+        obstacles = this.add.tilemap(randObstacle.tilemap);
+        obstacles.addTilesetImage(randObstacle.tilesetImage);
+        obstacles.setCollision(randObstacle.collision);
+        layer2 = obstacles.createLayer(0);
+      }
+    },
+    init: function(){
       this.game.paused = false;
       this.game.scope.scoreSubmitted = false;
     },
@@ -52,25 +80,10 @@ var RegexGame = RegexGame || {};
       this.scale.pageAlignVertically = true;
       this.scale.refresh();
       this.physics.startSystem(Phaser.Physics.ARCADE);
-      //create base map
-      map = this.add.tilemap('simpleCity_Layer1');
-      map.addTilesetImage('streetTiles');
 
-      layer = map.createLayer(0);
-      layer.resizeWorld();
+      //create map
+      this.generateMap();
 
-/*      obstacles = this.add.tilemap('simpleCity_Layer2');
-      obstacles.addTilesetImage('accessoryTiles');
-      layer2 = obstacles.createLayer(0);
-      obstacles.setCollision([124,125,140,141,158,159,198,199,200]);*/
-
-      obstacles = this.add.tilemap('simpleCity_Layer3');
-      obstacles.addTilesetImage('carTiles');
-      //obstacles.addTilesetImage('accessoryTiles');
-      layer2 = obstacles.createLayer(0);
-      obstacles.setCollision([9,10,11,12,13,41,51,52,53,54,55,56,83,84,85]);
-      /*things = this.add.group
-      obstacles.createFromObjects('Object Layer 1', 0, )*/
       scoreText = this.add.text(16, 16, 'Score: '+ score, { font: '25px gameFont', fill: '#000' });
 
       //create bombs and player
@@ -83,7 +96,7 @@ var RegexGame = RegexGame || {};
       //deal with collisions
       this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
       this.physics.arcade.collide(player, layer2);
-      this.physics.arcade.collide(bombs,layer2)
+      this.physics.arcade.collide(bombs, layer2, bombs.freeze)
 
       scoreText.text = 'Score: ' + this.game.scope.score;
 
