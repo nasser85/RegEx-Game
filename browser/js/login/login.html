@@ -1,16 +1,16 @@
-<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+<form class="sign-up-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
 
     <alert type="danger" ng-show="error">
         {{ error }}
     </alert>
+    
+    <input ng-model="login.email" type="text"class="inputs" placeholder="E-mail" />
+    <br> 
+     <input ng-model="login.password" type="password" class="inputs"placeholder="Password" />
+     <br>
+     <input type="submit" value="Submit" class="button button-rounded button-flat-primary button-large"> 
+             
+           
 
-    <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="text" ng-model="login.email" class="form-control" id="email" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-        <label for="login-password">Password</label>
-        <input type="password" ng-model="login.password" class="form-control" id="login-password" placeholder="Password">
-    </div>
-    <input type="submit" value="Submit" class="button button-rounded button-flat-primary button-large">
 </form>
+

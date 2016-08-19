@@ -8,9 +8,10 @@
   box-sizing: border-box;
   font-family: gameFont ;
 }
-#sign-up-form {
-  width: 60%;
-  margin: 0 auto;
+.sign-up-form {
+  width: 100%;
+  margin-left: 40%;
+  margin-top: 10%;
   inputs:-webkit-input-placeholder {
     color: #b5b5b5;
 }
@@ -20,6 +21,7 @@ inputs-moz-placeholder {
 }
 
 .inputs {
+    position: center;
     outline: none;
     display: block;
     width: 270px;
@@ -53,6 +55,8 @@ inputs-moz-placeholder {
 
 body {
   background: #fdfdfd;
+  background-image: url(city.gif);
+
 }
 
 #home {
