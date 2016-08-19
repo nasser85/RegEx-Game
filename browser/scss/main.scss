@@ -182,12 +182,12 @@ bomb-view{
     height: 600px;
 }
 .blurry {
-	   -webkit-filter: blur(10px);
+  -webkit-filter: blur(10px);
   -moz-filter: blur(10px);
   filter: blur(10px);
 }
 .not-blurry {
-	   -webkit-filter: blur(0px);
+  -webkit-filter: blur(0px);
   -moz-filter: blur(0px);
   filter: blur(0px);
 }
@@ -216,7 +216,7 @@ border: 5px solid black;
 }
 
 #main {
-  padding-top: 0%;
+  padding-top: 5%;
   margin: 0 auto;
 }
 

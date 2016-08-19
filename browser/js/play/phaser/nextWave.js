@@ -15,7 +15,7 @@ RegexGame.NextWave.prototype = {
    //show the space tile, repeated
     this.background = this.game.add.sprite(0, 0, 'desert');
 
-    let textStyle = { font: "30px Arial", fill: "#000", align: "center" };
+    let textStyle = { font: "20px gameFont", fill: "#000", align: "center" };
     //message
     let text1 = `WAVE ${this.game.scope.currentWave-1} CLEARED! WAVE ${this.game.scope.currentWave} STARTS IN...`;
     let t1 = this.game.add.text(this.game.width/2, this.game.height/2, text1, textStyle);
