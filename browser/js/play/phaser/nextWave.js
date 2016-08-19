@@ -14,8 +14,9 @@ RegexGame.NextWave.prototype = {
   },
   create: function() {
 
-   //show the space tile, repeated
-    this.background = this.game.add.sprite(0, 0, 'desert');
+    let background = this.game.add.tilemap('simpleCity_Layer1');
+    background.addTilesetImage('streetTiles');
+    let layer = this.background.createLayer(0);
 
     this.emitter = new Emitter(this.game, 100, 0, 'bomb');
 

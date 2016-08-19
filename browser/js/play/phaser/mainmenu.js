@@ -12,7 +12,7 @@ RegexGame.MainMenu.prototype = {
    //show the space tile, repeated
     //this.background = this.game.add.sprite(0, 0, 'desert');
     this.background = this.game.add.tilemap('simpleCity_Layer1');
-    this.background.addTilesetImage('tileset1');
+    this.background.addTilesetImage('streetTiles');
     let layer = this.background.createLayer(0);
 
     let textStyle = { font: "30px Arial", fill: "#000", align: "center" };

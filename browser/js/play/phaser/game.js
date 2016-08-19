@@ -15,6 +15,7 @@ var RegexGame = RegexGame || {};
   let levelStatus = null;
   let layer;
   let layer2;
+  let things;
   //set up the actual game state
   RegexGame.Game = function () {};
 
@@ -36,27 +37,35 @@ var RegexGame = RegexGame || {};
       this.scale.refresh();
       this.physics.startSystem(Phaser.Physics.ARCADE);
 
-      //map = new Map(this.game, 0, 0, 'desert');
+      //create base map
       map = this.add.tilemap('simpleCity_Layer1');
-      map.addTilesetImage('tileset1');
+      map.addTilesetImage('streetTiles');
 
       layer = map.createLayer(0);
       layer.resizeWorld();
 
-      obstacles = this.add.tilemap('simpleCity_Layer2');
-      obstacles.addTilesetImage('tileset2');
+/*      obstacles = this.add.tilemap('simpleCity_Layer2');
+      obstacles.addTilesetImage('accessoryTiles');
       layer2 = obstacles.createLayer(0);
-      obstacles.setCollision([124,125,140,141,158,159,198,199,200]);
+      obstacles.setCollision([124,125,140,141,158,159,198,199,200]);*/
 
+      obstacles = this.add.tilemap('simpleCity_Layer3');
+      obstacles.addTilesetImage('carTiles');
+      //obstacles.addTilesetImage('accessoryTiles');
+      layer2 = obstacles.createLayer(0);
+      obstacles.setCollision([9,10,11,12,13,41,51,52,53,54,55,56,83,84,85]);
+      /*things = this.add.group
+      obstacles.createFromObjects('Object Layer 1', 0, )*/
 
+      //create bombs and player
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
-
       player = new Player(this.game, 32, this.world.height - 150, 'regularDude');
     },
     update: function() {
       cursors = this.input.keyboard.createCursorKeys();
-      this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
 
+      //deal with collisions
+      this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
       this.physics.arcade.collide(player, layer2);
       this.physics.arcade.collide(bombs,layer2)
     }
