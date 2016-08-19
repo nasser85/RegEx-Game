@@ -1,6 +1,6 @@
 var Timer = function (game, associatedBomb) {
 
-  Phaser.Text.call(this, game, 0, 0, '', { font: "14px Arial", fill: "#ff0000", align: "center" });
+  Phaser.Text.call(this, game, 0, 0, '', { font: "10px gameFont", fill: "#ff0000", align: "center" });
 
   this.associatedBomb = associatedBomb;
 

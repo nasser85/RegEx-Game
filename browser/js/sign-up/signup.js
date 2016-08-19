@@ -20,7 +20,13 @@ app.controller('SignUpCtrl', function ($scope, UserFactory, $state, AuthService)
         .then(function(createdUser) {
             
             return AuthService.login({email: createdUser.email, password: signUpStuff.password}).then(function () {
-                $state.go('home');
+                if(!$scope.saveScore){
+                    $state.go('home');
+                }else{
+                    AuthService.getLoggedInUser().then(function (user) {
+                        $scope.user = user;
+                    });
+                }
             }).catch(function () {
                 $scope.error = 'Incorrect email and password.  Please try again!';
             });

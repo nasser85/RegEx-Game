@@ -84,7 +84,7 @@ var RegexGame = RegexGame || {};
       //create map
       this.generateMap();
 
-      scoreText = this.add.text(16, 16, 'Score: '+ score, { font: '25px gameFont', fill: '#000' });
+      scoreText = this.add.text(16, 16, 'Score: '+ score, { font: '25px gameFont', fill: 'cyan' });
 
       //create bombs and player
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
