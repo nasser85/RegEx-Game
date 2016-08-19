@@ -15,7 +15,7 @@ RegexGame.MainMenu.prototype = {
     this.background.addTilesetImage('streetTiles');
     let layer = this.background.createLayer(0);
 
-    let textStyle = { font: "25px gameFont", fill: "#000", align: "center" };
+    let textStyle = { font: "25px gameFont", fill: "cyan", align: "center" };
 
     //start game text
     let text1 = "CLICK TO BEGIN!";

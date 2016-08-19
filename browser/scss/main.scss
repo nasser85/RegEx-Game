@@ -245,6 +245,7 @@ border: 5px solid black;
     border-radius: 30%;
 }
 save-score{
+    color: cyan;
     padding-top:8%;
     position: absolute;
     top: 0;
@@ -259,13 +260,16 @@ save-score{
     width: 800px;
     height: 600px;
     text-align: center;
+    button {
+        margin: 5px 0;
+        width: 200px;
+    }
 }
 #top-score-container{
     table {
         text-align: center;
         margin: 0 auto;
     }
-
     th , td {
       border-collapse: collapse;
       padding: 5px 10px;
