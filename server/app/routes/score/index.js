@@ -8,6 +8,17 @@ module.exports = router;
 
 
 
+router.get('/topscore', function(req, res, next){
+	Score.findAll({
+		order: [['score','DESC']],
+		limit: 1
+	})
+	.then(function(topScore){
+		res.send(topScore);
+	})
+	.catch(next);
+});
+
 router.get('/top10', function(req, res, next){
 	Score.findAll({
 		order: [['score','DESC']],
@@ -19,4 +30,20 @@ router.get('/top10', function(req, res, next){
 	})
 	.catch(next);
 });
+
+router.get('/user/:id', function(req, res, next){
+	Score.findAll({
+		where: {
+			userId: req.params.id
+		},
+		order: [['score','DESC']],
+		limit: 1
+	})
+	.then(function(topUserScore){
+		res.send(topUserScore);
+	})
+	.catch(next);
+});
+
+
 

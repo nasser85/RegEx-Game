@@ -9,6 +9,16 @@ app.factory('ScoreFactory', function($http, $log){
 		.then(getData)
 	}
 
+	scoreFactory.fetchTopScore = function(){
+		return $http.get(baseUrl + 'topscore')
+		.then(getData)
+	}
+
+	scoreFactory.fetchUserTopScore = function(id){
+		return $http.get(baseUrl + 'user/' + id)
+		.then(getData)
+	}
+
 	return scoreFactory;
 })
 
