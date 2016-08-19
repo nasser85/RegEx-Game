@@ -14,7 +14,9 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, UserFactory, QuestionFactory, ScoreFactory) {
+
+app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
+
     $scope.questions = questions;
     $scope.score = 0;
     $scope.currentWave = 1;
@@ -43,7 +45,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
             $scope.counter-= 1;
             currentTimeout = $timeout($scope.onTimeout,1000);
         }
-        
+
     }
     var currentTimeout = $timeout($scope.onTimeout,1000);
 
@@ -104,4 +106,8 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
         $scope.score = 0;
     }
 
+    $scope.generatedQuestion = new GeneratedQuestion().anyDigit().digitWithinRange();
+    console.log($scope.generatedQuestion.text);
+    console.log($scope.generatedQuestion.match);
+    console.log($scope.generatedQuestion.doNotMatch);
 })

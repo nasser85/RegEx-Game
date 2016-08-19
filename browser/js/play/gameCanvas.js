@@ -28,7 +28,10 @@ app.directive('gameCanvas', function($window, $injector) {
   };
 
   return {
-    template: '<div ng-class="currentBomb || saveScore ? \'blurry\' : \'not-blurry\'" id=\'playGame\' balls></div><bomb-view ng-if="currentBomb" ></bomb-view><save-score ng-if="saveScore" ></save-score>',
+    template: `<div><h4>Welcome, {{user.user_name}}</h4></div>
+              <div ng-class="currentBomb || saveScore ? \'blurry\' : \'not-blurry\'" id=\'playGame\' balls></div>
+              <bomb-view ng-if="currentBomb" ></bomb-view>
+              <save-score ng-if="saveScore" ></save-score>`,
     link: linkFn
   }
 })
