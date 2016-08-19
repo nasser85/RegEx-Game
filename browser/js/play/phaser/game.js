@@ -67,12 +67,10 @@ var RegexGame = RegexGame || {};
 
       //deal with collisions
       this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
-<<<<<<< HEAD
       this.physics.arcade.collide(player, layer2);
       this.physics.arcade.collide(bombs,layer2)
-=======
+
       scoreText.text = 'Score: ' + this.game.scope.score;
 
->>>>>>> master
     }
   };
