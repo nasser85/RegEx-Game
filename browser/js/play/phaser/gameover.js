@@ -16,7 +16,9 @@ RegexGame.GameOver.prototype = {
   },
   create: function() {
    //show the space tile, repeated
-    this.background = this.game.add.sprite(0, 0, 'desert');
+    let background = this.game.add.tilemap('simpleCity_Layer1');
+    background.addTilesetImage('streetTiles');
+    let layer = background.createLayer(0);
 
     let style = { font: "20px gameFont", fill: "#000", align: "center" };
     //message

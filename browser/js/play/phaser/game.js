@@ -20,7 +20,22 @@ var RegexGame = RegexGame || {};
   RegexGame.Game = function () {};
 
   RegexGame.Game.prototype = {
+    generateMap: function(){
+
+
+    },
     init: function(){
+      this.game.mapConfig = {
+        map: {
+          tilemap: 'simpleCity_Layer1',
+          tilesetImage: 'streetTiles',
+          obstacles: {
+            a: {
+
+            }
+          }
+        }
+      };
       this.game.paused = false;
       this.game.scope.scoreSubmitted = false;
     },
@@ -40,7 +55,6 @@ var RegexGame = RegexGame || {};
       //create base map
       map = this.add.tilemap('simpleCity_Layer1');
       map.addTilesetImage('streetTiles');
-      scoreText = this.add.text(16, 16, 'Score: '+ score, { font: '25px gameFont', fill: '#000' });
 
       layer = map.createLayer(0);
       layer.resizeWorld();
@@ -57,6 +71,7 @@ var RegexGame = RegexGame || {};
       obstacles.setCollision([9,10,11,12,13,41,51,52,53,54,55,56,83,84,85]);
       /*things = this.add.group
       obstacles.createFromObjects('Object Layer 1', 0, )*/
+      scoreText = this.add.text(16, 16, 'Score: '+ score, { font: '25px gameFont', fill: '#000' });
 
       //create bombs and player
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
