@@ -1,4 +1,38 @@
 #login-form {
   width: 60%;
   margin: 0 auto;
+  inputs:-webkit-input-placeholder {
+    color: #b5b5b5;
+}
+
+inputs-moz-placeholder {
+    color: #b5b5b5;
+}
+
+.inputs {
+position: center;
+    outline: none;
+    display: block;
+    width: 270px;
+    padding: 4px 8px;
+    border: 1px dashed #DBDBDB;
+    color: #3F3F3F;
+    font-family: 'Droid Sans', Tahoma, Arial, Verdana sans-serif;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: background 0.2s linear, box-shadow 0.6s linear;
+    -moz-transition: background 0.2s linear, box-shadow 0.6s linear;
+    -o-transition: background 0.2s linear, box-shadow 0.6s linear;
+    transition: background 0.2s linear, box-shadow 0.6s linear;
+}
+
+.inputs:focus {
+    background: #F7F7F7;
+    border: dashed 1px #969696;
+    -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
+    -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
+    box-shadow: 2px 2px 7px #E8E8E8 inset;
+}
 }
