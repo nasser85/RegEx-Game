@@ -7,7 +7,7 @@ RegexGame.GameOver.prototype = {
   },
   saveScore: function(){
       this.game.scope.saveScore = true;
-      this.game.scope.score = 1234567;//to be removed.
+      // this.game.scope.score = 1234567;//to be removed.
   },
   makeText: function(text, yoffset, style){
     let txt = this.game.add.text(this.game.width/2, this.game.height/3+yoffset, text, style);

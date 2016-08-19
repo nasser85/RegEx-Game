@@ -13,8 +13,7 @@ var BombGroup = function (game, arrQuestions, image) {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.gravity.y = 300;
     sprite.question = arrQuestions[i];
-    // sprite.expirationTime = Date.now() + 30000 + 1000*(20*i);
-    sprite.expirationTime = Date.now() + 10*(20*i);
+    sprite.expirationTime = Date.now() + 30000 + 1000*(20*i);
     if(sprite.expirationTime > RegexGame.gameConfig.timeLimit) RegexGame.gameConfig.timeLimit = sprite.expirationTime;
     var bombTimer = new Timer(game, sprite);
     sprite.enableBody = true;
@@ -77,22 +76,22 @@ BombGroup.prototype.engage = function (player, bomb) {
 
     //NEEDS TO BE FIXED
     this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
-              if(testCase.match){
-                  trueArr.push(testCase.content);
+      if(testCase.match){
+          trueArr.push(testCase.content);
 
-              }else{
-                  falseArr.push(testCase.content);
-              }
-          })
-          if (trueArr.length >= falseArr.length) {
-              for (var i = 0; i < trueArr.length; i++) {
-                  testArr.push({true: trueArr[i], false: falseArr[i]});
-              }
-          } else {
-              for (var j = 0; j < falseArr.length; j++) {
-                  testArr.push({true: trueArr[j], false: falseArr[j]});
-              }
+      }else{
+          falseArr.push(testCase.content);
+      }
+    })
+      if (trueArr.length >= falseArr.length) {
+          for (var i = 0; i < trueArr.length; i++) {
+              testArr.push({true: trueArr[i], false: falseArr[i]});
           }
+      } else {
+          for (var j = 0; j < falseArr.length; j++) {
+              testArr.push({true: trueArr[j], false: falseArr[j]});
+          }
+      }
     this.game.scope.testCaseArr = testArr;
     this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
   

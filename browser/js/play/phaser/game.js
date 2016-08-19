@@ -36,8 +36,8 @@ var RegexGame = RegexGame || {};
       this.physics.startSystem(Phaser.Physics.ARCADE);
 
       map = new Map(this.game, 0, 0, 'desert');
-      // add the score
-      /*scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });*/
+
+      scoreText = this.add.text(16, 16, 'Score: '+ score, { font: '25px gameFont', fill: '#000' });
 
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
 
@@ -46,5 +46,7 @@ var RegexGame = RegexGame || {};
     update: function() {
       cursors = this.input.keyboard.createCursorKeys();
       this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
+      scoreText.text = 'Score: ' + this.game.scope.score; 
+  
     }
   };

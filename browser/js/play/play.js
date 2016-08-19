@@ -16,6 +16,7 @@ app.config(function ($stateProvider) {
 
 app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, UserFactory, QuestionFactory, ScoreFactory) {
     $scope.questions = questions;
+    $scope.score = 0;
     $scope.currentWave = 1;
     $scope.getNewQuestions = function(){
         QuestionFactory.getQuestions(4, $scope.currentWave)
@@ -53,13 +54,14 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
     }
 
     $scope.diffuse = function(answer, question, userid){
-       
+        console.log('inside diffuge, score', $scope.score)
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
             $scope.correct = 1;
             // BombFactory.storeUserAnswer(answer, question, userid)
             // .catch($log.error);
             $scope.answered = true;
+            $scope.score += 100;
             $scope.userform.answer = null;
             $timeout(function(){
                 $scope.currentBomb = null;
@@ -99,6 +101,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
 
     $scope.backToGame = function(){
         $scope.saveScore = false;
+        $scope.score = 0;
     }
 
 })
