@@ -3,7 +3,7 @@
 		<h2>Your Score: {{score}}</h2>
 		<h4 ng-show='!user' ui-sref='signup'>Sign up to save Score!</h4>
 		<sign-up ng-show='!user'></sign-up>
-		<button ng-show='!scoreSubmitted && user' ng-click='saveToDatabase(score, user.id)'>Save Your Score</button> 
+		<button class="button button-rounded button-flat-primary button-large" ng-show='!scoreSubmitted && user' ng-click='saveToDatabase(score, user.id)'>Check Your Score</button> 
 	</div>
 	<div ng-show='scoreSubmitted'>
 		<div id='top-score-container'>
@@ -26,6 +26,6 @@
 		</div>
 	</div>
 
-	<button ng-click='backToGame()'>Close Score Board</button> 
+	<button class="button button-rounded button-flat-primary button-large" ng-click='backToGame()'>Back to Game</button> 
 		
 </div>
