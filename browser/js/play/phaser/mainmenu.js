@@ -10,12 +10,15 @@ RegexGame.MainMenu.prototype = {
     music.addMarker('playMenuBumper',0,6)
     music.play('playMenuBumper');
    //show the space tile, repeated
-    this.background = this.game.add.sprite(0, 0, 'desert');
+    //this.background = this.game.add.sprite(0, 0, 'desert');
+    this.background = this.game.add.tilemap('simpleCity_Layer1');
+    this.background.addTilesetImage('tileset1');
+    let layer = this.background.createLayer(0);
 
     let textStyle = { font: "30px Arial", fill: "#000", align: "center" };
 
     //start game text
-    let text1 = "CLICK TO BRING ON THE REGEX!";
+    let text1 = "CLICK TO BEGIN!";
     let t1 = this.game.add.text(this.game.width/2, this.game.height/2, text1, textStyle);
     t1.anchor.set(0.5);
     t1.inputEnabled = true;
