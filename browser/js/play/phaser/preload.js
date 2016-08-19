@@ -15,13 +15,18 @@ RegexGame.Preload.prototype = {
     this.load.setPreloadSprite(this.preloadBar);
 
    //load game assets
+    this.load.tilemap('simpleCity_Layer1', '/maps/simpleCity_SimpleCity_Layer1.csv', null, Phaser.Tilemap.CSV);
+    this.load.tilemap('simpleCity_Layer2', '/maps/simpleCity_SimpleCity_Layer2.csv', null, Phaser.Tilemap.CSV);
+    this.load.tilemap('simpleCity_Layer3', '/maps/simpleCity_SimpleCity_Layer3.csv', null, Phaser.Tilemap.CSV);
+    this.load.image('streetTiles', 'TileA5.png')
+    this.load.image('accessoryTiles', 'TileB.png')
+    this.load.image('carTiles', 'TileD.png')
     this.load.image('smiley', 'smiley.png');
     this.load.image('desert', 'desert.png');
-    this.load.spritesheet('dude', 'dude.png', 32, 48);
-    this.load.spritesheet('regularDude', 'regularDude.gif', 32, 48)
+    this.load.spritesheet('regularDude', 'regularDude.png', 32, 48)
     this.load.spritesheet('bomb', 'bombs.png', 128, 128,2);
     this.load.spritesheet('explosion', 'explosion2.png', 128, 128);
-    this.load.audio('bombExplode', 'time_bomb_short.mp3');
+    this.load.audio('bombExplode', '/sound/time_bomb_short.mp3');
     this.load.audio('menuBumper', '/sound/menu_bumper.mp3');
     this.load.audio('battleTune', '/sound/Battle_Draft.mp3');
 
@@ -30,3 +35,4 @@ RegexGame.Preload.prototype = {
    this.state.start('MainMenu');
   }
 };
+
