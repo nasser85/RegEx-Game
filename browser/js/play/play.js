@@ -14,7 +14,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, QuestionFactory) {
+app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion) {
     $scope.questions = questions;
     $scope.currentWave = 1;
     $scope.getNewQuestions = function(){
@@ -42,7 +42,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
             $scope.counter-= 1;
             currentTimeout = $timeout($scope.onTimeout,1000);
         }
-        
+
     }
     var currentTimeout = $timeout($scope.onTimeout,1000);
 
@@ -78,7 +78,7 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
 
     }
 
-    
+
 
     $scope.incrementQuestionIndex = function () {
             let newIndex = $scope.questionIndex + 1;
@@ -86,4 +86,8 @@ app.controller('PlayCtrl', function ($timeout, $log, $scope, questions, user, Bo
                 $scope.questionIndex = newIndex;
     }
 
+    $scope.generatedQuestion = new GeneratedQuestion().anyDigit().digitWithinRange();
+    console.log($scope.generatedQuestion.text);
+    console.log($scope.generatedQuestion.match);
+    console.log($scope.generatedQuestion.doNotMatch);
 })
