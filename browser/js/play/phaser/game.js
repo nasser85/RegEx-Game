@@ -20,7 +20,22 @@ var RegexGame = RegexGame || {};
   RegexGame.Game = function () {};
 
   RegexGame.Game.prototype = {
+    generateMap: function(){
+
+
+    },
     init: function(){
+      this.game.mapConfig = {
+        map: {
+          tilemap: 'simpleCity_Layer1',
+          tilesetImage: 'streetTiles',
+          obstacles: {
+            a: {
+
+            }
+          }
+        }
+      };
       this.game.paused = false;
       this.game.scope.scoreSubmitted = false;
     },
