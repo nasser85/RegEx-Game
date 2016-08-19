@@ -5,7 +5,7 @@ RegexGame.Boot = function(){};
 RegexGame.Boot.prototype = {
   preload: function() {
    //assets we'll use in the loading screen
-    this.load.image('logo', 'logo.jpg');
+    this.load.image('logo', 'loader.gif');
     this.load.image('preloadbar', 'preloader-bar.png');
   },
   create: function() {

@@ -45,6 +45,7 @@ BombGroup.prototype.update = function () {
     bombsAlive = true;
     if(bomb.question.disarmed) {
       bomb.frame = 1;
+      bomb.body.enable = false;
       numDisarmed++;
     } else if (bomb.expirationTime <= Date.now() && !bomb.question.disarmed) {
       var explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
@@ -67,6 +68,10 @@ BombGroup.prototype.update = function () {
   }
 
 };
+
+BombGroup.prototype.freeze = function (bomb){
+  bomb.body.moves = false;
+}
 
 BombGroup.prototype.engage = function (player, bomb) {
   if(!bomb.question.disarmed){
@@ -95,7 +100,7 @@ BombGroup.prototype.engage = function (player, bomb) {
       }
     this.game.scope.testCaseArr = testArr;
     this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
-  
+
     this.game.scope.currentBomb.question.disarmed = false;
     this.game.scope.$evalAsync();
     var textBox = document.getElementById("text-answer");
