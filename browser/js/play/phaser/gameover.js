@@ -3,7 +3,7 @@ RegexGame.GameOver = function(){
 
 RegexGame.GameOver.prototype = {
   tryAgain: function(){
-      this.game.state.start('Game');
+      this.game.scope.restartGame();
   },
   saveScore: function(){
       this.game.scope.saveScore = true;
