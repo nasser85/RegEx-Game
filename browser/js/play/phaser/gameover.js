@@ -20,10 +20,10 @@ RegexGame.GameOver.prototype = {
     background.addTilesetImage('streetTiles');
     let layer = background.createLayer(0);
 
-    let style = { font: "20px gameFont", fill: "#000", align: "center" };
+    let style = { font: "20px gameFont", fill: "cyan", align: "center" };
     //message
 
-    let text1 = this.makeText("GAME OVER :(",0,{ font: "30px gameFont", fill: "#000", align: "center" });
+    let text1 = this.makeText("GAME OVER :(",0,{ font: "30px gameFont", fill: "cyan", align: "center" });
 
     let text2 = this.makeText('You didn\'t diffuse the bombs in time!',60,style);
 

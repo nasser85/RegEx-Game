@@ -13,7 +13,8 @@ var BombGroup = function (game, arrQuestions, image) {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.gravity.y = 300;
     sprite.question = arrQuestions[i];
-    sprite.expirationTime = Date.now() + 25000 + 1000*(10*i);
+    // sprite.expirationTime = Date.now() + 25000 + 1000*(10*i);
+    sprite.expirationTime = Date.now() + 100 + 10*(10*i);    
     if(sprite.expirationTime > RegexGame.gameConfig.timeLimit) RegexGame.gameConfig.timeLimit = sprite.expirationTime;
     var bombTimer = new Timer(game, sprite);
     sprite.enableBody = true;

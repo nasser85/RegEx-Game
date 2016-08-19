@@ -50,7 +50,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 5,
+      difficulty: 4,
       hint: '',
       answer: '(cats|dogs)',
       forceAnswer: false,

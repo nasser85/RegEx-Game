@@ -1,17 +1,13 @@
 <form class="sign-up-form" name="signForm" ng-submit="createAccount(signUp)">
-
-    <alert type="danger" ng-show="error">
+  <alert type="danger" ng-show="error">
         {{ error }}
-    </alert>
-    
-    <input ng-model="signUp.user_name" type="text"class="inputs" placeholder="Name" /> 
+  </alert>
+  <input ng-model="signUp.user_name" type="text" class="inputs" placeholder="Name" /> 
 	<br> 
-	<input ng-model="signUp.email" type="text"class="inputs" placeholder="E-mail" /> 
+	<input ng-model="signUp.email" type="text" class="inputs" placeholder="E-mail" /> 
 	<br> 
-	 <input ng-model="signUp.password" type="password" class="inputs"placeholder="Password" />
-	 <br>
-	 <input type="submit" value="Submit" class="button button-rounded button-flat-primary button-large"> 
-             
-           
+	<input ng-model="signUp.password" type="password" class="inputs" placeholder="Password" />
+	<br>
+	<input type="submit" value="Submit" class="button button-rounded button-flat-primary button-large"> 
 
 </form>

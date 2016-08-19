@@ -1,10 +1,10 @@
 <div class="magictime swashIn transparent" id="save-score">
 	<div>
 		<h2>Your Score: {{score}}</h2>
-		<button ng-show='!scoreSubmitted' ng-click='saveToDatabase(score, user.id)'>Save Your Score</button> 
+		<h4 ng-show='!user' ui-sref='signup'>Sign up to save Score!</h4>
+		<sign-up ng-show='!user'></sign-up>
+		<button class="button button-rounded button-flat-primary button-large" ng-show='!scoreSubmitted && user' ng-click='saveToDatabase(score, user.id)'>Check Your Score</button> 
 	</div>
-		<!-- <div>Enter Your User Name</div>
-		<input></input> -->
 	<div ng-show='scoreSubmitted'>
 		<div id='top-score-container'>
 
@@ -23,18 +23,9 @@
 			    <td><h4>{{ score.createdAt.slice(0, 10) }}<h4></td>
 			  </tr>
 			</table>
-
-
-
-<!-- 
-			<div ng-repeat="score in topScores">
-				<span>{{score.score}}</span>
-				<span>{{score.user.user_name}}</span>
-			</div> -->
-			
 		</div>
 	</div>
-
-	<button ng-click='backToGame()'>Close Score Board</button> 
+	<div> </div>
+	<button class="button button-rounded button-flat-primary button-large" ng-click='backToGame()'>Back to Game</button> 
 		
 </div>
