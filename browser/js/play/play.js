@@ -101,11 +101,14 @@ app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, 
         .catch($log.error);
     }
 
-    $scope.backToGame = function(){
-        $scope.saveScore = false;
+    $scope.backToHome = function(){
         $scope.score = 0;
+        $state.go('home');
     }
-
+    $scope.playGame = function(){
+        $scope.saveScore = false;
+    }
+    
     $scope.generatedQuestion = new GeneratedQuestion()['anyWhitespace']()['anyNonWhitespace']();
 
     function checkAnswer (arrRegexes, q) {

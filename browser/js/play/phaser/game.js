@@ -65,6 +65,7 @@ var RegexGame = RegexGame || {};
     },
     init: function(){
       this.game.paused = false;
+      this.game.scope.saveScore = false;
       this.game.scope.scoreSubmitted = false;
     },
     togglePause: function(){
