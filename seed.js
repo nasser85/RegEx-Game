@@ -50,7 +50,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 4,
+      difficulty: 3,
       hint: '',
       answer: '(cats|dogs)',
       forceAnswer: false,
@@ -59,6 +59,77 @@ var seedQuestions = function () {
         { content: 'i love dogs', match: true },
         { content: 'i love logs', match: false },
         { content: 'i love cogs', match: false }]
+    },
+    {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 4,
+      hint: '',
+      answer: 'hello+ (world|to you)',
+      forceAnswer: false,
+      testCases: [
+        { content: 'hello world', match: true },
+        { content: 'hellooo to you', match: true },
+        { content: 'hello world to you', match: true },
+        { content: 'hello fullstackers', match: false },
+        { content: 'hello new york', match: false }]
+    },
+    {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 4,
+      hint: '',
+      answer: '[DN][ai][vm][i][dt] [YM][a][nr][gu]',
+      forceAnswer: false,
+      testCases: [
+        { content: 'David Yang', match: true },
+        { content: 'Nimit Maru', match: true },
+        { content: 'Divid Marg', match: true },
+        { content: 'Namit Yart', match: false },
+        { content: 'Maru Yang', match: false }]
+    },
+    {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 4,
+      hint: '',
+      answer: '^[a-z]{6} expression',
+      forceAnswer: false,
+      testCases: [
+        { content: 'random expression', match: true },
+        { content: 'ipjnrl expression', match: true },
+        { content: 'jazzed expression', match: true },
+        { content: 'regular expression', match: false },
+        { content: 'fullstack expression', match: false }]
+    },
+    {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 4,
+      hint: '',
+      answer: '([1-9]|1[0-2]), ([1-9]|[12][0-9]|3[01]), (19|20)[0-9][0-9]',
+      forceAnswer: false,
+      testCases: [
+        { content: '4, 1, 1947', match: true },
+        { content: '8, 30, 2065', match: true },
+        { content: '10, 25, 1943', match: true },
+        { content: '9, 15, 1810', match: false },
+        { content: '1, 32, 2016', match: false }]
+    },
+    {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 3,
+      hint: '',
+      answer: '(Sean|Sane) (Stack|Han)',
+      forceAnswer: false,
+      testCases: [
+        { content: 'Sean Stack', match: true },
+        { content: 'Sane Stack', match: true },
+        { content: 'Sean Han', match: true },
+        { content: 'Sane Han', match: true },
+        { content: 'Mean Han', match: false },
+        { content: 'Mean Stack', match: false }]
     },
     {
       text: 'Match some, but not all!',
