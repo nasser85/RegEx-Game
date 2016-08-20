@@ -9,13 +9,16 @@ app.config(function ($stateProvider) {
             },
             user : function(AuthService) {
                 return AuthService.getLoggedInUser();
+            },
+            highestScore: function(ScoreFactory) {
+                return ScoreFactory.fetchTopScore();
             }
         }
     });
 });
 
-app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
-
+app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
+    $scope.highestScore = highestScore[0].score;
     $scope.questions = questions;
     $scope.score = 0;
     $scope.currentWave = 1;

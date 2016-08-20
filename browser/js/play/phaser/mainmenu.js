@@ -26,9 +26,11 @@ RegexGame.MainMenu.prototype = {
 
 
     //highest score
-    let text3 = "Highest score: "+this.highestScore;
+    let text3 = "Highest score: "+ this.game.scope.highestScore;
+    this.game.scope.$evalAsync();
     let t3 = this.game.add.text(this.game.width/2, this.game.height/2 + 100, text3, textStyle);
     t3.anchor.set(0.5);
 
-  }
+  },
+
 };
