@@ -2,13 +2,14 @@ RegexGame.MainMenu = function(){};
 
 RegexGame.MainMenu.prototype = {
   start: function(){
-      this.game.state.start('Game');
+      this.music.stop();
+      this.game.state.start('Game', true, false, 'battleA' , 186);
   },
   create: function() {
     //play the menu bumper
-    let music = this.add.audio('menuBumper');
-    music.addMarker('playMenuBumper',0,6)
-    music.play('playMenuBumper');
+    this.music = this.add.audio('theme');
+    this.music.addMarker('playTheme',0,6)
+    this.music.play('playTheme');
    //show the space tile, repeated
     //this.background = this.game.add.sprite(0, 0, 'desert');
     this.background = this.game.add.tilemap('simpleCity_Layer1');

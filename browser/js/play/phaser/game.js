@@ -2,7 +2,6 @@ var RegexGame = RegexGame || {};
 
   //initialize vars
   let bombs;
-  let platforms;
   let player;
   let bomb;
   let cursors;
@@ -16,6 +15,7 @@ var RegexGame = RegexGame || {};
   let layer;
   let layer2;
   let things;
+  let music;
   //set up the actual game state
   RegexGame.Game = function () {
 
@@ -63,17 +63,19 @@ var RegexGame = RegexGame || {};
         layer2 = obstacles.createLayer(0);
       }
     },
-    init: function(){
+    init: function(track, duration){
       this.game.paused = false;
       this.game.scope.scoreSubmitted = false;
+      this.track = track;
+      this.trackDuration = duration;
     },
     togglePause: function(){
       this.game.paused = !this.game.paused;
     },
     create: function() {
       //start tunes
-      let music = this.add.audio('battleTune');
-      music.addMarker('playBattleTune',0,300)
+      music = this.add.audio(this.track);
+      music.addMarker('playBattleTune',0,this.trackDuration, 1, true)
       music.play('playBattleTune');
 
       this.scale.pageAlignHorizontally = true;
@@ -92,13 +94,26 @@ var RegexGame = RegexGame || {};
     },
     update: function() {
       cursors = this.input.keyboard.createCursorKeys();
-
       //deal with collisions
       this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
       this.physics.arcade.collide(player, layer2);
       this.physics.arcade.collide(bombs, layer2, bombs.freeze)
 
       scoreText.text = 'Score: ' + this.game.scope.score;
+      if(this.game.scope.numCorrect === bombs.children.length) {
+        bombs.forEachAlive(bomb => bomb.kill())
+        this.transitionState('NextWave');
+      }
+      else if(this.game.scope.numExploded === bombs.children.length || Date.now() >= RegexGame.gameConfig.timeLimit){
+      this.transitionState('GameOver');
 
+      }
+    },
+    transitionState: function(nextState){
+      this.game.scope.numCorrect = 0;
+      this.game.scope.numExploded = 0
+      this.game.scope.currentBomb = null;
+      music.stop();
+      setTimeout(function(){ this.game.state.start(nextState, false, false, levelStatus)}.bind(this), RegexGame.gameConfig.levelTimePad);
     }
   };

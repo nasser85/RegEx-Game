@@ -19,20 +19,25 @@ app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, 
     $scope.questions = questions;
     $scope.score = 0;
     $scope.currentWave = 1;
-    $scope.getNewQuestions = function(){
-        QuestionFactory.getQuestions(4, $scope.currentWave)
-        .then(result => $scope.questions = result)
-        .catch($log.error);
-    };
-    $scope.restartGame = () => $state.reload();
+    $scope.numQuestions = 4
+    $scope.numCorrect = 0;
+    $scope.numExploded = 0;
     $scope.userform = {};
     $scope.user = user;
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
     $scope.answered = false;
-    $scope.correct = 0;
-
+    $scope.correct = 0; // are we still using this?
     $scope.counter = 0;
+
+    $scope.getNewQuestions = function(){
+        QuestionFactory.getQuestions($scope.numQuestions, $scope.currentWave)
+        .then(result => $scope.questions = result)
+        .catch($log.error);
+    };
+
+    $scope.restartGame = () => $state.reload();
+
     $scope.onTimeout = function(){
         if ($scope.currentBomb && $scope.counter === 0) {
             $scope.correct = 3;
@@ -56,7 +61,6 @@ app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, 
     }
 
     $scope.diffuse = function(answer, question, userid){
-        console.log('inside diffuge, score', $scope.score)
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
             $scope.correct = 1;
@@ -65,6 +69,7 @@ app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, 
             $scope.answered = true;
             $scope.score += 100;
             $scope.userform.answer = null;
+            $scope.numCorrect++;
             $timeout(function(){
                 $scope.currentBomb = null;
                 $scope.answered = false;

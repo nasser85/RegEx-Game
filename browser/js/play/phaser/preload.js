@@ -26,8 +26,11 @@ RegexGame.Preload.prototype = {
     this.load.spritesheet('bomb', 'bombs.png', 128, 128,2);
     this.load.spritesheet('explosion', 'explosion2.png', 128, 128);
     this.load.audio('bombExplode', '/sound/time_bomb_short.mp3');
-    this.load.audio('menuBumper', '/sound/menu_bumper.mp3');
-    this.load.audio('battleTune', '/sound/Battle_Draft.mp3');
+    this.load.audio('theme', '/sound/theme.mp3');
+    this.load.audio('battleA', '/sound/battleA.mp3');
+    this.load.audio('battleB', '/sound/battleB.mp3');
+    this.load.audio('filler', '/sound/fillerLoop.mp3')
+    this.load.audio('nextWave', '/sound/nextWave.mp3')
 
   },
   create: function() {

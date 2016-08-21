@@ -25,48 +25,30 @@ var BombGroup = function (game, arrQuestions, image) {
 BombGroup.prototype = Object.create(Phaser.Group.prototype);
 BombGroup.prototype.constructor = BombGroup;
 
-BombGroup.prototype.transitionState = function(nextState){
-  if(!this.transitioned){
-    this.game.scope.currentBomb = null;
-    setTimeout(function(){ this.game.state.start(nextState, false, false, levelStatus)}.bind(this), RegexGame.gameConfig.levelTimePad);
-  }
-  this.transitioned = true;
-}
-
-BombGroup.prototype.init = function(){
-  this.transitioned = false;
-}
-
 BombGroup.prototype.update = function () {
   //things to check for each cycle
-  let bombsAlive = false;
-  let numDisarmed = 0; // will only check alive bombs. They only die if they expire.
   this.forEachAlive(function (bomb) {
-    bombsAlive = true;
     if(bomb.question.disarmed) {
       bomb.frame = 1;
       bomb.body.enable = false;
-      numDisarmed++;
     } else if (bomb.expirationTime <= Date.now() && !bomb.question.disarmed) {
-      var explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
+      this.game.scope.numExploded++;
+      let explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
       bomb.kill();
     }
 
-    if (bomb.position.y >= bomb.heightToStopFalling) {
-      bomb.body.moves = false;
-    }
+    if (bomb.position.y >= bomb.heightToStopFalling) bomb.body.moves = false;
   }.bind(this))
 
 // 0 question answered correctly before they expire, or time limit passed - you DUMBLOSER!
-  if(!bombsAlive || Date.now() >= RegexGame.gameConfig.timeLimit) {
+
+/*// or you answered them all SMARTYPANTS
+  else if (this.game.scope.deadOrAnswered === this.children.length){
+    console.log('deadorAnswered')
+    this.game.scope.deadOrAnswered = 0;
     this.transitionState('GameOver');
   }
-// or you answered them all SMARTYPANTS
-  else if(numDisarmed === this.children.length) {
-    this.forEachAlive(bomb => bomb.kill())
-    this.transitionState('NextWave');
-  }
-
+*/
 };
 
 BombGroup.prototype.freeze = function (bomb){
@@ -110,8 +92,3 @@ BombGroup.prototype.engage = function (player, bomb) {
    }
   }
 };
-
-  //  Add and update the score
-/*  score += RegexGame.gameConfig.scoreIncrement;
-  scoreText.text = 'Score: ' + score;
-*/
