@@ -34,6 +34,8 @@ inputs-moz-placeholder {
     color: #b5b5b5;
 }
 
+
+
 .inputs {
     position: center;
     outline: none;
@@ -72,7 +74,7 @@ body {
   background-image: url(city.gif);
   background-repeat: no-repeat;
   background-height: 100%;
-
+  background-attachment: fixed;
 }
 
 #home {
@@ -128,6 +130,27 @@ h3 {
 .buttons {
 	/*margin-top: 0%;*/
     margin-left: 30%;
+}
+
+.diffused-bomb {
+    margin: 15%;
+    padding: 10px;
+    width: 60%;
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    }
+
+.diffused-bomb:hover {
+    cursor: pointer;
+    -webkit-transform: scale(2, 2);
+    -ms-transform: scale(2, 2);
+    transform: scale(2, 2);
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    z-index: 1;
 }
 .questions {
 		margin-top: 30%;
@@ -291,6 +314,11 @@ save-score{
     }
 
     
+}
+#answers-page {
+    .panel {
+        margin-bottom: 20px;
+    }
 }
 
 @import 'directives/main';

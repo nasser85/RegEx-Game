@@ -63,8 +63,8 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
             $scope.correct = 1;
-            // BombFactory.storeUserAnswer(answer, question, userid)
-            // .catch($log.error);
+            BombFactory.storeUserAnswer(answer, question, userid)
+            .catch($log.error);
             $scope.answered = true;
             $scope.score += 100;
             $scope.userform.answer = null;

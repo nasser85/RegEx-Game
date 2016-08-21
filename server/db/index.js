@@ -18,6 +18,7 @@ Question.hasMany(TestCase); // Project.hasMany(User, {as: 'Workers'})   This wil
 
 Question.hasMany(AnsweredQuestion);
 AnsweredQuestion.belongsTo(Question);
+AnsweredQuestion.belongsTo(User);
 
 //for score board
 // User.belongsToMany(Score, {through: 'user_score'});
