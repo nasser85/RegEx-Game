@@ -1,0 +1,64 @@
+<div id="answers-page">
+	<div class='col-xs-12 col-sm-12 col-md-12'>
+		<div class="panel panel-primary transparent">
+			<div class="panel-heading text-center">Question</div>
+		  <div class="panel-body text-center">
+		    <h4><kbd>{{answers[0].question.text}}</kbd></h4>
+		  </div>
+		</div>
+	</div>
+	<div class='col-xs-12 col-sm-12 col-md-12'>
+		<div class="panel panel-info transparent">
+			<div class="panel-heading text-center">Your Answer</div>
+		  <div class="panel-body text-center">
+		    <h4><kbd>{{myAnswer.user_answer}}</kbd></h4>
+		  </div>
+		</div>
+	</div>
+	<div ng-if="!answers[0].question.forceAnswer" class='col-xs-12 col-sm-12 col-md-12'>
+		<div class="panel panel-info transparent">
+			<div class="panel-heading text-center">Test Cases</div>
+		  <div class="panel-body text-center">
+		    <table class="table table-sm table-inverse">
+          <thead>
+            <tr>
+              <th class="text-center"><h4><kbd>Test Case</kbd></h4></th>
+              <th class="text-center"><h4><kbd>Should it Match?</kbd></h4></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="testCase in answers[0].question.testCases" class='test-cases'>
+              <td><kbd>{{testCase.content}}</kbd></td>
+              <td ng-if="testCase.match"><kbd>yes</kbd></td>
+              <td ng-if="!testCase.match"><kbd>no</kbd></td>
+            </tr>
+          </tbody>
+        </table>
+		  </div>
+		</div>
+	</div>
+	<div ng-if="!answers[0].question.forceAnswer && answers.length > 1" class='col-xs-12 col-sm-12 col-md-12'>
+		<div class="panel panel-info transparent">
+			<div class="panel-heading text-center">How Others Answered This Question</div>
+		  <div class="panel-body text-center">
+		    <table class="table table-sm table-inverse">
+          <thead>
+            <tr>
+              <th class="text-center"><h4><kbd>User Name</kbd></h4></th>
+              <th class="text-center"><h4><kbd>Answer</kbd></h4></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="other in otherAnswers" class='test-cases'>
+              <td><kbd>{{other.user.user_name}}</kbd></td>
+              <td><kbd>{{other.user_answer}}</kbd></td>
+            </tr>
+          </tbody>
+        </table>
+		  </div>
+		</div>
+	</div>
+	<div class='col-xs-12 col-sm-12 col-md-12'>
+		<button ui-sref='account' class="button button-rounded button-flat-action button-large">Back to Account</button>
+	</div>
+</div>
