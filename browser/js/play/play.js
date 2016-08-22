@@ -42,7 +42,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.restartGame = () => $state.reload();
 
     $scope.onTimeout = function(){
-        if ($scope.currentBomb && $scope.counter === 0) {
+        if ($scope.currentBomb && $scope.counter <= 0) {
             $scope.correct = 3;
             $scope.answered = true;
             $timeout(function(){
@@ -81,7 +81,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.answered = false;
                 $scope.correct = 0;
                 question.disarmed = true;
-            }, 2000);
+            }, 1500);
         } else {
             $scope.correct = 2;
             $scope.answered = true;
