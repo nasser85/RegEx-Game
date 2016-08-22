@@ -1,21 +1,20 @@
-app.factory('UserFactory', function($http, $log){
+app.factory('UserFactory', function($http, $log, Utils){
 	var userFactory = {};
 	var baseUrl = "/api/user/";
-	var getData = res => res.data;
 
 	userFactory.fetchAll = function(){
 		return $http.get(baseUrl)
-		.then(getData)
+		.then(Utils.getData)
 	}
 
 	userFactory.fetchById = function(id){
 		return $http.get(baseUrl + id)
-		.then(getData)
+		.then(Utils.getData)
 	}
 
 	userFactory.postUser = function(user){
 		return $http.post(baseUrl, user)
-		.then(getData)
+		.then(Utils.getData)
 	}
 
 	userFactory.updateUser = function(user){

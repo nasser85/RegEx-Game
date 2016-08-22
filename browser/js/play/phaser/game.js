@@ -36,7 +36,6 @@ var RegexGame = RegexGame || {};
       layer.resizeWorld();
 
       let randObstacle = this.getRandProp(randMap.obstacles);
-      console.log(randObstacle)
       if(randObstacle) {
         obstacles = this.add.tilemap(randObstacle.tilemap);
         obstacles.addTilesetImage(randObstacle.tilesetImage);
@@ -44,8 +43,7 @@ var RegexGame = RegexGame || {};
         layer2 = obstacles.createLayer(0);
       }
     },
-    init: function(track, duration){
-      console.log(track, duration)
+    init: function(track, duration) {
       this.transitioned = false;
       this.game.paused = false;
       this.game.scope.saveScore = false;

@@ -1,22 +1,20 @@
-app.factory('ScoreFactory', function($http, $log){
+app.factory('ScoreFactory', function($http, $log, Utils){
 	var scoreFactory = {};
 	var baseUrl = "/api/score/";
-	var getData = res => res.data;
-
 
 	scoreFactory.fetchTop10 = function(){
 		return $http.get(baseUrl + 'top10')
-		.then(getData)
+		.then(Utils.getData)
 	}
 
 	scoreFactory.fetchTopScore = function(){
 		return $http.get(baseUrl + 'topscore')
-		.then(getData)
+		.then(Utils.getData)
 	}
 
 	scoreFactory.fetchUserTopScore = function(id){
 		return $http.get(baseUrl + 'user/' + id)
-		.then(getData)
+		.then(Utils.getData)
 	}
 
 	return scoreFactory;

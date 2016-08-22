@@ -36,6 +36,9 @@ app.factory('Utils', function () {
     },
     lastElement: function (arr) {
       return arr[arr.length - 1];
+    },
+    getData: function (res) {
+      return res.data;
     }
   };
 });

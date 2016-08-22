@@ -1,16 +1,15 @@
-app.factory('AnswerFactory', function($http) {
+app.factory('AnswerFactory', function($http, Utils) {
 	var answerFactory = {};
 	var baseUrl = "/api/answers/";
-	var getData = res => res.data;
 
 	answerFactory.fetchUserAnswers = function(userId) {
 		return $http.get(baseUrl + 'questions/' + userId)
-		.then(getData);
+		.then(Utils.getData);
 	}
 
 	answerFactory.fetchQuestionAnswers = function(questionId) {
 		return $http.get(baseUrl + 'all/' + questionId)
-		.then(getData);
+		.then(Utils.getData);
 	}
 
 	return answerFactory;

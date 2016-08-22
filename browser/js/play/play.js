@@ -124,8 +124,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.saveScore = false;
     }
 
-    $scope.generatedQuestion = new GeneratedQuestion()['anyWhitespace']()['anyNonWhitespace']();
-
     function checkAnswer (arrRegexes, q) {
       arrRegexes.forEach(function (re, i) {
 
@@ -144,6 +142,4 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         }
       });
     }
-
-    checkAnswer([/\s/, /\S/], $scope.generatedQuestion);
 })
