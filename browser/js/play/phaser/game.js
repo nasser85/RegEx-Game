@@ -106,7 +106,7 @@ var RegexGame = RegexGame || {};
         a.transitionState('NextWave');
       }, 1500);
       } //did they lose?
-      else if(this.game.scope.numExploded + this.game.scope.numCorrect === bombs.children.length || this.game.scope.numExploded === bombs.children.length || Date.now() >= RegexGame.gameConfig.timeLimit){
+      else if(this.game.scope.numExploded > 0 || Date.now() >= RegexGame.gameConfig.timeLimit){
         if(!groan.isPlaying) groan.play('playGroan');
         bombs.forEachAlive(bomb => bomb.kill());
       this.transitionState('GameOver');

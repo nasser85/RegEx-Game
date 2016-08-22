@@ -47,13 +47,12 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
             $scope.answered = true;
             $timeout(function(){
                 $scope.leave();
-            }, 2000);
+            }, 1000);
             currentTimeout = 0;
         } else {
             $scope.counter-= 1;
             currentTimeout = $timeout($scope.onTimeout,1000);
         }
-
     }
     var currentTimeout = $timeout($scope.onTimeout,1000);
 
@@ -120,6 +119,11 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.score = 0;
         $state.go('home');
     }
+
+    $scope.toScoreBoard = function(){
+        $scope.saveScore = true;
+    }
+
     $scope.playGame = function(){
         $scope.saveScore = false;
     }

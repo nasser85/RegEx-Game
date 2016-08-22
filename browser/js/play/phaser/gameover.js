@@ -6,7 +6,9 @@ RegexGame.GameOver.prototype = {
       this.game.scope.restartGame();
   },
   saveScore: function(){
-      this.game.scope.saveScore = true;
+      this.game.scope.saveScore = true;  
+      console.log('saveScore', this.game.scope.saveScore );
+      this.game.scope.$evalAsync();
   },
   makeText: function(text, yoffset, style){
     let txt = this.game.add.text(this.game.width/2, this.game.height/3+yoffset, text, style);
