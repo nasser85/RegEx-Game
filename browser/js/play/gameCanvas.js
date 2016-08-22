@@ -31,7 +31,7 @@ app.directive('gameCanvas', function($window, $injector) {
             a: {
               tilemap: 'parkCity_Layer2',
               tilesetImage: 'accessoryTiles',
-              collision: [96, 98, 122, 123, 140, 141, 155, 164, 227]
+              collision: [98, 122, 123, 140, 141]
             }
           }
         }
