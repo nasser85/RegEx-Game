@@ -1,6 +1,6 @@
 <div id="answers-page">
 	<div class='col-xs-12 col-sm-12 col-md-12'>
-		<div class="panel panel-primary transparent">
+		<div class="panel panel-inverse transparent">
 			<div class="panel-heading text-center">Question</div>
 		  <div class="panel-body text-center">
 		    <h4><kbd>{{answers[0].question.text}}</kbd></h4>
@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<div class='col-xs-12 col-sm-12 col-md-12'>
-		<div class="panel panel-info transparent">
+		<div class="panel panel-inverse transparent">
 			<div class="panel-heading text-center">Your Answer</div>
 		  <div class="panel-body text-center">
 		    <h4><kbd>{{myAnswer.user_answer}}</kbd></h4>
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<div ng-if="!answers[0].question.forceAnswer" class='col-xs-12 col-sm-12 col-md-12'>
-		<div class="panel panel-info transparent">
+		<div class="panel panel-inverse transparent">
 			<div class="panel-heading text-center">Test Cases</div>
 		  <div class="panel-body text-center">
 		    <table class="table table-sm table-inverse">
@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<div ng-if="!answers[0].question.forceAnswer && answers.length > 1" class='col-xs-12 col-sm-12 col-md-12'>
-		<div class="panel panel-info transparent">
+		<div class="panel panel-inverse transparent">
 			<div class="panel-heading text-center">How Others Answered This Question</div>
 		  <div class="panel-body text-center">
 		    <table class="table table-sm table-inverse">
