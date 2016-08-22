@@ -36,6 +36,7 @@ var RegexGame = RegexGame || {};
       layer.resizeWorld();
 
       let randObstacle = this.getRandProp(randMap.obstacles);
+      console.log(randObstacle)
       if(randObstacle) {
         obstacles = this.add.tilemap(randObstacle.tilemap);
         obstacles.addTilesetImage(randObstacle.tilesetImage);
@@ -94,9 +95,6 @@ var RegexGame = RegexGame || {};
       this.physics.arcade.collide(bombs, layer2, bombs.freeze)
 
       scoreText.text = 'Score: ' + this.game.scope.score;
-
-      //freeze player if they are engaged with bomb
-      player.body.moves = !this.game.scope.currentBomb ? true : false;
 
       //did they win?
       if(this.game.scope.numCorrect === bombs.children.length) {

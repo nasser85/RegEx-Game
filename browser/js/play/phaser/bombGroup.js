@@ -32,17 +32,20 @@ BombGroup.prototype.update = function () {
       let explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
       bomb.kill();
     }
-
-    if (bomb.position.y >= bomb.heightToStopFalling) bomb.body.moves = false;
+    if (bomb.position.y >= bomb.heightToStopFalling) {
+      bomb.body.moves = false;
+    }
   }.bind(this))
 
 };
 
 BombGroup.prototype.freeze = function (bomb){
+  console.log('freeze got called');
   bomb.body.moves = false;
 }
 
 BombGroup.prototype.engage = function (player, bomb) {
+  player.canMove = false;
   if(!bomb.question.disarmed){
     this.game.scope.currentBomb = bomb;
     var trueArr = [];
@@ -70,12 +73,13 @@ BombGroup.prototype.engage = function (player, bomb) {
     this.game.scope.testCaseArr = testArr;
     this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
 
-    this.game.scope.currentBomb.question.disarmed = false;
-    this.game.scope.$evalAsync();
     var textBox = document.getElementById("text-answer");
    
    if (textBox) {
      textBox.focus();
    }
+    this.game.scope.currentBomb.question.disarmed = false;
+    this.game.scope.$evalAsync();
+
   }
 };

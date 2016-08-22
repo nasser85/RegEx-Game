@@ -22,7 +22,7 @@ app.directive('gameCanvas', function($window, $injector) {
               tilesetImage: 'carTiles',
               collision: [9,10,11,12,13,41,51,52,53,54,55,56,83,84,85]
             },
-            c: null
+            //c: null
           }
         },
         mapB: {
@@ -34,7 +34,7 @@ app.directive('gameCanvas', function($window, $injector) {
               tilesetImage: 'accessoryTiles',
               collision: [96, 98, 122, 123, 140, 141, 155, 164, 227]
             },
-            b: null
+            //b: null
           }
         }
       }

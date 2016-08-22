@@ -61,6 +61,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.currentBomb = null;
         $scope.answered = false;
         $scope.correct = 0;
+        player.canMove = true;
     }
 
     $scope.diffuse = function(answer, question, userid){
@@ -89,6 +90,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.leave();
             }, 2000);
         }
+        player.canMove = true;
     }
 
     $scope.goHome = function(){
