@@ -40,7 +40,6 @@ BombGroup.prototype.update = function () {
 };
 
 BombGroup.prototype.freeze = function (bomb){
-  console.log('freeze got called');
   bomb.body.moves = false;
 }
 
