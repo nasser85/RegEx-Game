@@ -94,11 +94,14 @@ var RegexGame = RegexGame || {};
       this.physics.arcade.collide(bombs, layer2, bombs.freeze)
 
       scoreText.text = 'Score: ' + this.game.scope.score;
+
+      //freeze player if they are engaged with bomb
+      player.body.moves = !this.game.scope.currentBomb ? true : false;
+
       //did they win?
       if(this.game.scope.numCorrect === bombs.children.length) {
         if(!applause.isPlaying) applause.play('playApplause');
         this.transitionState('NextWave');
-
       } //did they lose?
       else if(this.game.scope.numExploded + this.game.scope.numCorrect === bombs.children.length || this.game.scope.numExploded === bombs.children.length || Date.now() >= RegexGame.gameConfig.timeLimit){
         if(!groan.isPlaying) groan.play('playGroan');
