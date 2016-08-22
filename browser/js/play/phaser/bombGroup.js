@@ -26,7 +26,6 @@ BombGroup.prototype = Object.create(Phaser.Group.prototype);
 BombGroup.prototype.constructor = BombGroup;
 
 BombGroup.prototype.update = function () {
-  //things to check for each cycle
   this.forEachAlive(function (bomb) {
     if(bomb.question.disarmed) {
       bomb.frame = 1;
@@ -40,15 +39,6 @@ BombGroup.prototype.update = function () {
     if (bomb.position.y >= bomb.heightToStopFalling) bomb.body.moves = false;
   }.bind(this))
 
-// 0 question answered correctly before they expire, or time limit passed - you DUMBLOSER!
-
-/*// or you answered them all SMARTYPANTS
-  else if (this.game.scope.deadOrAnswered === this.children.length){
-    console.log('deadorAnswered')
-    this.game.scope.deadOrAnswered = 0;
-    this.transitionState('GameOver');
-  }
-*/
 };
 
 BombGroup.prototype.freeze = function (bomb){

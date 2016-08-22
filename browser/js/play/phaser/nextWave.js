@@ -5,8 +5,12 @@ RegexGame.NextWave = function(){
 
 RegexGame.NextWave.prototype = {
   startNextWave: function(){
+    //stop the emitter
     this.emitter.destroy();
-    this.game.state.start('Game', true, false, 'battleB', 116);
+
+    //start the next wave with random selection of battleA or battleB tunes
+    let tune = Math.random() < .5 ? {track: 'battleA', length: 186} : {track: 'battleB', length: 116};
+    this.game.state.start('Game', true, false, tune.track, tune.length);
   },
   init: function(){
     this.game.scope.currentWave++;

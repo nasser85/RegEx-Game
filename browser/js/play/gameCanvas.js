@@ -10,7 +10,7 @@ app.directive('gameCanvas', function($window, $injector) {
     }
 
     RegexGame.game = new Phaser.Game(RegexGame.gameConfig.width, RegexGame.gameConfig.height, Phaser.AUTO, 'playGame');
-
+console.log(RegexGame);
     RegexGame.game.scope = scope;
 
     RegexGame.game.state.add('Boot', RegexGame.Boot);
