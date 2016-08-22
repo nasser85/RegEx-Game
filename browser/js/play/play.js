@@ -9,13 +9,16 @@ app.config(function ($stateProvider) {
             },
             user : function(AuthService) {
                 return AuthService.getLoggedInUser();
+            },
+            highestScore: function(ScoreFactory) {
+                return ScoreFactory.fetchTopScore();
             }
         }
     });
 });
 
-app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
-
+app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
+    $scope.highestScore = highestScore[0].score;
     $scope.questions = questions;
     $scope.score = 0;
     $scope.currentWave = 1;
@@ -66,8 +69,8 @@ app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, 
             $scope.currentBomb.frame=1;
             $scope.currentBomb.body.enable=false;
             $scope.correct = 1;
-            // BombFactory.storeUserAnswer(answer, question, userid)
-            // .catch($log.error);
+            BombFactory.storeUserAnswer(answer, question, userid)
+            .catch($log.error);
             $scope.answered = true;
             $scope.score += 100;
             $scope.userform.answer = null;
@@ -108,11 +111,14 @@ app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, 
         .catch($log.error);
     }
 
-    $scope.backToGame = function(){
-        $scope.saveScore = false;
+    $scope.backToHome = function(){
         $scope.score = 0;
+        $state.go('home');
     }
-
+    $scope.playGame = function(){
+        $scope.saveScore = false;
+    }
+    
     $scope.generatedQuestion = new GeneratedQuestion()['anyWhitespace']()['anyNonWhitespace']();
 
     function checkAnswer (arrRegexes, q) {

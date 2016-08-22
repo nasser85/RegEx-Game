@@ -47,6 +47,7 @@ var RegexGame = RegexGame || {};
       console.log(track, duration)
       this.transitioned = false;
       this.game.paused = false;
+      this.game.scope.saveScore = false;
       this.game.scope.scoreSubmitted = false;
       this.track = track;
       this.trackDuration = duration;
