@@ -31,7 +31,7 @@ app.directive('gameCanvas', function($window, $injector) {
             a: {
               tilemap: 'parkCity_Layer2',
               tilesetImage: 'accessoryTiles',
-              collision: [96, 98, 122, 123, 140, 141, 155, 164, 227]
+              collision: [98, 122, 123, 140, 141]
             }
           }
         }
@@ -58,7 +58,7 @@ app.directive('gameCanvas', function($window, $injector) {
   return {
     template: `<div ng-class="currentBomb || saveScore ? \'blurry\' : \'not-blurry\'" id=\'playGame\' balls></div>
               <bomb-view ng-if="currentBomb" ></bomb-view>
-              <save-score ng-if="saveScore" ></save-score>`,
+              <save-score ng-show="saveScore" ></save-score>`,
     link: linkFn
   }
 })
