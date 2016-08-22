@@ -82,6 +82,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
             }
         }
         if (diffused) {
+            $scope.numCorrect++;
             $scope.currentBomb.frame=1;
             $scope.currentBomb.body.enable=false;
             $scope.correct = 1;
@@ -90,7 +91,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
             $scope.answered = true;
             $scope.score += 100;
             $scope.userform.answer = null;
-            $scope.numCorrect++;
             $timeout(function(){
                 $scope.currentBomb = null;
                 $scope.answered = false;
