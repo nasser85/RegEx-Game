@@ -5,7 +5,7 @@ RegexGame.GameOver.prototype = {
   tryAgain: function(){
       this.game.scope.restartGame();
   },
-  saveScore: function(){    
+  saveScore: function(){
       this.game.scope.saveScore = true;
   },
   makeText: function(text, yoffset, style){
@@ -30,9 +30,15 @@ RegexGame.GameOver.prototype = {
     text3.inputEnabled = true;
     text3.events.onInputDown.add(this.tryAgain, this);
 
-    let text4 = this.makeText('Save Your Score', 140, style);
+        //return to main menu
+    let text4 = this.makeText('Return to Main Menu', 120, style);
     text4.inputEnabled = true;
-    text4.events.onInputDown.add(this.saveScore, this);
+    text4.events.onInputDown.add(this.game.scope.goHome, this);
+
+
+    let text5 = this.makeText('Save Your Score', 140, style);
+    text5.inputEnabled = true;
+    text5.events.onInputDown.add(this.saveScore, this);
 //    setTimeout(function(){this.game.state.start('Game')}.bind(this),2000)
   }
 };

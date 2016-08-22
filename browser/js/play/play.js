@@ -89,7 +89,10 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.leave();
             }, 2000);
         }
+    }
 
+    $scope.goHome = function(){
+        $state.go('home');
     }
 
     $scope.incrementQuestionIndex = function () {
@@ -118,7 +121,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.playGame = function(){
         $scope.saveScore = false;
     }
-    
+
     $scope.generatedQuestion = new GeneratedQuestion()['anyWhitespace']()['anyNonWhitespace']();
 
     function checkAnswer (arrRegexes, q) {

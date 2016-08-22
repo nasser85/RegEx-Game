@@ -36,6 +36,8 @@ RegexGame.NextWave.prototype = {
     t1.anchor.set(0.5);
 
 
+    let text2 =
+
     this.t3 = this.game.add.text(this.game.width/2, this.game.height/2+100, this.countDown/1000, textStyle);
     this.t3.anchor.set(0.5);
     this.countDownStart = Date.now() + this.countDown;

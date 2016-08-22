@@ -1,17 +1,19 @@
-RegexGame.MainMenu = function(){};
+RegexGame.GameMenu = function(){};
 
-RegexGame.MainMenu.prototype = {
+RegexGame.GameMenu.prototype = {
+  goHome: function(){
+    this.music.stop();
+    this.game.scope.goHome();
+  },
   start: function(){
       this.music.stop();
       this.game.state.start('Game', true, false, 'battleA' , 186);
   },
   create: function() {
-    //play the menu bumper
+    //play the tunes
     this.music = this.add.audio('theme');
     this.music.addMarker('playTheme',0,6)
     this.music.play('playTheme');
-   //show the space tile, repeated
-    //this.background = this.game.add.sprite(0, 0, 'desert');
     this.background = this.game.add.tilemap('simpleCity_Layer1');
     this.background.addTilesetImage('streetTiles');
     let layer = this.background.createLayer(0);
@@ -25,6 +27,13 @@ RegexGame.MainMenu.prototype = {
     t1.inputEnabled = true;
     t1.events.onInputDown.add(this.start, this);
 
+
+    //return to main menu
+    let text2 = "Return to Main Menu";
+    let t2 = this.game.add.text(this.game.width/2, this.game.height/2+50, text2,textStyle);
+    t2.anchor.set(0.5);
+    t2.inputEnabled = true;
+    t2.events.onInputDown.add(this.goHome, this);
 
     //highest score
     let text3 = "Highest score: "+ this.game.scope.highestScore;
