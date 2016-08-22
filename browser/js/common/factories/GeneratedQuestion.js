@@ -4,20 +4,22 @@ app.factory('GeneratedQuestion', function (CharacterCodeFactory, Utils) {
   var Codes = CharacterCodeFactory;
 
   function Question () {
-    this.text = [];
+    this.subQuestions = [];
+    this.index = 0;
+    this.text = null;
     this.match = [];
     this.doNotMatch = [];
     this.type = 'Generated';
   }
 
   Object.defineProperty(Question.prototype, 'lastIndex', { get: function () {
-    return this.text.length - 1;
+    return this.subQuestions.length - 1;
   }});
 
   Question.prototype.generate = function (text, arrAllCharCodes, subsetArrCharCodes) {
     var difference = Utils.difference(arrAllCharCodes, subsetArrCharCodes);
 
-    this.text.push(text);
+    this.subQuestions.push(text);
     this.match.push(Utils.arrayOfCharacters(subsetArrCharCodes));
     this.doNotMatch.push(Utils.stringOfCharacters(difference));
 
