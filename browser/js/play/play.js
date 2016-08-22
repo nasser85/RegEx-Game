@@ -63,6 +63,8 @@ app.controller('PlayCtrl', function ($state, $timeout, $log, $scope, questions, 
     $scope.diffuse = function(answer, question, userid){
         let diffused = BombFactory.diffuse(answer, question);
         if (diffused) {
+            $scope.currentBomb.frame=1;
+            $scope.currentBomb.body.enable=false;
             $scope.correct = 1;
             // BombFactory.storeUserAnswer(answer, question, userid)
             // .catch($log.error);

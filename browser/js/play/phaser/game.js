@@ -19,29 +19,7 @@ var RegexGame = RegexGame || {};
   let applause;
   let groan;
   //set up the actual game state
-  RegexGame.Game = function () {
-
-      this.mapConfig = {
-        mapA: {
-          tilemap: 'simpleCity_Layer1',
-          tilesetImage: 'streetTiles',
-          obstacles: {
-            a: {
-              tilemap: 'simpleCity_Layer2',
-              tilesetImage: 'accessoryTiles',
-              collision: [124,125,140,141,158,159,198,199,200]
-            },
-            b: {
-              tilemap: 'simpleCity_Layer3',
-              tilesetImage: 'carTiles',
-              collision: [9,10,11,12,13,41,51,52,53,54,55,56,83,84,85]
-            },
-            c: null
-          }
-        }
-      };
-
-  };
+  RegexGame.Game = function () {};
 
   RegexGame.Game.prototype = {
     getRandProp: function(obj){
@@ -50,7 +28,7 @@ var RegexGame = RegexGame || {};
     },
     generateMap: function(){
 
-      let randMap = this.getRandProp(this.mapConfig);
+      let randMap = this.getRandProp(RegexGame.gameConfig.mapConfig);
 
       map = this.add.tilemap(randMap.tilemap);
       map.addTilesetImage(randMap.tilesetImage);
@@ -118,8 +96,8 @@ var RegexGame = RegexGame || {};
       //did they win?
       if(this.game.scope.numCorrect === bombs.children.length) {
         if(!applause.isPlaying) applause.play('playApplause');
-        bombs.forEachAlive(bomb => bomb.kill());
         this.transitionState('NextWave');
+
       } //did they lose?
       else if(this.game.scope.numExploded + this.game.scope.numCorrect === bombs.children.length || this.game.scope.numExploded === bombs.children.length || Date.now() >= RegexGame.gameConfig.timeLimit){
         if(!groan.isPlaying) groan.play('playGroan');

@@ -27,10 +27,7 @@ BombGroup.prototype.constructor = BombGroup;
 
 BombGroup.prototype.update = function () {
   this.forEachAlive(function (bomb) {
-    if(bomb.question.disarmed) {
-      bomb.frame = 1;
-      bomb.body.enable = false;
-    } else if (bomb.expirationTime <= Date.now() && !bomb.question.disarmed) {
+    if (bomb.expirationTime <= Date.now() && !bomb.question.disarmed) {
       this.game.scope.numExploded++;
       let explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
       bomb.kill();

@@ -18,6 +18,8 @@ RegexGame.Preload.prototype = {
     this.load.tilemap('simpleCity_Layer1', '/maps/simpleCity_SimpleCity_Layer1.csv', null, Phaser.Tilemap.CSV);
     this.load.tilemap('simpleCity_Layer2', '/maps/simpleCity_SimpleCity_Layer2.csv', null, Phaser.Tilemap.CSV);
     this.load.tilemap('simpleCity_Layer3', '/maps/simpleCity_SimpleCity_Layer3.csv', null, Phaser.Tilemap.CSV);
+    this.load.tilemap('parkCity_Layer1', '/maps/parkCity_Tile Layer 1.csv', null, Phaser.Tilemap.CSV);
+    this.load.tilemap('parkCity_Layer2', '/maps/parkCity_Tile Layer 2.csv', null, Phaser.Tilemap.CSV);
     this.load.image('streetTiles', 'TileA5.png');
     this.load.image('accessoryTiles', 'TileB.png');
     this.load.image('carTiles', 'TileD.png');

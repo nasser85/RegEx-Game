@@ -6,7 +6,38 @@ app.directive('gameCanvas', function($window, $injector) {
       width: 800,
       height: 600,
       timeLimit: 0,
-      levelTimePad: 2000
+      levelTimePad: 2000,
+      mapConfig: {
+        mapA: {
+          tilemap: 'simpleCity_Layer1',
+          tilesetImage: 'streetTiles',
+          obstacles: {
+            a: {
+              tilemap: 'simpleCity_Layer2',
+              tilesetImage: 'accessoryTiles',
+              collision: [124,125,140,141,158,159,198,199,200]
+            },
+            b: {
+              tilemap: 'simpleCity_Layer3',
+              tilesetImage: 'carTiles',
+              collision: [9,10,11,12,13,41,51,52,53,54,55,56,83,84,85]
+            },
+            c: null
+          }
+        },
+        mapB: {
+          tilemap: 'parkCity_Layer1',
+          tilesetImage: 'streetTiles',
+          obstacles: {
+            a: {
+              tilemap: 'parkCity_Layer2',
+              tilesetImage: 'accessoryTiles',
+              collision: [96, 98, 122, 123, 140, 141, 155, 164, 227]
+            },
+            b: null
+          }
+        }
+      }
     }
 
     RegexGame.game = new Phaser.Game(RegexGame.gameConfig.width, RegexGame.gameConfig.height, Phaser.AUTO, 'playGame');
