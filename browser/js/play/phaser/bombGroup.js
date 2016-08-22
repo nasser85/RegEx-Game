@@ -8,7 +8,7 @@ var BombGroup = function (game, arrQuestions, image) {
     var sprite = this.create(x, 0 - bombRadius, image,0);
     sprite.scale.setTo(0.5, 0.5);
     sprite.anchor.setTo(0.5);
-    sprite.heightToStopFalling = _.random(bombRadius, game.height - bombRadius);
+    sprite.heightToStopFalling = _.random(200, game.height - bombRadius);
 
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.gravity.y = 300;

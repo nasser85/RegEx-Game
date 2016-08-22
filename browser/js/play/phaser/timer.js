@@ -30,7 +30,7 @@ Timer.prototype.update = function () {
   } else if (this.associatedBomb.alive) {
     this.setText(this.timeRemaining());
     this.x = this.associatedBomb.x;
-    this.y = this.associatedBomb.y - 30;
+    this.y = this.associatedBomb.y < 50 ? this.associatedBomb.y + 40 : this.associatedBomb.y -30;
   } else {
     this.kill();
   }
