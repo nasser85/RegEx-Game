@@ -47,29 +47,36 @@ BombGroup.prototype.engage = function (player, bomb) {
   player.canMove = false;
   if(!bomb.question.disarmed){
     this.game.scope.currentBomb = bomb;
-    var trueArr = [];
-    var falseArr = [];
-    var testArr = [];
+    
+    if (this.game.scope.currentBomb.question.testCases) {
+          var trueArr = [];
+        var falseArr = [];
+        var testArr = [];
 
-    //NEEDS TO BE FIXED
-    this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
-      if(testCase.match){
-          trueArr.push(testCase.content);
+        //NEEDS TO BE FIXED
 
-      }else{
-          falseArr.push(testCase.content);
-      }
-    })
-      if (trueArr.length >= falseArr.length) {
-          for (var i = 0; i < trueArr.length; i++) {
-              testArr.push({true: trueArr[i], false: falseArr[i]});
+        this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
+          if(testCase.match){
+              trueArr.push(testCase.content);
+
+          }else{
+              falseArr.push(testCase.content);
           }
-      } else {
-          for (var j = 0; j < falseArr.length; j++) {
-              testArr.push({true: trueArr[j], false: falseArr[j]});
+        })
+          if (trueArr.length >= falseArr.length) {
+              for (var i = 0; i < trueArr.length; i++) {
+                  testArr.push({true: trueArr[i], false: falseArr[i]});
+              }
+          } else {
+              for (var j = 0; j < falseArr.length; j++) {
+                  testArr.push({true: trueArr[j], false: falseArr[j]});
+              }
           }
-      }
-    this.game.scope.testCaseArr = testArr;
+        this.game.scope.testCaseArr = testArr;
+    } else {
+      this.game.scope.currentBomb.question.text = this.game.scope.currentBomb.question.subQuestions[this.game.scope.currentBomb.question.index];
+    }
+    
     this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
 
     var textBox = document.getElementById("text-answer");

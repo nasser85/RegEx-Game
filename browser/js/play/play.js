@@ -65,7 +65,22 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     }
 
     $scope.diffuse = function(answer, question, userid){
-        let diffused = BombFactory.diffuse(answer, question);
+        var diffused = false;
+        if (question.type === 'Generated') {
+
+            var generatedCheck = BombFactory.diffuse(answer, question, question.index);
+        } else {
+           diffused = BombFactory.diffuse(answer, question); 
+        }
+        
+        if (generatedCheck) {
+
+            if(question.subQuestions.length > question.index+1) {
+                question.index ++;
+            } else {
+                diffused = true;
+            }
+        }
         if (diffused) {
             $scope.currentBomb.frame=1;
             $scope.currentBomb.body.enable=false;
@@ -82,7 +97,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.correct = 0;
                 question.disarmed = true;
             }, 1500);
-        } else {
+        } else if (!generatedCheck) {
             $scope.correct = 2;
             $scope.answered = true;
             $scope.userform.answer = null;
@@ -124,22 +139,5 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.saveScore = false;
     }
 
-    function checkAnswer (arrRegexes, q) {
-      arrRegexes.forEach(function (re, i) {
-
-        var matchTest = q.match[i].every(function (element) {
-          return re.test(element);
-        });
-
-        var dontMatchTest = re.test(q.doNotMatch[i])
-
-        console.log(matchTest, 'matchTest', q.match[i]);
-        console.log(dontMatchTest, 'dontMatchTest', q.doNotMatch[i]);
-        if (matchTest && !dontMatchTest) {
-          console.log('you got it right');
-        } else {
-          console.log('incorrect');
-        }
-      });
-    }
+    
 })
