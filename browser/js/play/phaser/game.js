@@ -2,47 +2,19 @@ var RegexGame = RegexGame || {};
 
   //initialize vars
   let bombs;
-  let player;
   let bomb;
   let cursors;
-  let map;
   let obstacles;
   let score = 0;
   let scoreText;
   let explosion = null;
   let bombAudio;
   let levelStatus = null;
-  let layer;
-  let layer2;
-  let things;
-  let music;
-  let applause;
-  let groan;
+  let player;
   //set up the actual game state
   RegexGame.Game = function () {};
 
   RegexGame.Game.prototype = {
-    getRandProp: function(obj){
-        let keys = Object.keys(obj);
-        return obj[keys[Math.floor(Math.random() * keys.length)]];
-    },
-    generateMap: function(){
-
-      let randMap = this.getRandProp(RegexGame.gameConfig.mapConfig);
-
-      map = this.add.tilemap(randMap.tilemap);
-      map.addTilesetImage(randMap.tilesetImage);
-      layer = map.createLayer(0);
-      layer.resizeWorld();
-
-      let randObstacle = this.getRandProp(randMap.obstacles);
-      if(randObstacle) {
-        obstacles = this.add.tilemap(randObstacle.tilemap);
-        obstacles.addTilesetImage(randObstacle.tilesetImage);
-        obstacles.setCollision(randObstacle.collision);
-        layer2 = obstacles.createLayer(0);
-      }
-    },
     init: function(track, duration) {
       this.transitioned = false;
       this.game.paused = false;
@@ -52,12 +24,12 @@ var RegexGame = RegexGame || {};
       this.trackDuration = duration;
 
       //tee up applause track
-      applause = this.add.audio('applause');
-      applause.addMarker('playApplause',0,5, .75);
+      this.applause = this.add.audio('applause');
+      this.applause.addMarker('playApplause',0,5, .75);
 
       //tee up groan track
-      groan = this.add.audio('groan');
-      groan.addMarker('playGroan',0,2)
+      this.groan = this.add.audio('groan');
+      this.groan.addMarker('playGroan',0,2)
 
     },
     togglePause: function(){
@@ -65,19 +37,18 @@ var RegexGame = RegexGame || {};
     },
     create: function() {
       //start tunes
-      music = this.add.audio(this.track);
-      music.addMarker('playBattleTune',0,this.trackDuration, 1, true)
-      music.play('playBattleTune');
+      this.music = this.add.audio(this.track);
+      this.music.addMarker('playBattleTune',0,this.trackDuration, 1, true)
+      this.music.play('playBattleTune');
 
       //tee-up
-
       this.scale.pageAlignHorizontally = true;
       this.scale.pageAlignVertically = true;
       this.scale.refresh();
       this.physics.startSystem(Phaser.Physics.ARCADE);
 
       //create map
-      this.generateMap();
+      this.map = new Map(this);
 
       scoreText = this.add.text(16, 16, 'Score: '+ score, { font: '25px gameFont', fill: 'cyan' });
 
@@ -87,10 +58,12 @@ var RegexGame = RegexGame || {};
     },
     update: function() {
       cursors = this.input.keyboard.createCursorKeys();
+
       //deal with collisions
-      this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
-      this.physics.arcade.collide(player, layer2);
-      this.physics.arcade.collide(bombs, layer2, bombs.freeze)
+      let playerStopped = () => player.stoppedFalling;
+      this.physics.arcade.collide(player, bombs, bombs.engage, playerStopped, this);
+      this.physics.arcade.collide(player, this.map.obstacleLayer, null, playerStopped);
+      this.physics.arcade.collide(bombs, this.map.obstacleLayer, bombs.freeze);
 
       scoreText.text = 'Score: ' + this.game.scope.score;
 
@@ -98,14 +71,14 @@ var RegexGame = RegexGame || {};
       if(this.game.scope.numCorrect === bombs.children.length) {
         var a = this;
         setTimeout(function() {
-        if(!applause.isPlaying) applause.play('playApplause');
+        if(!this.applause.isPlaying) this.applause.play('playApplause');
         a.transitionState('NextWave');
-      }, 1500);
+      }.bind(this), 1500);
       } //did they lose?
       else if(this.game.scope.numExploded > 0 || Date.now() >= RegexGame.gameConfig.timeLimit){
-        if(!groan.isPlaying) groan.play('playGroan');
+        if(!this.groan.isPlaying) this.groan.play('playGroan');
         bombs.forEachAlive(bomb => bomb.kill());
-      this.transitionState('GameOver');
+        this.transitionState('GameOver');
       }
     },
     transitionState: function(nextState){
@@ -113,7 +86,7 @@ var RegexGame = RegexGame || {};
         this.game.scope.numCorrect = 0;
         this.game.scope.numExploded = 0
         this.game.scope.currentBomb = null;
-        music.stop();
+        this.music.stop();
         setTimeout(function(){ this.game.state.start(nextState, false, false, levelStatus)}.bind(this), RegexGame.gameConfig.levelTimePad);
         this.transitioned = true;
       }
