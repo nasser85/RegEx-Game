@@ -70,13 +70,23 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
 
             var generatedCheck = BombFactory.diffuse(answer, question, question.index);
         } else {
-           diffused = BombFactory.diffuse(answer, question); 
+           diffused = BombFactory.diffuse(answer, question);
         }
-        
+
         if (generatedCheck) {
 
             if(question.subQuestions.length > question.index+1) {
                 question.index ++;
+                var el = document.getElementById("current-question");
+                el.className = "magictime holeOut";
+
+                $timeout(function() {
+                    el.className = "magictime"
+                    question.text = question.subQuestions[question.index];
+                    document.getElementById("text-answer").value = "";
+                    $scope.$evalAsync();
+                }, 1000);
+                
             } else {
                 diffused = true;
             }
@@ -105,6 +115,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.leave();
             }, 2000);
         }
+
         player.canMove = true;
     }
 
@@ -139,5 +150,5 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.saveScore = false;
     }
 
-    
+
 })
