@@ -1,35 +1,36 @@
 <section id="home">
-  <h1>RegEx Race</h1>
-  <h4 ng-if="user">Hey, {{user.user_name}}!</h4>
+  <!-- <div id='regexLogo'></div> -->
   <h4 id="tagline">How Many Bombs Can You Defuse?</h4>
-    <ul class='list-unstyled'>
+    <div id='authButtonGroup'>
       <li><button ui-sref='play' ng-click='playGame()' class="button button-rounded button-flat-primary button-large">Play Game</button></li>
       <li ng-if="!user"><button ui-sref='login' class="button button-rounded button-flat-action button-large">Login</button></li>
       <li ng-if="user"><button ui-sref='account' class="button button-rounded button-flat-action button-large">Account</button></li>
       <li ng-if="user"><button ng-click='logout()' class="button button-rounded button-flat-royal button-large">Logout</button></li>
       <li ng-if="!user">
       </li>
-	  </ul>
-	 	<div class = 'social-signup-container'>
-	 		<div ng-if='!user'>
-		        <a ui-sref='signup' class="btn btn-social btn-yahoo">
-				    <span class="fa fa-envelope-o"></span> Sign up with Email
-				</a>
-			</div>
-		 	<div ng-if='!user'>
-		        <a href="/auth/google" class="btn btn-social btn-google">
-				    <span class="fa fa-google"></span> Sign in with Google
-				</a>
-			</div>
-		   	<div ng-if='!user'>
-		        <a href="/auth/facebook" class="btn btn-social btn-facebook">
-				    <span class="fa fa-facebook"></span> Sign in with Facebook
-				</a>
-			</div>
-			<div>
-		        <a href="https://github.com/nasser85/RegEx-Game" target="_blank" class="btn btn-social btn-github">
-				    <span class="fa fa-github"></span> Check out Repo
-				</a>
-			</div>
-		</div>
+
+    </div>
+  <img id='regexLogo' src='regexlogo.png'>
+  <h4 ng-if="user">Hey, {{user.user_name}}!</h4>
+    <div id='authButtonGroup'>
+  	 	<div class = 'social-signup-container'>
+  	 		<div ng-if='!user'>
+  		        <a ui-sref='signup' class="btn btn-social btn-yahoo">
+  				    <span class="fa fa-envelope-o"></span> Sign up with Email
+  				</a>
+  		        <a href="/auth/google" class="btn btn-social btn-google">
+  				    <span class="fa fa-google"></span> Sign in with Google
+  				</a>
+  			</div>
+  		   	<div ng-if='!user'>
+  		        <a href="/auth/facebook" class="btn btn-social btn-facebook">
+  				      <span class="fa fa-facebook"></span> Sign in with Facebook
+  				    </a>
+  		        <a href="https://github.com/nasser85/RegEx-Game" target="_blank" class="btn btn-social btn-github">
+  				      <span class="fa fa-github"></span> Check out Repo
+  				    </a>
+  			</div>
+  		</div>
+    </div>
+
 </section>

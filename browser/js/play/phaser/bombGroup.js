@@ -32,6 +32,7 @@ BombGroup.prototype.update = function () {
     if (bomb.expirationTime <= Date.now() && !bomb.question.disarmed) {
       this.game.scope.numExploded++;
       let explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
+      explosion.destroy();
       bomb.kill();
     }
     if (bomb.position.y >= bomb.heightToStopFalling) {

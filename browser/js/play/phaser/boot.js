@@ -5,29 +5,24 @@ RegexGame.Boot = function(){};
 RegexGame.Boot.prototype = {
   preload: function() {
    //assets we'll use in the loading screen
-    this.load.image('logo', 'loader.gif');
+    this.load.image('logo', 'regexlogo.png');
     this.load.image('preloadbar', 'preloader-bar.png');
   },
   create: function() {
    //loading screen will have a white background
-    this.game.stage.backgroundColor = '#fff';
+    this.game.stage.backgroundColor = '#000';
 
       //scaling options
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    this.scale.minWidth = 240;
-    this.scale.minHeight = 170;
-    this.scale.maxWidth = 800;
-    this.scale.maxHeight = 600;
+    this.scale.maxWidth = RegexGame.gameConfig.width;
+    this.scale.maxHeight = RegexGame.gameConfig.height;
 
     //have the game centered horizontally
     this.scale.pageAlignHorizontally = true;
 
-    //screen size will be set automatically
-    //this.scale.setScreenSize(true);
-
     //physics system for movement
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.state.start('Preload');
+    this.state.start('Preload', true, false);
   }
 };
