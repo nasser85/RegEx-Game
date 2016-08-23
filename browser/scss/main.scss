@@ -304,11 +304,7 @@ inputs-moz-placeholder {
     color: #b5b5b5;
 }
 
-.questionprogress {
-    background-color: red;
-    margin-left: 5% !important;
-   margin-top: 20px;
-}
+
 
 
 .inputs {
@@ -337,6 +333,19 @@ inputs-moz-placeholder {
     -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
     box-shadow: 2px 2px 7px #E8E8E8 inset;
 }
+}
+
+.bomb-progress {
+    margin-left: 5%;
+    .progress-bar {
+        background-color: blue;
+        position: center;
+        height: 40px;
+    }
+}
+
+#current-question {
+    text-align: center;
 }
 
 @import 'directives/main';

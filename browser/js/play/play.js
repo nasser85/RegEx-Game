@@ -77,6 +77,16 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
 
             if(question.subQuestions.length > question.index+1) {
                 question.index ++;
+                var el = document.getElementById("current-question");
+                el.className = "magictime holeOut";
+
+                $timeout(function() {
+                    el.className = "magictime"
+                    question.text = question.subQuestions[question.index];
+                    document.getElementById("text-answer").value = "";
+                    $scope.$evalAsync();
+                }, 1000);
+                
             } else {
                 diffused = true;
             }

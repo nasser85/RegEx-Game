@@ -13,16 +13,13 @@
         <div class="panel panel-info">
            <div class='panel-heading text-center'>This bomb explodes in {{counter}} seconds</div> 
           <div class="panel-body">
-            <h3 class="text-center">{{currentBomb.question.text}}</h3>
+            <h3 id='current-question' class="magictime">{{currentBomb.question.text}}</h3>
           </div>
         </div>
 
         
-        <div ng-if="currentBomb.question.type === 'Generated'"  class="progress">
-          <div class="progress questionprogress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ((currentBomb.question.index +1)/ currentBomb.question.subQuestions.length)*100 %;">
-          </div>
-        </div>
+        <div class='bomb-progress' ng-if="currentBomb.question.type === 'Generated'">
+          <div class="col-xs-12 col-sm-12 col-md-12"><uib-progressbar class="progress-striped active" max="currentBomb.question.subQuestions.length" value="currentBomb.question.index" type="danger"><i></i></uib-progressbar></div>
       </div>
         
         <table ng-show="!currentBomb.question.forceAnswer && currentBomb.question.type !== 'Generated'"class="table table-sm table-inverse">
