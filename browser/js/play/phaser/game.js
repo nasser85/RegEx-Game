@@ -63,7 +63,7 @@ var RegexGame = RegexGame || {};
       let playerStopped = () => player.stoppedFalling;
       this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
       this.physics.arcade.collide(player, this.map.obstacleLayer, null, playerStopped);
-      this.physics.arcade.collide(bombs, this.map.obstacleLayer, bombs.freeze, playerStopped);
+      this.physics.arcade.collide(bombs, this.map.obstacleLayer, bombs.freeze);
 
       scoreText.text = 'Score: ' + this.game.scope.score;
 

@@ -34,7 +34,6 @@ Player.prototype.update = function() {
       this.stoppedFalling = true;
     }
   }
-
   else{
     this.body.velocity.x = 0;
     this.body.velocity.y = 0;
