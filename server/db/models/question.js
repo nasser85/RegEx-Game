@@ -40,10 +40,11 @@ var Question = db.define('question', {
 						$lte: difficultyLevel
 					}
 				},
-				limit: numQuestions,
 				order: [
 					Sequelize.fn( 'RANDOM' ),
 				]
+			}).then(function (result) {
+				return result.slice(0, numQuestions);
 			})
 		}
 	}

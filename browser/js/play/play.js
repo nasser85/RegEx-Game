@@ -35,7 +35,9 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
 
     $scope.getNewQuestions = function(){
         QuestionFactory.getQuestions($scope.numQuestions, $scope.currentWave)
-        .then(result => $scope.questions = result)
+        .then(function (result) {
+            $scope.questions = result
+        })
         .catch($log.error);
     };
 
@@ -86,7 +88,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                     document.getElementById("text-answer").value = "";
                     $scope.$evalAsync();
                 }, 1000);
-                
+
             } else {
                 diffused = true;
             }
