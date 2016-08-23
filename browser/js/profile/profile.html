@@ -1,7 +1,15 @@
 <div id='profile'>
 	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12">
-		  	<h5>{{user}}'s Profile</h5>
+		<div ui-sref='home' class="col-xs-6 col-sm-3 col-md-3">
+			<regex-race-logo><regex-race-logo>
+		</div>
+	  <div class="col-xs-6 col-sm-3 col-md-3">
+	  	<button ui-sref='account' class="button button-rounded button-flat-primary button-large">Back to Your Account</button>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+		  	<h4>{{profileName}}'s Profile</h4>
 		  </div>
 			<table class="table">
 				<tbody>

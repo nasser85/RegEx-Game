@@ -375,6 +375,17 @@ regex-race-logo img:hover{
    border-width: 6px;
    border-color: cyan;
 }
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #333333;
+}
+
+#profile {
+    h4 {
+        color: cyan;
+    }
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'tutorial/main';
