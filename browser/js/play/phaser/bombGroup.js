@@ -4,7 +4,7 @@ var BombGroup = function (game, arrQuestions, image) {
   var bombRadius = 32; // after scaling & anchoring..
 
   for (var i = 0; i < arrQuestions.length; i++) {
-    var x = _.random(bombRadius, game.width - bombRadius);
+    var x = _.random(bombRadius*2, game.width - bombRadius);
     var sprite = this.create(x, 0 - bombRadius, image,0);
     sprite.scale.setTo(0.5, 0.5);
     sprite.anchor.setTo(0.5);
@@ -13,7 +13,7 @@ var BombGroup = function (game, arrQuestions, image) {
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
     sprite.body.gravity.y = 300;
     sprite.question = arrQuestions[i];
-     sprite.expirationTime = Date.now() + 5000 + 1000*(10*i);
+     sprite.expirationTime = Date.now() + 1000*60 + 1000*(10*i);
     //sprite.expirationTime = Date.now() + 1000*(i+4);
     if(sprite.expirationTime > RegexGame.gameConfig.timeLimit) RegexGame.gameConfig.timeLimit = sprite.expirationTime;
     var bombTimer = new Timer(game, sprite);
@@ -47,7 +47,7 @@ BombGroup.prototype.engage = function (player, bomb) {
   player.canMove = false;
   if(!bomb.question.disarmed){
     this.game.scope.currentBomb = bomb;
-    
+
     if (this.game.scope.currentBomb.question.testCases) {
           var trueArr = [];
         var falseArr = [];
@@ -76,7 +76,7 @@ BombGroup.prototype.engage = function (player, bomb) {
     } else {
       this.game.scope.currentBomb.question.text = this.game.scope.currentBomb.question.subQuestions[this.game.scope.currentBomb.question.index];
     }
-    
+
     this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
 
     var textBox = document.getElementById("text-answer");

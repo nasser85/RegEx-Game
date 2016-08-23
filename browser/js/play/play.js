@@ -70,9 +70,9 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
 
             var generatedCheck = BombFactory.diffuse(answer, question, question.index);
         } else {
-           diffused = BombFactory.diffuse(answer, question); 
+           diffused = BombFactory.diffuse(answer, question);
         }
-        
+
         if (generatedCheck) {
 
             if(question.subQuestions.length > question.index+1) {
@@ -105,6 +105,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.leave();
             }, 2000);
         }
+
         player.canMove = true;
     }
 
@@ -139,5 +140,5 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.saveScore = false;
     }
 
-    
+
 })
