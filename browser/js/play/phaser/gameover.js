@@ -27,17 +27,17 @@ RegexGame.GameOver.prototype = {
 
     let text2 = this.makeText('You didn\'t diffuse the bombs in time!',60,style);
 
-    let text3 = this.makeText('Start Over?', 100, style);
+    let text3 = this.makeText('Start Over?', 110, style);
     text3.inputEnabled = true;
     text3.events.onInputDown.add(this.tryAgain, this);
 
         //return to main menu
-    let text4 = this.makeText('Return to Main Menu', 120, style);
+    let text4 = this.makeText('Return to Main Menu', 140, style);
     text4.inputEnabled = true;
     text4.events.onInputDown.add(this.game.scope.goHome, this);
 
 
-    let text5 = this.makeText('Save Your Score', 140, style);
+    let text5 = this.makeText('Save Your Score', 170, style);
     text5.inputEnabled = true;
     text5.events.onInputDown.add(this.saveScore, this);
 //    setTimeout(function(){this.game.state.start('Game')}.bind(this),2000)

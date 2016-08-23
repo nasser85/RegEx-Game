@@ -106,7 +106,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 4,
+      difficulty: 5,
       hint: '',
       answer: '([1-9]|1[0-2]), ([1-9]|[12][0-9]|3[01]), (19|20)[0-9][0-9]',
       forceAnswer: false,
