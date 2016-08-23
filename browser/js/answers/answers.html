@@ -41,7 +41,7 @@
 		<div class="panel panel-inverse transparent">
 			<div class="panel-heading text-center">How Others Answered This Question</div>
 		  <div class="panel-body text-center">
-		    <table class="table table-sm table-inverse">
+		    <table class="table table-sm table-inverse table-hover">
           <thead>
             <tr>
               <th class="text-center"><h4><kbd>User Name</kbd></h4></th>
@@ -50,8 +50,8 @@
           </thead>
           <tbody>
             <tr ng-repeat="other in otherAnswers" class='test-cases'>
-              <td><kbd>{{other.user.user_name}}</kbd></td>
-              <td><kbd>{{other.user_answer}}</kbd></td>
+              <td ui-sref="profile({userId: other.user.id, userName: other.user.user_name})"><kbd>{{other.user.user_name}}</kbd></td>
+              <td ui-sref="profile({userId: other.user.id, userName: other.user.user_name})"><kbd>{{other.user_answer}}</kbd></td>
             </tr>
           </tbody>
         </table>
