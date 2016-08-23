@@ -7,7 +7,6 @@ var Player = function (game, x, y, image) {
     this.anchor.set(0.5);
 
     game.physics.arcade.enable(this);
-    this.body.checkCollision.none = true;
     this.body.bounce.y = 0;
     this.body.gravity.y = 1000;
     this.body.collideWorldBounds = true;
@@ -27,7 +26,6 @@ Player.prototype.update = function() {
 
   // CURRENTLY RELIES ON 'cursors' BEING A GLOBAL VARIABLE
   if(!this.stoppedFalling){
-    console.log(this.body.enable)
     if(this.position.y >= this.stoppingY){
       this.body.gravity.y = 0
       this.body.velocity.y = 0
