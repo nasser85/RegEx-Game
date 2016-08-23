@@ -1,18 +1,46 @@
 #home {
-  padding-top: 5%;
+  padding-top: 1%;
   color: cyan;
+  margin: 0 auto;
   h1 {
     text-align: center;
   },
   .list-unstyled{
     text-align: center;
-    margin:20px;
+    display: inline;
+    li {
+      display: inline;
+      padding: 0px;
+      margin: 0 auto;
+    }
+    ul {
+      display: inline;
+      padding: 0px;
+      margin: 0 auto;
+    }
+    button {
+      display: inline;
+      padding: 0px;
+      margin: 0 auto;
+    }
   }
   h4 {
     color: magenta !important;
   }
   li {
-  	margin-bottom: 20px;
+  	margin-bottom: 10px;
   }
+
+  #regexLogo {
+      width: 700px;
+      margin: auto;
+      display: block;
+  }
+
+  #authButtonGroup {
+      text-align:center;
+      display: block;
+  }
+
 }
 

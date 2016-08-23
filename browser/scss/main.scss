@@ -48,7 +48,6 @@ body {
 }
 
 #home {
-    
     li {
         width: 60%;
         margin-left: 20%;
@@ -78,7 +77,7 @@ body {
 
 
 .panel {
-   
+
     margin: 0 auto;
     width: 100%;
 }
@@ -187,7 +186,7 @@ bomb-view{
     bottom: 0;
     left: 0;
     z-index: 2;
-    
+
 }
 #bomb-view {
     margin:0 auto;
@@ -264,7 +263,7 @@ save-score{
         padding: 8px;
         margin: 2px;
     }
-    
+
 }
 #save-score {
     margin:10px auto;
@@ -287,7 +286,7 @@ save-score{
       text-align: center;
     }
 
-    
+
 }
 #answers-page {
     .panel {
@@ -296,7 +295,7 @@ save-score{
             background-color: black;
             color: white;
         }
-        
+
     }
     button {
         margin-bottom: 20px;

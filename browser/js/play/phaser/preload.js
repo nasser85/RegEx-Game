@@ -5,13 +5,9 @@ RegexGame.Preload = function(){};
 
 RegexGame.Preload.prototype = {
   preload: function() {
-   //show logo in loading screen
-    this.splash = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'logo');
-    this.splash.anchor.setTo(0.5);
-
+   //show preloadBar in loading screen
     this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
     this.preloadBar.anchor.setTo(0.5);
-
     this.load.setPreloadSprite(this.preloadBar);
 
    //load tilemaps and sets
@@ -34,7 +30,6 @@ RegexGame.Preload.prototype = {
     this.load.audio('bombExplode', '/sound/time_bomb_short.mp3');
     this.load.audio('groan', '/sound/crowd-groan.mp3')
     this.load.audio('applause', '/sound/applause3.mp3');
-    this.load.audio('groan', '/sound/applause3.mp3');
     this.load.audio('theme', '/sound/theme.mp3');
     this.load.audio('battleA', '/sound/battleA.mp3');
     this.load.audio('battleB', '/sound/battleB.mp3');
@@ -43,7 +38,7 @@ RegexGame.Preload.prototype = {
 
   },
   create: function() {
-   this.state.start('GameMenu');
+   this.state.start('GameMenu', true, false);
   }
 };
 
