@@ -96,8 +96,10 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
             $scope.currentBomb.frame=1;
             $scope.currentBomb.body.enable=false;
             $scope.correct = 1;
-            BombFactory.storeUserAnswer(answer, question, userid)
-            .catch($log.error);
+            if(userid){
+                BombFactory.storeUserAnswer(answer, question, userid)
+                .catch($log.error);
+            }
             $scope.answered = true;
             $scope.score += 100;
             $scope.userform.answer = null;

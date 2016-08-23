@@ -22,7 +22,7 @@ RegexGame.GameMenu.prototype = {
 
     //start game text
     let text1 = "CLICK TO BEGIN!";
-    let t1 = this.game.add.text(this.game.width/2, this.game.height/2, text1, textStyle);
+    let t1 = this.game.add.text(this.game.width/2, this.game.height/2 - 30, text1, textStyle);
     t1.anchor.set(0.5);
     t1.inputEnabled = true;
     t1.events.onInputDown.add(this.start, this);
