@@ -13,8 +13,13 @@ app.factory('CharacterCodeFactory', function (Utils) {
   var lowercaseLetters = Utils.range(97, 122);
   var symbols = Utils.range(33, 47)
                 .concat(Utils.range(58, 64))
-                .concat(Utils.range(91, 96))
+                .concat(Utils.range(91, 94))
+                .concat(Utils.range(96, 96))
                 .concat(Utils.range(123, 126));
+
+  var alphanumeric = uppercaseLetters.concat(lowercaseLetters)
+                                      .concat(allDigits)
+                                      .concat(Utils.range(95, 95));
 
   return {
     whitespace: whitespace,
@@ -24,6 +29,7 @@ app.factory('CharacterCodeFactory', function (Utils) {
     allDigits: allDigits,
     uppercaseLetters: uppercaseLetters,
     lowercaseLetters: lowercaseLetters,
-    symbols: symbols
+    symbols: symbols,
+    alphanumeric: alphanumeric
   };
 });

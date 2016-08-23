@@ -84,5 +84,15 @@ app.factory('GeneratedQuestion', function (CharacterCodeFactory, Utils) {
     return this.generate(text, Codes.allCharacters, Utils.difference(Codes.allCharacters, Codes.whitespace));
   };
 
+  Question.prototype.anyAlphanumeric = function () {
+    return this.generate('Any alphanumeric character (this includes the underscore)', Codes.allCharacters, Codes.alphanumeric);
+  };
+
+  Question.prototype.anyNonAlphanumeric = function () {
+    var text = 'Any non-alphanumeric character';
+
+    return this.generate(text, Codes.allCharacters, Utils.difference(Codes.allCharacters, Codes.alphanumeric));
+  };
+
   return Question;
 });
