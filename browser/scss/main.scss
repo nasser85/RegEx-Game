@@ -362,6 +362,19 @@ inputs-moz-placeholder {
     text-align: center;
 }
 
+regex-race-logo img{
+    width: 160px;
+    height: 160px;
+    margin-left: 15%;
+    margin-top: -20%;
+}
+
+regex-race-logo img:hover{
+   border-radius: 100%;
+   border-style: dashed;
+   border-width: 6px;
+   border-color: cyan;
+}
 @import 'directives/main';
 @import 'home/main';
 @import 'tutorial/main';
