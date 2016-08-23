@@ -1,24 +1,7 @@
-<div id='account'>
-	
-	<div class="row">
-		<div ui-sref='home' class="col-xs-6 col-sm-2 col-md-2">
-			<regex-race-logo><regex-race-logo>
-		</div>
-	  <div class="col-xs-6 col-sm-4 col-md-4">
-
-	  	<h5 id="account-title">What's up, {{user.user_name}}?</h5>
-
-	  </div>
-	  <div class="col-xs-6 col-sm-3 col-md-3">
-	  	<button ui-sref='home' class="button button-rounded button-flat-primary button-large">Main Menu</button>
-	  </div>
-	  <div class="col-xs-6 col-sm-3 col-md-3">
-	  	<button class="button button-rounded button-flat-royal button-large">Update Account</button>
-	  </div>
-	</div>
+<div id='profile'>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-		  	<h5>How You're Doing</h5>
+		  	<h5>{{user}}'s Profile</h5>
 		  </div>
 			<table class="table">
 				<tbody>
@@ -86,25 +69,5 @@
 			      </tr>
 			    </tbody>
 			</table>
-	</div>
-	
-	<div class="row">
-		<h5>Defused Bombs</h5>
-		<div ng-repeat="answer in answeredQuestions track by $index" class="col-sm-3 col-md-3">
-		    <div ui-sref="answers({questionId: answer.questionId})" class="thumbnail diffused-bomb transparent">
-		      <img src="defuse.png">
-		      <div class="caption">
-		        
-		        <p><kbd>{{answer.user_answer}}</kbd></p>
-		      </div>
-		    </div>
-		</div>
-		
-	</div>
-	<div class="row">
-		<h5>Submit Your Own RegEx Question</h5>
-		<div class="col-xs-12 col-sm-6 col-md-3">
-
-		</div>
 	</div>
 </div>

@@ -20,13 +20,21 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, topScore, answeredQuestions) {
+app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, topScore, answeredQuestions, $timeout) {
 	$scope.user = user;
 	$scope.answeredQuestions = answeredQuestions;
 	console.log($scope.answeredQuestions);
-	$scope.userScore = userScore[0].score;
+	$scope.userScore = 0;
+	$scope.diffused = 0;
+	$timeout(function() {
+		$scope.userScore = userScore[0].score;
+		$scope.diffused = 100*($scope.userScore/100)/(4*Math.round($scope.userScore/400));
+		$scope.$evalAsync();
+	}, 300)
+
+	
 	$scope.topScore = topScore[0].score;
-	$scope.diffused = 100*($scope.userScore/100)/(4*Math.round($scope.userScore/400));
+	
 	console.log($scope);
 
 });
