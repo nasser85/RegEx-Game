@@ -1,13 +1,33 @@
-<form name="signForm" ng-submit="createAccount(signUp)">
-  <alert type="danger" ng-show="error">
-        {{ error }}
-  </alert>
-  <input ng-model="signUp.user_name" type="text" class="inputs" placeholder="Name" /> 
-	<br> 
-	<input ng-model="signUp.email" type="text" class="inputs" placeholder="E-mail" /> 
-	<br> 
-	<input ng-model="signUp.password" type="password" class="inputs" placeholder="Password" />
-	<br>
-	<input type="submit" value="Submit" class="button button-rounded button-flat-primary button-large"> 
+<div ng-show='!user'>
+	<form name="signForm" ng-submit="createAccount(signUp)">
+	  <alert type="danger" ng-show="error">
+	        {{ error }}
+	  </alert>
+	  <input ng-model="signUp.user_name" type="text" class="inputs" placeholder="Name" /> 
+		<br> 
+		<input ng-model="signUp.email" type="text" class="inputs" placeholder="E-mail" /> 
+		<br> 
+		<input ng-model="signUp.password" type="password" class="inputs" placeholder="Password" />
+		<br>
+		<input type="submit" value="Submit" class="button button-rounded button-flat-primary button-large"> 
 
-</form>
+	</form>
+
+	<div class = 'social-signup-container'>
+	 	<div class="">
+	        <a href="/auth/google" class="btn btn-social btn-google">
+			    <span class="fa fa-google"></span> Sign in with Google
+			</a>
+		</div>
+	   	<div class="">
+	        <a href="/auth/facebook" class="btn btn-social btn-facebook">
+			    <span class="fa fa-facebook"></span> Sign in with Facebook
+			</a>
+		</div>
+		<div class="">
+	        <a href="https://github.com/nasser85/RegEx-Game" target="_blank" class="btn btn-social btn-github">
+			    <span class="fa fa-github"></span> Check out Repo
+			</a>
+		</div>
+	</div>
+</div>
