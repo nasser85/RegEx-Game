@@ -9,7 +9,7 @@
         </div>
     	</div>
     </div>
-    <div ng-if="!answered" class="col-xs-12 col-sm-12 col-md-12 transparent questions">
+    <div ng-if="!answered" class="questions col-xs-12 col-sm-12 col-md-12 transparent">
         <div class="panel panel-info">
            <div class='panel-heading text-center'>This bomb explodes in {{counter}} seconds</div> 
           <div class="panel-body">
@@ -22,7 +22,7 @@
           <div class="col-xs-12 col-sm-12 col-md-12"><uib-progressbar class="progress-striped active" max="currentBomb.question.subQuestions.length" value="currentBomb.question.index" type="danger"><i></i></uib-progressbar></div>
       </div>
         
-        <table ng-show="!currentBomb.question.forceAnswer && currentBomb.question.type !== 'Generated'"class="table table-sm table-inverse">
+        <table ng-show="!currentBomb.question.forceAnswer && currentBomb.question.type !== 'Generated'" class="table table-sm table-inverse">
           <thead>
             <tr>
               <th><kbd>Match These</kbd></th>
@@ -52,17 +52,6 @@
         </div>
 </div>
 <diffuse-result ng-if="answered" ></diffuse-result>
-
-      <!-- <div ng-if="!answered" class='col-xs-12 col-sm-12 col-md-12 transparent buttons'>
-       <p>
-           <a href="#" ng-click="diffuse(userform.answer, currentBomb.question, user.id)" class="button button-3d-primary button-circle shake-horizontal control col-xs-12 col-sm-4 col-md-4">DIFFUSE</a>
-           <div id="container" class="transparent col-xs-12 col-sm-4 col-md-4">
-               <input autofocus="autofocus" ng-model="userform.answer" class="textbox" type="text"> 
-           </div>
-           <a href="#" ng-click="leave()" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane col-xs-12 col-sm-4 col-md-4">LEAVE</a>
-       </p>
-     </div>
- -->
 
   	</div>
 
