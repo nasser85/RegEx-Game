@@ -16,6 +16,11 @@ var RegexGame = RegexGame || {};
 
   RegexGame.Game.prototype = {
     init: function(track, duration) {
+      //reset counters
+      this.game.scope.numCorrect = 0;
+      this.game.scope.numExploded = 0
+
+      this.time.desiredFps = RegexGame.gameConfig.desiredFps;
       this.transitioned = false;
       this.game.paused = false;
       this.game.scope.saveScore = false;
@@ -66,27 +71,26 @@ var RegexGame = RegexGame || {};
       this.physics.arcade.collide(bombs, this.map.obstacleLayer, bombs.freeze);
 
       scoreText.text = 'Score: ' + this.game.scope.score;
-
       //did they win?
-      if(this.game.scope.numCorrect === bombs.children.length) {
-        var a = this;
+      if(this.game.scope.numCorrect === bombs.children.length && this.game.scope.numExploded === 0) {
         setTimeout(function() {
         if(!this.applause.isPlaying) this.applause.play('playApplause');
-        a.transitionState('NextWave');
+        this.transitionState('NextWave');
       }.bind(this), 1500);
       } //did they lose?
       else if(this.game.scope.numExploded > 0 || Date.now() >= RegexGame.gameConfig.timeLimit){
         if(!this.groan.isPlaying) this.groan.play('playGroan');
-        bombs.forEachAlive(bomb => bomb.kill());
+        bombs.forEachAlive(bomb => bomb.destroy());
         this.transitionState('GameOver');
       }
     },
     transitionState: function(nextState){
       if(!this.transitioned){
-        this.game.scope.numCorrect = 0;
-        this.game.scope.numExploded = 0
+        if(this.groan.isPlaying) this.groan.stop();
+        if(this.applause.isPlaying) this.applause.stop();
         this.game.scope.currentBomb = null;
         this.music.stop();
+        bombs.destroy();
         setTimeout(function(){ this.game.state.start(nextState, false, false, levelStatus)}.bind(this), RegexGame.gameConfig.levelTimePad);
         this.transitioned = true;
       }

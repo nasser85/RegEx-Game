@@ -8,6 +8,7 @@ app.directive('gameCanvas', function($window, $injector) {
       timeLimit: 0,
       levelTimePad: 2000,
       minBombExpiration: 1000 * 120,
+      desiredFps: 60,
       mapConfig: {
         mapA: {
           tilemap: 'simpleCity_Layer1',
@@ -57,7 +58,7 @@ app.directive('gameCanvas', function($window, $injector) {
   };
 
   return {
-    template: `<div ng-class="currentBomb || saveScore ? \'blurry\' : \'not-blurry\'" id=\'playGame\' balls></div>
+    template: `<div ng-class="currentBomb || saveScore ? \'blurry\' : \'not-blurry\'" id=\'playGame\'></div>
               <bomb-view ng-if="currentBomb" ></bomb-view>
               <save-score ng-show="saveScore" ></save-score>`,
     link: linkFn
