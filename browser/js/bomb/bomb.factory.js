@@ -30,29 +30,12 @@ app.factory("BombFactory", function($http){
 			return bombFactory.checkAnswerGenerated(userAnswer, question, index);
 		} else {
 
-			// if(question.category === 'match_some'){
-			// 	let regexAnswer = new RegExp(userAnswer);
-			// 	return question.testCases.every(function(testCase){
-			// 		var arr = regexAnswer.exec(testCase.content);
-			// 		console.log('arr', arr);
-			// 		console.log('regexAnswer.index', regexAnswer.index);
-			// 		if(arr === null){
-			// 			return false;
-			// 		}
-			// 		var matchedStr = arr[0];
-			// 		if(matchedStr !== testCase.content){
-			// 			return false;
-			// 		}
-			// 		return true;
-			// 	});
-
 			if(question.category === 'match_some'){
 				
 				for (var j = 0; j < question.testCases.length; j++) {
 					let regexAnswer = new RegExp(userAnswer);
 					var testCase = question.testCases[j];
 					var arr = regexAnswer.exec(testCase.content);
-					console.log('arr', arr);
 					if(testCase.match){
 						if(arr === null){
 							return false;
