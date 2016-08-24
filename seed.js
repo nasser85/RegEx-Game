@@ -24,6 +24,7 @@ var Question = db.model('question');
 var TestCase = db.model('testCase');
 var Score = db.model('score');
 var Promise = require('sequelize').Promise;
+var Questions = require('./questions');
 
 var seedUsers = function () {
 
@@ -47,7 +48,9 @@ var seedUsers = function () {
 };
 
 var seedQuestions = function () {
-  var questions = [
+  var match_some = Questions.match_some;
+
+  var questions = match_some.concat([
     {
       text: 'Match some, but not all!',
       category: 'match_some',
@@ -251,32 +254,7 @@ var seedQuestions = function () {
      answer: '?',
      forceAnswer: true
    }
-  ];
-
-  var arrEndsWith = ['star', 'call', 'plane', 'boat', 'van', 'truck', 'grass', 'Fullstack', 'programmer', 'Node'];
-  arrEndsWith = arrEndsWith.map(function (word) {
-    var length = getRandomIntInclusive(3, 5);
-    var lastLetter = word[word.length - 1];
-    var testCases = [];
-    for (var i = 0; i < length; i++) {
-      var str = i === 0 ? word : word + generateString(i, lastLetter);
-      testCases.push({ content: str, match: true });
-    }
-    str = word + generateString(length + 1, lastLetter);
-    testCases.push({ content: str, match: false });
-
-    return {
-      text: 'Match some, but not all!',
-      category: 'match_some',
-      difficulty: 1,
-      hint: '',
-      answer: '',
-      forceAnswer: false,
-      testCases: testCases
-    };
-  });
-
-  questions = questions.concat(arrEndsWith);
+  ]);
 
   var creatingQuestions = questions.map(function (questionObj) {
       return Question.create(questionObj, {
@@ -286,20 +264,6 @@ var seedQuestions = function () {
 
   return Promise.all(creatingQuestions);
 };
-
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function generateString (length, char) {
-  var arr = [];
-  for (var i = 1; i <= length; i++) {
-    arr.push(char);
-  }
-  return arr.join('');
-}
 
   var seedScores= function(){
     return Score.create({score: 1000, userId: 1});
