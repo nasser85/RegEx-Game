@@ -32,7 +32,7 @@
           <tbody>
             <tr ng-repeat="testCase in testCaseArr" class='test-cases'>
               <td><kbd>{{testCase.true}}</kbd></td>
-              <td><kbd>{{testCase.false}}</kbd></td>
+              <td><kbd ng-if="testCase.false">{{testCase.false}}</kbd></td>
             </tr>
           </tbody>
         </table>
