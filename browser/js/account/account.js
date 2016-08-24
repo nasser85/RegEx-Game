@@ -26,15 +26,29 @@ app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, top
 	console.log($scope.answeredQuestions);
 	$scope.userScore = 0;
 	$scope.diffused = 0;
-	$timeout(function() {
-		$scope.userScore = userScore[0].score;
-		$scope.diffused = 100*($scope.userScore/100)/(4*Math.round($scope.userScore/400));
-		$scope.$evalAsync();
-	}, 300)
+	$scope.maxNum = 50;
+    $timeout(function() {
+        $scope.userScore = userScore[0].score;
+        userScore.forEach(function(el) {
+            $scope.diffused += el.score;
+        });
+        $scope.diffused = $scope.diffused/100;
+        if ($scope.diffused > 10) {
+            $scope.maxNum = 20;
+        } else if ($scope.diffused > 20) {
+            $scope.maxNum = 30;
+        } else {
+            $scope.maxNum = 40;
+        }
+        $scope.$evalAsync();
+    }, 300)
 
 	
 	$scope.topScore = topScore[0].score;
-	
+	$scope.first = false;
+	if (topScore[0].userId === $scope.user.id) {
+		$scope.first = true;
+	}
 	console.log($scope);
 
 });
