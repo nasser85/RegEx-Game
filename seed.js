@@ -294,8 +294,31 @@ var seedQuestions = function () {
     };
   });
 
+  var arrRepeats = ['Repeat', 'Echo', 'Replay', 'Rerun', 'Re', 'Reproduce', 'Repetition', 'Reiteration', 'Hello', 'Duplicate'];
+  arrRepeats = arrRepeats.map(function (word) {
+    var length = getRandomIntInclusive(3, 5);
+    var testCases = [];
+    for (var i = 1; i < length; i++) {
+      var str = i === 1 ? word :  word.repeat(i);
+      testCases.push({ content: str, match: true });
+    }
+    str =  word.repeat(length + 1)
+    testCases.push({ content: str, match: false });
+
+    return {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 2,
+      hint: '',
+      answer: '',
+      forceAnswer: false,
+      testCases: testCases
+    };
+  });
+
   questions = questions.concat(arrEndsWith);
   questions = questions.concat(arrStartsWith);
+  questions = questions.concat(arrRepeats);
 
   var creatingQuestions = questions.map(function (questionObj) {
       return Question.create(questionObj, {
