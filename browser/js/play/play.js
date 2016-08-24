@@ -33,6 +33,12 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.correct = 0; // are we still using this?
     $scope.counter = 0;
 
+    $scope.currentBombActive = function(){
+        var textBox = document.getElementById("text-answer");
+        if (textBox) textBox.focus();
+        return $scope.currentBomb;
+    }
+
     $scope.getNewQuestions = function(){
         QuestionFactory.getQuestions($scope.numQuestions, $scope.currentWave)
         .then(result => $scope.questions = result)
@@ -62,6 +68,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.answered = false;
         $scope.correct = 0;
         player.canMove = true;
+        $scope.$evalAsync;
     }
 
     $scope.diffuse = function(answer, question, userid){
@@ -86,7 +93,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                     document.getElementById("text-answer").value = "";
                     $scope.$evalAsync();
                 }, 1000);
-                
+
             } else {
                 diffused = true;
             }
