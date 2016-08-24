@@ -4,7 +4,7 @@ var BombGroup = function (game, arrQuestions, image) {
   var bombRadius = 32; // after scaling & anchoring..
 
   for (var i = 0; i < arrQuestions.length; i++) {
-    var x = _.random(bombRadius*2, game.width - bombRadius);
+    var x = _.random(bombRadius*3, game.width - bombRadius);
     var sprite = this.create(x, 0 - bombRadius, image,0);
     sprite.scale.setTo(0.5, 0.5);
     sprite.anchor.setTo(0.5);
@@ -15,7 +15,6 @@ var BombGroup = function (game, arrQuestions, image) {
     sprite.question = arrQuestions[i];
 
      sprite.expirationTime = Date.now() + RegexGame.gameConfig.minBombExpiration + (10000*i);
-    // sprite.expirationTime = Date.now() + 1000*(i+4);
 
     if(sprite.expirationTime > RegexGame.gameConfig.timeLimit) RegexGame.gameConfig.timeLimit = sprite.expirationTime;
     var bombTimer = new Timer(game, sprite);
@@ -42,32 +41,42 @@ BombGroup.prototype.update = function () {
 
 };
 
-BombGroup.prototype.freeze = function (bomb){
-  bomb.body.moves = false;
-}
-
 BombGroup.prototype.engage = function (player, bomb) {
   player.canMove = false;
   player.animations.stop();
   player.frame = 4;
+
   if(!bomb.question.disarmed){
+    //manually separate bomb and player if phaser separation failed
+    if(!player.body.touching.none){
+      if(player.body.touching.right) {
+        player.position.x -= RegexGame.gameConfig.customPlayerBombSeparate;
+        bomb.position.x += RegexGame.gameConfig.customPlayerBombSeparate;
+      } else if (player.body.touching.left){
+        player.position.x +=  RegexGame.gameConfig.customPlayerBombSeparate;
+        bomb.position.x -= RegexGame.gameConfig.customPlayerBombSeparate;
+      } else if (player.body.touching.up) {
+        player.position.y += RegexGame.gameConfig.customPlayerBombSeparate;
+        bomb.position.y -= RegexGame.gameConfig.customPlayerBombSeparate;
+      } else if (player.body.touching.down){
+        player.position.y -= RegexGame.gameConfig.customPlayerBombSeparate;
+        bomb.position.y += RegexGame.gameConfig.customPlayerBombSeparate;
+      }
+    }
     this.game.scope.currentBomb = bomb;
 
     if (this.game.scope.currentBomb.question.testCases) {
-          var trueArr = [];
+        var trueArr = [];
         var falseArr = [];
         var testArr = [];
-
-        //NEEDS TO BE FIXED
 
         this.game.scope.currentBomb.question.testCases.forEach(function(testCase){
           if(testCase.match){
               trueArr.push(testCase.content);
-
           }else{
               falseArr.push(testCase.content);
           }
-        })
+        });
           if (trueArr.length >= falseArr.length) {
               for (var i = 0; i < trueArr.length; i++) {
                   testArr.push({true: trueArr[i], false: falseArr[i]});
@@ -84,13 +93,8 @@ BombGroup.prototype.engage = function (player, bomb) {
 
     this.game.scope.counter = Math.floor((this.game.scope.currentBomb.expirationTime - Date.now())/1000);
 
-    var textBox = document.getElementById("text-answer");
-   
-   if (textBox) {
-     textBox.focus();
-   }
-    this.game.scope.currentBomb.question.disarmed = false;
-    this.game.scope.$evalAsync();
 
+  this.game.scope.currentBomb.question.disarmed = false;
+  this.game.scope.$evalAsync();
   }
 };

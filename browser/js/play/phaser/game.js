@@ -66,9 +66,8 @@ var RegexGame = RegexGame || {};
 
       //deal with collisions
       let playerStopped = () => player.stoppedFalling;
-      this.physics.arcade.collide(player, bombs, bombs.engage, playerStopped, this);
+      this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
       this.physics.arcade.collide(player, this.map.obstacleLayer, null, playerStopped);
-      this.physics.arcade.collide(bombs, this.map.obstacleLayer, bombs.freeze);
 
       scoreText.text = 'Score: ' + this.game.scope.score;
       //did they win?
@@ -79,8 +78,9 @@ var RegexGame = RegexGame || {};
       }.bind(this), 1500);
       } //did they lose?
       else if(this.game.scope.numExploded > 0 || Date.now() >= RegexGame.gameConfig.timeLimit){
-        if(!this.groan.isPlaying) this.groan.play('playGroan');
-        bombs.forEachAlive(bomb => bomb.destroy());
+        bombs.forEachAlive(bomb => {
+          bomb.explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
+        });
         this.transitionState('GameOver');
       }
     },
