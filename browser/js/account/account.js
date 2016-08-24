@@ -33,12 +33,14 @@ app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, top
             $scope.diffused += el.score;
         });
         $scope.diffused = $scope.diffused/100;
-        if ($scope.diffused > 10) {
-            $scope.maxNum = 20;
+       if ($scope.diffused > 30) {
+            $scope.maxNum = 40;
         } else if ($scope.diffused > 20) {
             $scope.maxNum = 30;
+        } else if ($scope.diffused > 10) {
+            $scope.maxNum = 20;
         } else {
-            $scope.maxNum = 40;
+            $scope.maxNum = 10;
         }
         $scope.$evalAsync();
     }, 300)
