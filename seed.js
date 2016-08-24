@@ -1,20 +1,15 @@
 /*
-
 This seed file is only a placeholder. It should be expanded and altered
 to fit the development of your application.
-
 It uses the same file the server uses to establish
 the database connection:
 --- server/db/index.js
-
 The name of the database used is set in your environment files:
 --- server/env/*
-
 This seed file has a safety check to see if you already have users
 in the database. If you are developing multiple applications with the
 fsg scaffolding, keep in mind that fsg always uses the same database
 name in the environment files.
-
 */
 
 var chalk = require('chalk');
@@ -217,41 +212,90 @@ var seedQuestions = function () {
       ]
     },
     { text: 'Matches beginning of input. If the multiline flag is set to true, also matches immediately after a line break character',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '^',
-     forceAnswer: true
-   },
-   { text: 'Matches end of input. If the multiline flag is set to true, also matches immediately before a line break character',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '$',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 0 or more times. Equivalent to {0,}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '*',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 1 or more times. Equivalent to {1,}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '+',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 0 or 1 times. Equivalent to {0,1}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '?',
-     forceAnswer: true
-   }
+     category: 'validation',
+     difficulty: 1,
+     hint: '',
+     answer: '^',
+     forceAnswer: true
+   },
+   { text: 'Matches end of input. If the multiline flag is set to true, also matches immediately before a line break character',
+     category: 'validation',
+     difficulty: 1,
+     hint: '',
+     answer: '$',
+     forceAnswer: true
+   },
+   { text: 'Matches the preceding expression 0 or more times. Equivalent to {0,}',
+     category: 'validation',
+     difficulty: 1,
+     hint: '',
+     answer: '*',
+     forceAnswer: true
+   },
+   { text: 'Matches the preceding expression 1 or more times. Equivalent to {1,}',
+     category: 'validation',
+     difficulty: 1,
+     hint: '',
+     answer: '+',
+     forceAnswer: true
+   },
+   { text: 'Matches the preceding expression 0 or 1 times. Equivalent to {0,1}',
+     category: 'validation',
+     difficulty: 1,
+     hint: '',
+     answer: '?',
+     forceAnswer: true
+   }
   ];
+
+  var arrEndsWith = ['star', 'call', 'plane', 'boat', 'van', 'truck', 'grass', 'Fullstack', 'programmer', 'Node'];
+  arrEndsWith = arrEndsWith.map(function (word) {
+    var length = getRandomIntInclusive(3, 5);
+    var lastLetter = word[word.length - 1];
+    var testCases = [];
+    for (var i = 0; i < length; i++) {
+      var str = i === 0 ? word : word + generateString(i, lastLetter);
+      testCases.push({ content: str, match: true });
+    }
+    str = word + generateString(length + 1, lastLetter);
+    testCases.push({ content: str, match: false });
+
+    return {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 2,
+      hint: '',
+      answer: '',
+      forceAnswer: false,
+      testCases: testCases
+    };
+  });
+
+  var arrStartsWith = ['Regular', 'Expression', 'Regex', 'Start', 'Begin', 'opening', 'source', 'outset', 'countdown', 'origin'];
+  arrStartsWith = arrStartsWith.map(function (word) {
+    var length = getRandomIntInclusive(3, 5);
+    var firstLetter = word[0];
+    var testCases = [];
+    for (var i = 0; i < length; i++) {
+      var str = i === 0 ? word :  generateString(i, firstLetter) + word;
+      testCases.push({ content: str, match: true });
+    }
+    str =  generateString(length + 1, firstLetter) + word;
+    testCases.push({ content: str, match: false });
+
+    return {
+      text: 'Match some, but not all!',
+      category: 'match_some',
+      difficulty: 2,
+      hint: '',
+      answer: '',
+      forceAnswer: false,
+      testCases: testCases
+    };
+  });
+
+  questions = questions.concat(arrEndsWith);
+  questions = questions.concat(arrStartsWith);
 
   var creatingQuestions = questions.map(function (questionObj) {
       return Question.create(questionObj, {
@@ -261,6 +305,20 @@ var seedQuestions = function () {
 
   return Promise.all(creatingQuestions);
 };
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function generateString (length, char) {
+  var arr = [];
+  for (var i = 1; i <= length; i++) {
+    arr.push(char);
+  }
+  return arr.join('');
+}
 
   var seedScores= function(){
     return Score.create({score: 1000, userId: 1});
