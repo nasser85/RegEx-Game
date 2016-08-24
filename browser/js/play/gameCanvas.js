@@ -7,8 +7,9 @@ app.directive('gameCanvas', function($window, $injector) {
       height: 600,
       timeLimit: 0,
       levelTimePad: 2000,
-      minBombExpiration: 1000 * 120,
+      minBombExpiration: 1000*120,
       desiredFps: 60,
+      customPlayerBombSeparate: 1,
       mapConfig: {
         mapA: {
           tilemap: 'simpleCity_Layer1',
