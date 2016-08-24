@@ -24,6 +24,7 @@ var Question = db.model('question');
 var TestCase = db.model('testCase');
 var Score = db.model('score');
 var Promise = require('sequelize').Promise;
+var Questions = require('./questions');
 
 var seedUsers = function () {
 
@@ -215,43 +216,10 @@ var seedQuestions = function () {
         { content: 'abcde', match: true },
         { content: 'abcdefg', match: true }
       ]
-    },
-    { text: 'Matches beginning of input. If the multiline flag is set to true, also matches immediately after a line break character',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '^',
-     forceAnswer: true
-   },
-   { text: 'Matches end of input. If the multiline flag is set to true, also matches immediately before a line break character',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '$',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 0 or more times. Equivalent to {0,}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '*',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 1 or more times. Equivalent to {1,}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '+',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 0 or 1 times. Equivalent to {0,1}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '?',
-     forceAnswer: true
-   }
-  ];
+    }
+  ]
+  .concat(Questions.match_some)
+  .concat(Questions.arrRepeats);
 
   var creatingQuestions = questions.map(function (questionObj) {
       return Question.create(questionObj, {
