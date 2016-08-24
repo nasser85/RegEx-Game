@@ -30,21 +30,49 @@ app.factory("BombFactory", function($http){
 			return bombFactory.checkAnswerGenerated(userAnswer, question, index);
 		} else {
 
-			var result = true;
+			// if(question.category === 'match_some'){
+			// 	let regexAnswer = new RegExp(userAnswer);
+			// 	return question.testCases.every(function(testCase){
+			// 		var arr = regexAnswer.exec(testCase.content);
+			// 		console.log('arr', arr);
+			// 		console.log('regexAnswer.index', regexAnswer.index);
+			// 		if(arr === null){
+			// 			return false;
+			// 		}
+			// 		var matchedStr = arr[0];
+			// 		if(matchedStr !== testCase.content){
+			// 			return false;
+			// 		}
+			// 		return true;
+			// 	});
+
 			if(question.category === 'match_some'){
-			let regexAnswer = new RegExp(userAnswer);
-				question.testCases.forEach(function(testCase){
+				
+				for (var j = 0; j < question.testCases.length; j++) {
+					let regexAnswer = new RegExp(userAnswer);
+					var testCase = question.testCases[j];
+					var arr = regexAnswer.exec(testCase.content);
+					console.log('arr', arr);
 					if(testCase.match){
-						if(!regexAnswer.test(testCase.content)) {
-							result = false;
+						if(arr === null){
+							return false;
 						}
+						var matchedStr = arr[0];
+						if(matchedStr !== testCase.content){
+							return false;
+						}
+
 					}else{
-						if(regexAnswer.test(testCase.content)){
-							result = false;
+						if(arr !== null){
+							var matchedStr = arr[0];
+							if(matchedStr === testCase.content){
+								return false;
+							}
 						}
-					}
-				})
-			return result;	
+
+					}	
+				}
+				return true;
 
 			}else if(question.category === 'validation'){
 				if(question.answer !== userAnswer){
