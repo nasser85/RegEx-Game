@@ -36,8 +36,7 @@ router.get('/user/:id', function(req, res, next){
 		where: {
 			userId: req.params.id
 		},
-		order: [['score','DESC']],
-		limit: 1
+		order: [['score','DESC']]
 	})
 	.then(function(topUserScore){
 		res.send(topUserScore);

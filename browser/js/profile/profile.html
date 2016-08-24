@@ -22,7 +22,7 @@
 			      <tr>
 			        <td class='col-xs-4 col-sm-4 col-md-4'><h6 class="stats">Bombs Defused</h6></td>
 			        <td class='col-xs-8 col-sm-8 col-md-8'>
-			        	<uib-progressbar class="progress" max="100" value="diffused" type="danger"><i>{{userScore/100}}</i></uib-progressbar></div>
+			        	<uib-progressbar class="progress" max="maxNum" value="diffused" type="danger"><i>{{diffused}}</i></uib-progressbar></div>
 			        	
 			        </td>
 
@@ -30,12 +30,33 @@
 			      <tr>
 			        <td class='col-xs-4 col-sm-4 col-md-4'><h6 class="stats">Current Rank</h6></td>
 			        <td class='col-xs-8 col-sm-8 col-md-8'>
-			        	<div class="col-sm-2 col-md-2">
-						    <div class="thumbnail transparent">
+			        	   	<div class="col-sm-2 col-md-2">
+						    <div ng-if="maxNum===10" class="thumbnail transparent">
 						      <img src="badge6.png">
 						      <div class="caption center">
 						        
 						        <p class="center"><kbd>Junior Defuser</kbd></p>
+						      </div>
+						    </div>
+						    <div ng-if="maxNum===20" class="thumbnail transparent">
+						      <img src="badge7.png">
+						      <div class="caption center">
+						        
+						        <p class="center"><kbd>Dedicated Defuser</kbd></p>
+						      </div>
+						    </div>
+						    <div ng-if="maxNum===30" class="thumbnail transparent">
+						      <img src="badge3.png">
+						      <div class="caption center">
+						        
+						        <p class="center"><kbd>Senior Defuser</kbd></p>
+						      </div>
+						    </div>
+						    <div ng-if="maxNum===40" class="thumbnail transparent">
+						      <img src="badge9.png">
+						      <div class="caption center">
+						        
+						        <p class="center"><kbd>Lead Defuser</kbd></p>
 						      </div>
 						    </div>
 						</div>
@@ -45,7 +66,7 @@
 			      <tr>
 			        <td class='col-xs-4 col-sm-4 col-md-4'><h6 class="stats">Honors</h6></td>
 			        <td class='col-xs-8 col-sm-8 col-md-8'>
-			        	<div class="col-sm-2 col-md-2">
+			        	<div ng-if="first" class="col-sm-2 col-md-2">
 						    <div class="thumbnail transparent">
 						      <img src="badge4.png">
 						      <div class="caption center">
