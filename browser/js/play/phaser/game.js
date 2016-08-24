@@ -32,10 +32,6 @@ var RegexGame = RegexGame || {};
       this.applause = this.add.audio('applause');
       this.applause.addMarker('playApplause',0,5, .75);
 
-      //tee up groan track
-      this.groan = this.add.audio('groan');
-      this.groan.addMarker('playGroan',0,2)
-
     },
     togglePause: function(){
       this.game.paused = !this.game.paused;
@@ -86,7 +82,6 @@ var RegexGame = RegexGame || {};
     },
     transitionState: function(nextState){
       if(!this.transitioned){
-        if(this.groan.isPlaying) this.groan.stop();
         if(this.applause.isPlaying) this.applause.stop();
         this.game.scope.currentBomb = null;
         this.music.stop();

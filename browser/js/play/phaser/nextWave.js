@@ -20,13 +20,13 @@ RegexGame.NextWave.prototype = {
 
     let background = this.game.add.tilemap('simpleCity_Layer1');
     background.addTilesetImage('streetTiles');
-    let layer = background.createLayer(0);
+    background.createLayer(0);
 
     let music = this.add.audio('nextWave');
     music.addMarker('playNextWave',0, 6)
     music.play('playNextWave');
 
-
+    this.game.add.image(0,0, 'dudeLogo')
     this.emitter = new Emitter(this.game, 100, 0, 'bomb');
 
     let textStyle = { font: "20px gameFont", fill: "cyan", align: "center" };

@@ -9,7 +9,10 @@ app.directive('gameCanvas', function($window, $injector) {
       levelTimePad: 2000,
       minBombExpiration: 1000*120,
       desiredFps: 60,
+      audioVolume: .5,
       customPlayerBombSeparate: 1,
+      buttonTextStyle: { font: "15px gameFont", fill: "white", align: "center" },
+      textStyle: {font: '20px gameFont', fill: 'magenta', boundsAlignH: 'center', boundsAlignV: 'middle'},
       mapConfig: {
         mapA: {
           tilemap: 'simpleCity_Layer1',

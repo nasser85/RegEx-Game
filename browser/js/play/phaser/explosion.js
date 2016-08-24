@@ -11,7 +11,7 @@ var Explosion = function (game, x, y, image, sound) {
 
   var audio = game.add.audio(sound);
   audio.allowMultiple = true;
-  audio.addMarker('playExplosionSound', 1, 3);
+  audio.addMarker('playExplosionSound', 1, 3, RegexGame.gameConfig.audioVolume);
   audio.play('playExplosionSound');
 };
 

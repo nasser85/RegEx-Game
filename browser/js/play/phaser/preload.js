@@ -25,6 +25,8 @@ RegexGame.Preload.prototype = {
     this.load.spritesheet('regularDude', 'regularDude.png', 32, 48)
     this.load.spritesheet('bomb', 'bombs.png', 128, 128,2);
     this.load.spritesheet('explosion', 'explosion2.png', 128, 128);
+    this.load.spritesheet('gamebuttons', 'gamebuttons.png', 150,40)
+    this.load.image('dudeLogo', 'regexlogo2.png')
 
     //load sounds
     this.load.audio('bombExplode', '/sound/time_bomb_short.mp3');

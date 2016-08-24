@@ -9,37 +9,37 @@ RegexGame.GameOver.prototype = {
       this.game.scope.saveScore = true;
       this.game.scope.$evalAsync();
   },
-  makeText: function(text, yoffset, style){
-    let txt = this.game.add.text(this.game.width/2, this.game.height/3+yoffset, text, style);
+  makeText: function(text, style){
+    let txt = this.game.add.text(this.game.width/2, this.game.height/2+yoffset, text, style);
     txt.anchor.set(0.5)
     return txt;
   },
+  init: function(){
+      //tee up groan track
+      this.groan = this.add.audio('groan');
+      this.groan.addMarker('playGroan',0,2)
+    },
   create: function() {
-   //show the space tile, repeated
+    //set up background
     let background = this.game.add.tilemap('simpleCity_Layer1');
     background.addTilesetImage('streetTiles');
-    let layer = background.createLayer(0);
+    background.createLayer(0);
 
-    let style = { font: "20px gameFont", fill: "cyan", align: "center" };
-    //message
+    //play audio
+    this.groan.play('playGroan');
+    //create buttons and text
+    this.game.add.image(0,0, 'dudeLogo')
 
-    let text1 = this.makeText("GAME OVER :(",0,{ font: "30px gameFont", fill: "cyan", align: "center" });
+    let gameOverText = new TextOrButton('text', this.game, 0, 0, 'GAME OVER :(', null, null, null, 500);
 
-    let text2 = this.makeText('You didn\'t diffuse the bombs in time!',60,style);
+    let outOfTimeText = new TextOrButton('text', this.game, 0,0, 'You didn\'t defuse the bombs in time!', null, null, null, 250)
 
-    let text3 = this.makeText('Start Over?', 110, style);
-    text3.inputEnabled = true;
-    text3.events.onInputDown.add(this.tryAgain, this);
+    let restartButton = new TextOrButton('button', this.game, 10, 10, 'Game Menu', 100, this.tryAgain, this)
 
         //return to main menu
-    let text4 = this.makeText('Return to Main Menu', 140, style);
-    text4.inputEnabled = true;
-    text4.events.onInputDown.add(this.game.scope.goHome, this);
+    let mainMenuButton = new TextOrButton('button', this.game, 10, 10, 'Main Menu', 50, this.goHome, this);
 
+    let saveScoreButton = new TextOrButton('button', this.game, 2, 10, 'Save Score', 0, this.saveScore, this);
 
-    let text5 = this.makeText('Save Your Score', 170, style);
-    text5.inputEnabled = true;
-    text5.events.onInputDown.add(this.saveScore, this);
-//    setTimeout(function(){this.game.state.start('Game')}.bind(this),2000)
   }
 };
