@@ -48,9 +48,7 @@ var seedUsers = function () {
 };
 
 var seedQuestions = function () {
-  var match_some = Questions.match_some;
-
-  var questions = match_some.concat([
+  var questions = [
     {
       text: 'Match some, but not all!',
       category: 'match_some',
@@ -218,43 +216,10 @@ var seedQuestions = function () {
         { content: 'abcde', match: true },
         { content: 'abcdefg', match: true }
       ]
-    },
-    { text: 'Matches beginning of input. If the multiline flag is set to true, also matches immediately after a line break character',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '^',
-     forceAnswer: true
-   },
-   { text: 'Matches end of input. If the multiline flag is set to true, also matches immediately before a line break character',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '$',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 0 or more times. Equivalent to {0,}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '*',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 1 or more times. Equivalent to {1,}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '+',
-     forceAnswer: true
-   },
-   { text: 'Matches the preceding expression 0 or 1 times. Equivalent to {0,1}',
-     category: 'validation',
-     difficulty: 1,
-     hint: '',
-     answer: '?',
-     forceAnswer: true
-   }
-  ]);
+    }
+  ]
+  .concat(Questions.match_some)
+  .concat(Questions.arrRepeats);
 
   var creatingQuestions = questions.map(function (questionObj) {
       return Question.create(questionObj, {
