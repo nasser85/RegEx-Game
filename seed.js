@@ -52,7 +52,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 3,
+      difficulty: 1,
       hint: '',
       answer: '(cats|dogs)',
       forceAnswer: false,
@@ -65,9 +65,9 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 4,
+      difficulty: 2,
       hint: '',
-      answer: 'hello+ (world|to you)',
+      answer: 'hello+ (world)? ?(to you)?',
       forceAnswer: false,
       testCases: [
         { content: 'hello world', match: true },
@@ -93,7 +93,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 4,
+      difficulty: 2,
       hint: '',
       answer: '^[a-z]{6} expression',
       forceAnswer: false,
@@ -202,19 +202,6 @@ var seedQuestions = function () {
         { content: 'aax', match: false },
         { content: 'bby', match: false },
         { content: 'ccz', match: false }
-      ]
-    },
-    {
-      text: 'Match all!',
-      category: 'match_all',
-      difficulty: 1,
-      hint: '',
-      answer: "abc",
-      forceAnswer: false,
-      testCases: [
-        { content: 'abc', match: true },
-        { content: 'abcde', match: true },
-        { content: 'abcdefg', match: true }
       ]
     }
   ]
