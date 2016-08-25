@@ -136,7 +136,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 2,
+      difficulty: 1,
       hint: '',
       answer: '^M',
       forceAnswer: false,
@@ -149,7 +149,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 3,
+      difficulty: 1,
       hint: '',
       answer: '^[cmf]an',
       forceAnswer: false,
@@ -178,7 +178,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 3,
+      difficulty: 2,
       hint: '',
       answer: 'waz{3,5}',
       forceAnswer: false,
@@ -191,7 +191,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 2,
+      difficulty: 1,
       hint: '',
       answer: '[A-C]',
       forceAnswer: false,

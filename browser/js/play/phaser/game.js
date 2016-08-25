@@ -52,7 +52,7 @@ var RegexGame = RegexGame || {};
       //create map
       this.map = new Map(this);
 
-      scoreText = this.add.text(16, 16, 'Score:'+ score, { font: '25px gameFont', fill: 'cyan' });
+      scoreText = this.add.text(20, 16, 'Score:'+ score, { font: '25px gameFont', fill: 'cyan' });
       levelText = this.add.text(590, 16, 'Level:'+ this.game.scope.currentWave, { font: '25px gameFont', fill: 'cyan' });
       //create bombs and player
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');

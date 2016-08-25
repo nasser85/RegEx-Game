@@ -7,6 +7,7 @@ RegexGame.GameOver.prototype = {
   },
   saveScore: function(){
       this.game.scope.saveScore = true;
+      this.game.scope.saveToDatabase(this.game.scope.score, this.game.scope.user.id);
       this.game.scope.$evalAsync();
   },
   makeText: function(text, style){
