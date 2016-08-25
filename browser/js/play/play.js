@@ -150,7 +150,9 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     }
 
     $scope.saveToDatabase = function(score, userId){
-
+        if(!userId){
+            return
+        }
         UserFactory.storeScore(score, userId)
         .then(function(){
             return ScoreFactory.fetchTop10();
