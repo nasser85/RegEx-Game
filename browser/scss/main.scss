@@ -74,7 +74,11 @@ body {
     outline: 0;
 }
 
-
+#text-answer.textbox {
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}
 
 .panel {
 
@@ -273,7 +277,7 @@ save-score{
     text-align: center;
     button {
         margin: 5px 0;
-        
+
     }
 }
 #top-score-container{
