@@ -40,7 +40,7 @@
         <div class='row'>
           <div ng-if='currentBomb.question.forceAnswer' class='input-margin'></div>
           <div class="transparent col-md-12 col-sm-12 input-container" >
-                <input id='text-answer' ng-model="userform.answer" class="textbox " type="text" enter='diffuse(userform.answer, currentBomb.question, user.id)'> 
+                <input id='text-answer' ng-model="userform.answer" class="textbox " type="text" enter='diffuse(userform.answer, currentBomb.question, user.id)' esc='leave()'> 
               <div ng-if="!answered" class='transparent buttons'>
               
               <div class='col-md-12 col-sm-12'>
