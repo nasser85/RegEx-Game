@@ -23,7 +23,6 @@ app.config(function ($stateProvider) {
 app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, topScore, answeredQuestions, $timeout) {
 	$scope.user = user;
 	$scope.answeredQuestions = answeredQuestions;
-	console.log($scope.answeredQuestions);
 	$scope.userScore = 0;
 	$scope.diffused = 0;
 	$scope.maxNum = 50;
@@ -51,6 +50,5 @@ app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, top
 	if (topScore[0].userId === $scope.user.id) {
 		$scope.first = true;
 	}
-	console.log($scope);
 
 });
