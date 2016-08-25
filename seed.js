@@ -24,7 +24,6 @@ var Question = db.model('question');
 var TestCase = db.model('testCase');
 var Score = db.model('score');
 var Promise = require('sequelize').Promise;
-var Questions = require('./questions');
 
 var seedUsers = function () {
 
@@ -165,7 +164,7 @@ var seedQuestions = function () {
     {
       text: 'Match some, but not all!',
       category: 'match_some',
-      difficulty: 2,
+      difficulty: 1,
       hint: '',
       answer: '[^b]og',
       forceAnswer: false,
@@ -205,8 +204,7 @@ var seedQuestions = function () {
       ]
     }
   ]
-  .concat(Questions.match_some)
-  .concat(Questions.arrRepeats);
+  .concat(require('./questions'));
 
   var creatingQuestions = questions.map(function (questionObj) {
       return Question.create(questionObj, {
@@ -223,7 +221,7 @@ var seedQuestions = function () {
 
 db.sync({ force: true })
     .then(function () {
-        return seedUsers();
+      return seedUsers();
     })
     .then(function () {
       return seedQuestions();
