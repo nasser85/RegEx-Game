@@ -33,9 +33,17 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.correct = 0; // are we still using this?
     $scope.counter = 0;
 
+    $scope.resetVal = function(event){
+        event.bubbles = false;
+    }
+
     $scope.currentBombActive = function(){
-        var textBox = document.getElementById("text-answer");
-        if (textBox) textBox.focus();
+        if($scope.currentBomb){
+            let textBox = document.getElementById("text-answer");
+            if (textBox) {
+                textBox.focus();
+            }
+        }
         return $scope.currentBomb;
     }
 
@@ -59,15 +67,18 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
             $scope.counter-= 1;
             currentTimeout = $timeout($scope.onTimeout,1000);
         }
-
     }
     var currentTimeout = $timeout($scope.onTimeout,1000);
 
     $scope.leave = function(){
+        console.log('inside leave');
+        $scope.userform.answer = null;
         $scope.currentBomb = null;
         $scope.answered = false;
         $scope.correct = 0;
         player.canMove = true;
+        RegexGame.game.input.keyboard.enabled = true;
+        player.body.position.x -=5;
         $scope.$evalAsync;
     }
 
@@ -124,7 +135,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.leave();
             }, 2000);
         }
-
+        RegexGame.game.input.keyboard.enabled = true;
         player.canMove = true;
     }
 
@@ -160,6 +171,4 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.playGame = function(){
         $scope.saveScore = false;
     }
-
-
-})
+});

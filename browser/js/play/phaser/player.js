@@ -37,7 +37,6 @@ Player.prototype.update = function() {
     this.body.velocity.y = 0;
     if(this.canMove){
       if (cursors.left.isDown) {
-
         this.body.velocity.x = -300;
         this.animations.play('left');
 
