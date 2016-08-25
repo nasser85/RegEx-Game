@@ -32,7 +32,6 @@ var RegexGame = RegexGame || {};
       //tee up applause track
       this.applause = this.add.audio('applause');
       this.applause.addMarker('playApplause',0,5, .75);
-
     },
     togglePause: function(){
       this.game.paused = !this.game.paused;
@@ -63,7 +62,13 @@ var RegexGame = RegexGame || {};
 
       //deal with collisions
       let playerStopped = () => player.stoppedFalling;
-      this.physics.arcade.collide(player, bombs, bombs.engage, null, this);
+      if(this.physics.arcade.collide(player, bombs, bombs.engage, null, this)) {
+        //let angular access keyboard inputs
+        this.game.input.keyboard.enabled = false;
+        //reset phaser keyboard input
+        this.input.keyboard.reset();
+      }
+      //enable collision if player is not falling anymore
       this.physics.arcade.collide(player, this.map.obstacleLayer, null, playerStopped);
 
       scoreText.text = 'Score:' + this.game.scope.score;
