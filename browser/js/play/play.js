@@ -71,6 +71,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     var currentTimeout = $timeout($scope.onTimeout,1000);
 
     $scope.leave = function(){
+        console.log('inside leave');
         $scope.userform.answer = null;
         $scope.currentBomb = null;
         $scope.answered = false;
@@ -134,7 +135,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.leave();
             }, 2000);
         }
-
+        RegexGame.game.input.keyboard.enabled = true;
         player.canMove = true;
     }
 
