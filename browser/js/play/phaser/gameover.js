@@ -18,7 +18,8 @@ RegexGame.GameOver.prototype = {
   init: function(){
       //tee up groan track
       this.groan = this.add.audio('groan');
-      this.groan.addMarker('playGroan',0,2)
+      this.groan.addMarker('playGroan',0,2);
+      this.game.scope.saveToDatabase(this.game.scope.score, this.game.scope.user.id);
     },
   create: function() {
     //set up background
