@@ -6,9 +6,7 @@ const AnsweredQuestion = db.model('answeredQuestion');
 const Question = db.model('question');
 const User = db.model('user');
 
-
 module.exports = router;
-
 
 router.get('/questions/:userId', function(req, res, next) {
 	AnsweredQuestion.findAll({
@@ -21,7 +19,7 @@ router.get('/questions/:userId', function(req, res, next) {
 		res.send(answeredQuestions);
 	})
 	.catch(next);
-})
+});
 
 router.get('/all/:questionId', function(req, res, next) {
 	AnsweredQuestion.findAll({
@@ -34,4 +32,4 @@ router.get('/all/:questionId', function(req, res, next) {
 		res.send(answers);
 	})
 	.catch(next);
-})
+});

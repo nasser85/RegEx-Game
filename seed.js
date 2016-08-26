@@ -216,7 +216,7 @@ var seedQuestions = function () {
 };
 
   var seedScores= function(){
-    return Score.create({score: 1000, userId: 1});
+    return Score.create({score: 1000, userId: 2});
   }
 
 db.sync({ force: true })

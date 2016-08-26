@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
         		return AuthService.getLoggedInUser();
         	},
         	topScore: function(ScoreFactory) {
-        		return ScoreFactory.fetchTopScore();
+        		return ScoreFactory.fetchTopScores(1);
         	},
         	userScore: function(user, ScoreFactory) {
         		return ScoreFactory.fetchUserTopScore(user.id);
@@ -44,7 +44,7 @@ app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, top
         $scope.$evalAsync();
     }, 300)
 
-	
+
 	$scope.topScore = topScore[0].score;
 	$scope.first = false;
 	if (topScore[0].userId === $scope.user.id) {

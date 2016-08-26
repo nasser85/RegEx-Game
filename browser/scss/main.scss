@@ -316,6 +316,8 @@ save-score{
   margin-top: 10%;
   inputs:-webkit-input-placeholder {
     color: #b5b5b5;
+    margin-bottom: 5%;
+  }
 }
 
 inputs-moz-placeholder {
@@ -350,7 +352,6 @@ inputs-moz-placeholder {
     -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
     -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
     box-shadow: 2px 2px 7px #E8E8E8 inset;
-}
 }
 
 .bomb-progress {

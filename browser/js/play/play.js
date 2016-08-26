@@ -11,13 +11,13 @@ app.config(function ($stateProvider) {
                 return AuthService.getLoggedInUser();
             },
             highestScore: function(ScoreFactory) {
-                return ScoreFactory.fetchTopScore();
+                return ScoreFactory.fetchTopScores(1);
             }
         }
     });
 });
 
-app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
+app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, ValidateAnswerFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
     $scope.highestScore = highestScore[0].score;
     $scope.questions = questions;
     $scope.score = 0;
@@ -80,12 +80,12 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.$evalAsync;
     }
 
-    $scope.diffuse = function(answer, question, userid){
-        var diffused = false;
+    $scope.defuse = function(answer, question, userid){
+        var defused = false;
         if (question.type === 'Generated') {
-            var generatedCheck = BombFactory.diffuse(answer, question, question.index);
+            var generatedCheck = ValidateAnswerFactory.defuse(answer, question, question.index);
         } else {
-           diffused = BombFactory.diffuse(answer, question);
+           defused = ValidateAnswerFactory.defuse(answer, question);
         }
         if (generatedCheck) {
             if(question.subQuestions.length > question.index+1) {
@@ -101,16 +101,16 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 }, 1000);
 
             } else {
-                diffused = true;
+                defused = true;
             }
         }
-        if (diffused) {
+        if (defused) {
             $scope.numCorrect++;
             $scope.currentBomb.frame=1;
             $scope.currentBomb.body.enable=false;
             $scope.correct = 1;
             if(userid){
-                BombFactory.storeUserAnswer(answer, question, userid)
+                ValidateAnswerFactory.storeUserAnswer(answer, question, userid)
                 .catch($log.error);
             }
             $scope.answered = true;
@@ -150,7 +150,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         }
         UserFactory.storeScore(score, userId)
         .then(function(){
-            return ScoreFactory.fetchTop10();
+            return ScoreFactory.fetchTopScores(10);
         })
         .then(function(top10){
             $scope.topScores = top10;

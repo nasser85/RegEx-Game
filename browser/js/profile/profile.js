@@ -5,7 +5,7 @@ app.config(function ($stateProvider) {
         controller: 'ProfileCtrl',
         resolve: {
             topScore: function(ScoreFactory) {
-                return ScoreFactory.fetchTopScore();
+                return ScoreFactory.fetchTopScores(1);
             },
             userScore: function($stateParams, ScoreFactory) {
                 return ScoreFactory.fetchUserTopScore($stateParams.userId);

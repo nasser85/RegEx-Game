@@ -1,6 +1,6 @@
 <section id="home">
-  <!-- <div id='regexLogo'></div> -->
-  <h4 ng-if="user">Hey, {{user.user_name}}!</h4>
+  <h4 ng-if="user && user.user_name">Hey, {{user.user_name}}!</h4>
+  <h4 ng-if="!user">Hey, Guest!</h4>
   <h4 id="tagline">How Many Bombs Can You Defuse?</h4>
     <div id='authButtonGroup'>
       <li><button ui-sref='play' ng-click='playGame()' class="button button-rounded button-flat-primary button-large">Play Game</button></li>
