@@ -8,6 +8,7 @@ RegexGame.GameOver.prototype = {
     this.game.scope.goHome();
   },
   tryAgain: function(){
+      this.game.destroy();
       this.game.scope.restartGame();
   },
   saveScore: function(){
