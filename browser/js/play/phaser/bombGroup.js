@@ -42,7 +42,6 @@ BombGroup.prototype.update = function () {
 };
 
 BombGroup.prototype.engage = function (player, bomb) {
-  player.canMove = false;
   player.animations.stop();
   player.frame = 4;
 
@@ -50,16 +49,16 @@ BombGroup.prototype.engage = function (player, bomb) {
     //manually separate bomb and player if phaser separation failed
     if(!player.body.touching.none){
       if(player.body.touching.right) {
-        player.position.x -= RegexGame.gameConfig.customPlayerBombSeparate;
+        /*player.position.x -= RegexGame.gameConfig.customPlayerBombSeparate;*/
         bomb.position.x += RegexGame.gameConfig.customPlayerBombSeparate;
       } else if (player.body.touching.left){
-        player.position.x +=  RegexGame.gameConfig.customPlayerBombSeparate;
+        /*player.position.x +=  RegexGame.gameConfig.customPlayerBombSeparate;*/
         bomb.position.x -= RegexGame.gameConfig.customPlayerBombSeparate;
       } else if (player.body.touching.up) {
-        player.position.y += RegexGame.gameConfig.customPlayerBombSeparate;
+        /*player.position.y += RegexGame.gameConfig.customPlayerBombSeparate;*/
         bomb.position.y -= RegexGame.gameConfig.customPlayerBombSeparate;
       } else if (player.body.touching.down){
-        player.position.y -= RegexGame.gameConfig.customPlayerBombSeparate;
+        /*player.position.y -= RegexGame.gameConfig.customPlayerBombSeparate;*/
         bomb.position.y += RegexGame.gameConfig.customPlayerBombSeparate;
       }
     }

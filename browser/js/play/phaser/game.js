@@ -8,8 +8,6 @@ var RegexGame = RegexGame || {};
   let score = 0;
   let scoreText;
   let explosion = null;
-  let bombAudio;
-  let levelText;
   let levelStatus = null;
   let player;
   //set up the actual game state
@@ -23,7 +21,6 @@ var RegexGame = RegexGame || {};
 
       this.time.desiredFps = RegexGame.gameConfig.desiredFps;
       this.transitioned = false;
-      this.game.paused = false;
       this.game.scope.saveScore = false;
       this.game.scope.scoreSubmitted = false;
       this.track = track;
@@ -52,7 +49,7 @@ var RegexGame = RegexGame || {};
       this.map = new Map(this);
 
       scoreText = this.add.text(16, 16, 'Score:'+ score, { font: '25px gameFont', fill: 'cyan' });
-      levelText = this.add.text(590, 16, 'Level:'+ this.game.scope.currentWave, { font: '25px gameFont', fill: 'cyan' });
+      this.levelText = this.add.text(590, 16, 'Level:'+ this.game.scope.currentWave, { font: '25px gameFont', fill: 'cyan' });
       //create bombs and player
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
       player = new Player(this.game, 32, this.world.height - 150, 'regularDude');
@@ -61,7 +58,6 @@ var RegexGame = RegexGame || {};
       cursors = this.input.keyboard.createCursorKeys();
 
       //deal with collisions
-      let playerStopped = () => player.stoppedFalling;
       if(this.physics.arcade.collide(player, bombs, bombs.engage, null, this)) {
         //let angular access keyboard inputs
         this.game.input.keyboard.enabled = false;
@@ -69,10 +65,11 @@ var RegexGame = RegexGame || {};
         this.input.keyboard.reset();
       }
       //enable collision if player is not falling anymore
+      let playerStopped = () => player.stoppedFalling;
       this.physics.arcade.collide(player, this.map.obstacleLayer, null, playerStopped);
 
       scoreText.text = 'Score:' + this.game.scope.score;
-      levelText.text = 'Level:' + this.game.scope.currentWave;
+      this.levelText.text = 'Level:' + this.game.scope.currentWave;
       //did they win?
       if(this.game.scope.numCorrect === bombs.children.length && this.game.scope.numExploded === 0) {
         setTimeout(function() {

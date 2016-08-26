@@ -1,6 +1,5 @@
 var Player = function (game, x, y, image) {
     this.stoppingY = y;
-    this.canMove = true;
     Phaser.Sprite.call(this, game, x, 0, image);
     game.add.existing(this);
 
@@ -35,31 +34,31 @@ Player.prototype.update = function() {
   else{
     this.body.velocity.x = 0;
     this.body.velocity.y = 0;
-    if(this.canMove){
-      if (cursors.left.isDown) {
-        this.body.velocity.x = -300;
-        this.animations.play('left');
 
-      } else if (cursors.right.isDown) {
+    if (cursors.left.isDown) {
+      this.body.velocity.x = -300;
+      this.animations.play('left');
 
-        this.body.velocity.x = 300;
-        this.animations.play('right');
+    } else if (cursors.right.isDown) {
 
-      } else if (cursors.up.isDown) {
+      this.body.velocity.x = 300;
+      this.animations.play('right');
 
-        this.body.velocity.y = -300;
-        this.animations.play('up');
+    } else if (cursors.up.isDown) {
 
-      } else if (cursors.down.isDown) {
+      this.body.velocity.y = -300;
+      this.animations.play('up');
 
-        this.body.velocity.y = 300;
-        this.animations.play('down');
+    } else if (cursors.down.isDown) {
 
-      } else {
-        this.animations.stop();
-        this.frame = 4;
-        }
+      this.body.velocity.y = 300;
+      this.animations.play('down');
+
+    } else {
+      this.animations.stop();
+      this.frame = 4;
       }
+
     }
 
 };
