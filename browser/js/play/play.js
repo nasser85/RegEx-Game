@@ -71,12 +71,10 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     var currentTimeout = $timeout($scope.onTimeout,1000);
 
     $scope.leave = function(){
-        console.log('inside leave');
         $scope.userform.answer = null;
         $scope.currentBomb = null;
         $scope.answered = false;
         $scope.correct = 0;
-        player.canMove = true;
         RegexGame.game.input.keyboard.enabled = true;
         player.body.position.x -=5;
         $scope.$evalAsync;
@@ -85,16 +83,13 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.diffuse = function(answer, question, userid){
         var diffused = false;
         if (question.type === 'Generated') {
-
             var generatedCheck = BombFactory.diffuse(answer, question, question.index);
         } else {
            diffused = BombFactory.diffuse(answer, question);
         }
-
         if (generatedCheck) {
-
             if(question.subQuestions.length > question.index+1) {
-                question.index ++;
+                question.index++;
                 var el = document.getElementById("current-question");
                 el.className = "magictime holeOut";
 
@@ -122,6 +117,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
             $scope.score += 100;
             $scope.userform.answer = null;
             $timeout(function(){
+                RegexGame.game.input.keyboard.enabled = true;
                 $scope.currentBomb = null;
                 $scope.answered = false;
                 $scope.correct = 0;
@@ -135,8 +131,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.leave();
             }, 2000);
         }
-        RegexGame.game.input.keyboard.enabled = true;
-        player.canMove = true;
+
     }
 
     $scope.goHome = function(){

@@ -1,6 +1,8 @@
+//state definition for Game Menu with some custom methods. Props/methods can become local vars when moduralized into Angular
 RegexGame.GameMenu = function(){};
 
 RegexGame.GameMenu.prototype = {
+  //custom method s to go to main menu or restart
   goHome: function(){
     this.music.stop();
     this.game.scope.goHome();
@@ -9,6 +11,7 @@ RegexGame.GameMenu.prototype = {
       this.music.stop();
       this.game.state.start('Game', true, false, 'battleA' , 186);
   },
+  //phaser methods
   init: function(){
     this.music = this.add.audio('theme');
     this.music.addMarker('playTheme',0,6)
