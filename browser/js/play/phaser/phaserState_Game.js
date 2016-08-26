@@ -65,7 +65,7 @@ var RegexGame = RegexGame || {};
 
       //increment score + wave
       this.scoreText.text = 'Score:' + this.game.scope.score;
-      this.waveText.text = 'Level:' + this.game.scope.currentWave;
+      this.waveText.text = 'Wave:' + this.game.scope.currentWave;
 
       //check for won wave. delay so applause track can play
       if(this.game.scope.numCorrect === this.bombs.children.length && this.game.scope.numExploded === 0) {
