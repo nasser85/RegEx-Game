@@ -71,7 +71,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     var currentTimeout = $timeout($scope.onTimeout,1000);
 
     $scope.leave = function(){
-        console.log('insideleave');
         $scope.userform.answer = null;
         $scope.currentBomb = null;
         $scope.answered = false;
@@ -82,7 +81,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     }
 
     $scope.diffuse = function(answer, question, userid){
-        console.log('inside $scope.diffuse, RegexGame.game.input.keyboard.enabled', RegexGame.game.input.keyboard.enabled);
         var diffused = false;
         if (question.type === 'Generated') {
             var generatedCheck = BombFactory.diffuse(answer, question, question.index);
@@ -90,15 +88,12 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
            diffused = BombFactory.diffuse(answer, question);
         }
         if (generatedCheck) {
-            console.log('generatedGheck true, RegexGame.game.input.keyboard.enabled', RegexGame.game.input.keyboard.enabled);
             if(question.subQuestions.length > question.index+1) {
-                console.log('in multipart question, RegexGame.game.input.keyboard.enabled', RegexGame.game.input.keyboard.enabled)
                 question.index++;
                 var el = document.getElementById("current-question");
                 el.className = "magictime holeOut";
 
                 $timeout(function() {
-                    console.log('in timeout, RegexGame.game.input.keyboard.enabled', RegexGame.game.input.keyboard.enabled);
                     el.className = "magictime"
                     question.text = question.subQuestions[question.index];
                     document.getElementById("text-answer").value = "";
@@ -110,7 +105,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
             }
         }
         if (diffused) {
-            console.log('diffused true, RegexGame.game.input.keyboard.enabled', RegexGame.game.input.keyboard.enabled);
             $scope.numCorrect++;
             $scope.currentBomb.frame=1;
             $scope.currentBomb.body.enable=false;
@@ -123,7 +117,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
             $scope.score += 100;
             $scope.userform.answer = null;
             $timeout(function(){
-                console.log('in line 127 RegexGame.game.input.keyboard.enabled is', RegexGame.game.input.keyboard.enabled)
                 RegexGame.game.input.keyboard.enabled = true;
                 $scope.currentBomb = null;
                 $scope.answered = false;
@@ -131,7 +124,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 question.disarmed = true;
             }, 1500);
         } else if (!generatedCheck) {
-            console.log('in line 136, RegexGame.game.input.keyboard.enabled is', RegexGame.game.input.keyboard.enabled)
             $scope.correct = 2;
             $scope.answered = true;
             $scope.userform.answer = null;
@@ -139,7 +131,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 $scope.leave();
             }, 2000);
         }
-        console.log('in line 144 about to set RegexGame.game.input.keyboard.enabled', RegexGame.game.input.keyboard.enabled)
 
     }
 

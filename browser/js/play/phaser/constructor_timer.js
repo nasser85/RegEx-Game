@@ -1,15 +1,16 @@
+//constructor for timer above each bomb
 var Timer = function (game, associatedBomb) {
 
   Phaser.Text.call(this, game, 0, 0, '', { font: "10px gameFont", fill: "#ff0000", align: "center" });
 
   this.associatedBomb = associatedBomb;
-
   this.anchor.set(0.5);
 
   game.add.existing(this);
 };
 
 Timer.prototype = Object.create(Phaser.Text.prototype);
+
 Timer.prototype.constructor = Timer;
 
 Timer.prototype.timeRemaining = function () {

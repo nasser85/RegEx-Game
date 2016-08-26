@@ -1,6 +1,9 @@
+//hard to use constructor for Game and Main Menu button/text
 var TextOrButton = function(buttonOrText, game,  textX, textY, copy, buttonYOffset, clickMethod, clickContext, textBoundYOffset){
   let textA;
   let buttonA;
+
+  //creates approprite element based on buttonOrText parameter
   switch (buttonOrText) {
     case 'button':
       textA = game.add.text(textX, textY, copy, RegexGame.gameConfig.buttonTextStyle);
