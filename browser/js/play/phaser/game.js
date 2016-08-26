@@ -2,12 +2,13 @@ var RegexGame = RegexGame || {};
 
   //initialize vars
   let bombs;
-  let bomb;
   let cursors;
   let obstacles;
   let score = 0;
   let scoreText;
   let explosion = null;
+  let bombAudio;
+  let waveText;
   let levelStatus = null;
   let player;
   //set up the actual game state
@@ -48,8 +49,10 @@ var RegexGame = RegexGame || {};
       //create map
       this.map = new Map(this);
 
-      scoreText = this.add.text(16, 16, 'Score:'+ score, { font: '25px gameFont', fill: 'cyan' });
-      this.levelText = this.add.text(590, 16, 'Level:'+ this.game.scope.currentWave, { font: '25px gameFont', fill: 'cyan' });
+
+      scoreText = this.add.text(20, 16, 'Score:'+ score, { font: '25px gameFont', fill: 'cyan' });
+      waveText = this.add.text(590, 16, 'Wave:'+ this.game.scope.currentWave, { font: '25px gameFont', fill: 'cyan' });
+
       //create bombs and player
       bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
       player = new Player(this.game, 32, this.world.height - 150, 'regularDude');
@@ -69,7 +72,7 @@ var RegexGame = RegexGame || {};
       this.physics.arcade.collide(player, this.map.obstacleLayer, null, playerStopped);
 
       scoreText.text = 'Score:' + this.game.scope.score;
-      this.levelText.text = 'Level:' + this.game.scope.currentWave;
+      waveText.text = 'Level:' + this.game.scope.currentWave;
       //did they win?
       if(this.game.scope.numCorrect === bombs.children.length && this.game.scope.numExploded === 0) {
         setTimeout(function() {
