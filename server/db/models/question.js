@@ -26,6 +26,10 @@ var Question = db.define('question', {
 	},
 	forceAnswer: {
 		type: Sequelize.BOOLEAN
+	},
+	authorId: {
+		type: Sequelize.INTEGER,
+		defaultValue: null
 	}
 
 }, {

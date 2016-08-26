@@ -28,7 +28,8 @@ app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, top
 	$scope.diffused = 0;
 	$scope.maxNum = 50;
     $timeout(function() {
-        $scope.userScore = userScore[0].score;
+        if (userScore.length) {
+            $scope.userScore = userScore[0].score;
         userScore.forEach(function(el) {
             $scope.diffused += el.score;
         });
@@ -43,14 +44,20 @@ app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, top
             $scope.maxNum = 10;
         }
         $scope.$evalAsync();
+    }
+        
     }, 300)
 
+    $scope.first = false;
+	if (topScore.length) {
+        $scope.topScore = topScore[0].score;
+        if (topScore[0].userId === $scope.user.id) {
+            $scope.first = true;
+        }
+    }
 	
-	$scope.topScore = topScore[0].score;
-	$scope.first = false;
-	if (topScore[0].userId === $scope.user.id) {
-		$scope.first = true;
-	}
+	
+	
 	console.log($scope);
 
 });

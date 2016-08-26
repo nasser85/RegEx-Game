@@ -35,24 +35,26 @@ app.factory("BombFactory", function($http){
 				for (var j = 0; j < question.testCases.length; j++) {
 					let regexAnswer = new RegExp(userAnswer);
 					var testCase = question.testCases[j];
-					var arr = regexAnswer.exec(testCase.content);
-					if(testCase.match){
-						if(arr === null){
-							return false;
-						}
-						var matchedStr = arr[0];
-						if(matchedStr !== testCase.content){
-							return false;
-						}
-
-					}else{
-						if(arr !== null){
-							var matchedStr = arr[0];
-							if(matchedStr === testCase.content){
+					if (testCase.content) {
+						var arr = regexAnswer.exec(testCase.content);
+						if(testCase.match){
+							if(arr === null){
 								return false;
 							}
-						}
+							var matchedStr = arr[0];
+							if(matchedStr !== testCase.content){
+								return false;
+							}
 
+						}else{
+							if(arr !== null){
+								var matchedStr = arr[0];
+								if(matchedStr === testCase.content){
+									return false;
+								}
+							}
+
+						}
 					}	
 				}
 				return true;

@@ -245,16 +245,7 @@ border: 5px solid black;
   margin: 0 auto;
 }
 
-.jumbotron{
-    font-family: gameFont;
-    margin-top: 20%;
-    margin-left: 40%;
-    position: absolute;
-    z-index: 9;
-    text-align: center;
-    padding: 25px;
-    border-radius: 30%;
-}
+
 save-score{
     color: cyan;
     padding-top:8%;
@@ -389,6 +380,38 @@ regex-race-logo img:hover{
         color: cyan;
     }
 }
+
+#create-question {
+    .button {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        height: 110px;
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+.jumbotron {
+    padding-left: 5%;
+    padding-right: 5%;
+    h1 {
+        font-family: Verdana, Helvetica, Sans-Serif !important;
+    }
+    p {
+        font-family: Verdana, Helvetica, Sans-Serif !important;
+    }
+    a {
+        font-family: Verdana, Helvetica, Sans-Serif !important;
+    }
+    font-family: Verdana, Helvetica, Sans-Serif !important;
+    background-color: rgba(255, 255, 255, 0.4);
+   
+}
+
+.question-background {
+    background-color: white;
+}
+
 
 @import 'directives/main';
 @import 'home/main';

@@ -1,0 +1,85 @@
+<div id="create-question">
+	<div class="row">
+		<div ui-sref='home' class="col-xs-12 col-sm-2 col-md-2">
+			<regex-race-logo><regex-race-logo>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+		        <a ng-click="create()" class="button button-jumbo button-border-primary">
+		        	<i class="fa fa-magic fa-3x" aria-hidden="true"></i></a>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+		        <a href="#" class="button button-jumbo button-border-action">
+		        	<i class="fa fa-cogs fa-3x"></i></a>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+		        <a href="#" class="button button-jumbo button-border-caution">
+		        	<i class="fa fa-bomb fa-3x"></i></a>
+		</div>
+	</div>
+	<div ng-if="view==='create'"class="row">
+		       <div class="row">
+			    <form class="col s6 offset-s3 question-background">
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <i class="material-icons prefix">mode_edit</i>
+			          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+			          <label for="icon_prefix2">Enter Question</label>
+			        </div>
+			      </div>
+			    </form>
+			  </div>
+		</div>
+		<!-- <form class="form-style-7">
+			<h2  class="text-center">Question Builder</h2>
+			<ul>
+			<li>
+			    <label for="name">Question</label>
+			    <textarea ng-model="userQuestion.text" name="question" ng-required="true"></textarea>
+			    <span>Please note that for questions of the validation type it is recommended that you be as descriptive as possible in your question.</span>
+			</li>
+			<li>
+			    <label for="url">Answer</label>
+			    <input ng-model="userQuestion.answer" type="pass" name="email" maxlength="100">
+			    <span>Enter a regular expression that passes all test cases</span>
+			</li>
+			<li>
+			    <label class="pass" for="url">Passing Test Case</label>
+			    <input ng-model="userQuestion.testCases[0].content" type="pass" name="url" maxlength="100">
+			    <span>Your regular expression should return TRUE when testing this string</span>
+			</li>
+			<li>
+			    <label for="url">Passing Test Case</label>
+			    <input ng-model="userQuestion.testCases[1].content" type="pass" name="url" maxlength="100">
+			    <span>Your regular expression should return TRUE when testing this string</span>
+			</li>
+			<li>
+			    <label for="url">Passing Test Case</label>
+			    <input ng-model="userQuestion.testCases[2].content" type="pass" name="url" maxlength="100">
+			    <span >Your regular expression should return TRUE when testing this string</span>
+			</li>
+			<li>
+			    <label for="url">Failing Test Case</label>
+			    <input ng-model="userQuestion.testCases[3].content" type="fail" name="url" maxlength="100">
+			    <span>Your regular expression should return FALSE when testing this string</span>
+			</li>
+			<li>
+			    <label for="url">Failing Test Case</label>
+			    <input ng-model="userQuestion.testCases[4].content" type="fail" name="url" maxlength="100">
+			    <span>Your regular expression should return FALSE when testing this string</span>
+			</li>
+			<li>
+			    <label for="url">Failing Test Case</label>
+			    <input ng-model="userQuestion.testCases[5].content" type="fail" name="url" maxlength="100">
+			    <span>Your regular expression should return FALSE when testing this string</span>
+			</li>
+			<li ng-if="ready!==1">
+				<div ng-if="ready===2">Sorry your answered failed to satisfy your test cases.  Please try again.<br></br></div>
+			    <input ng-click="test()" type="submit" value="Test Question" data-toggle="tooltip">
+			</li>
+			<li ng-if="ready===1">
+				<div>Great Work!  Your answer satisfies all of your test cases.  You are ready to submit.<br></br></div>
+			    <input ng-click="submitQuestion(userQuestion)" type="submit" value="Submit Question for Review" data-toggle="tooltip">
+			</li>
+			</ul>
+		</form> -->
+</div>
