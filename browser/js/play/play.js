@@ -30,12 +30,10 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
     $scope.answered = false;
-    $scope.correct = 0; // are we still using this?
-    $scope.counter = 0;
 
-    $scope.resetVal = function(event){
-        event.bubbles = false;
-    }
+    //$scope.correct = 0 for unanswered question. 1 for correct and 2 for incorrect answer.
+    $scope.correct = 0; 
+    $scope.counter = 0;
 
     $scope.currentBombActive = function(){
         if($scope.currentBomb){
@@ -76,8 +74,6 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.answered = false;
         $scope.correct = 0;
         RegexGame.game.input.keyboard.enabled = true;
-        player.body.position.x -=5;
-        $scope.$evalAsync;
     }
 
     $scope.defuse = function(answer, question, userid){

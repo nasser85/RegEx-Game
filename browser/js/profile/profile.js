@@ -17,19 +17,19 @@ app.config(function ($stateProvider) {
 app.controller('ProfileCtrl', function($scope, userScore, topScore, $timeout, $stateParams) {
     $scope.profileName = $stateParams.userName;
     $scope.userScore = 0;
-    $scope.diffused = 0;
+    $scope.defused = 0;
     $scope.maxNum = 50;
     $timeout(function() {
         $scope.userScore = userScore[0].score;
         userScore.forEach(function(el) {
-            $scope.diffused += el.score;
+            $scope.defused += el.score;
         });
-        $scope.diffused = $scope.diffused/100;
-        if ($scope.diffused > 30) {
+        $scope.defused = $scope.defused/100;
+        if ($scope.defused > 30) {
             $scope.maxNum = 40;
-        } else if ($scope.diffused > 20) {
+        } else if ($scope.defused > 20) {
             $scope.maxNum = 30;
-        } else if ($scope.diffused > 10) {
+        } else if ($scope.defused > 10) {
             $scope.maxNum = 20;
         } else {
             $scope.maxNum = 10;
