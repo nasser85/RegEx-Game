@@ -4,7 +4,7 @@ app.factory("BombFactory", function($http){
 	var bombFactory = {};
 
 	bombFactory.checkAnswerGenerated = function(userAnswer, q, index) {
-      
+
       	let answer = new RegExp(userAnswer);
 
         var matchTest = q.match[index].every(function (element) {
@@ -13,13 +13,9 @@ app.factory("BombFactory", function($http){
 
         var dontMatchTest = answer.test(q.doNotMatch[index])
 
-        console.log(matchTest, 'matchTest', q.match[index]);
-        console.log(dontMatchTest, 'dontMatchTest', q.doNotMatch[index]);
         if (matchTest && !dontMatchTest) {
-          console.log('you got it right');
           return true;
         } else {
-          console.log('incorrect');
           return false;
         }
     }
@@ -31,7 +27,7 @@ app.factory("BombFactory", function($http){
 		} else {
 
 			if(question.category === 'match_some'){
-				
+
 				for (var j = 0; j < question.testCases.length; j++) {
 					let regexAnswer = new RegExp(userAnswer);
 					var testCase = question.testCases[j];
@@ -53,7 +49,7 @@ app.factory("BombFactory", function($http){
 							}
 						}
 
-					}	
+					}
 				}
 				return true;
 
@@ -75,7 +71,7 @@ app.factory("BombFactory", function($http){
 	}
 	}
 
-	
+
 	bombFactory.storeUserAnswer = function(answer, question, userid){
 		return $http.post('/api/user/'+ userid +'/addanswer', {
 			questionId: question.id,

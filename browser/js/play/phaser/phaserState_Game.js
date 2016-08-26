@@ -1,7 +1,7 @@
 var RegexGame = RegexGame || {};
 
   //initialize global (for now) vars.
-  //these and many properties that hold values can become local when modularized into Angular
+  //these and many properties of Game can become local when modularized into Angular
   let cursors;
   let player;
 
@@ -27,6 +27,7 @@ var RegexGame = RegexGame || {};
       this.game.scope.saveScore = false;
       this.game.scope.scoreSubmitted = false;
       this.score = 0;
+      this.explosions = []; // change this to a phaser group at some point
     },
     create: function() {
       //start tunes
@@ -76,8 +77,10 @@ var RegexGame = RegexGame || {};
       }
       //lose logic
       else if(this.game.scope.numExploded > 0 || Date.now() >= RegexGame.gameConfig.timeLimit){
-        this.bombs.forEachAlive(bomb => {
-          bomb.explosion = new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode');
+        this.bombs.forEach(bomb => {
+          if(!bomb.question.disarmed) {
+            this.explosions.push(new Explosion(RegexGame.game, bomb.x, bomb.y, 'explosion', 'bombExplode'));
+          }
         });
         this.transitionState('GameOver');
       }
@@ -92,6 +95,7 @@ var RegexGame = RegexGame || {};
         this.bombs.destroy();
         this.map.destroy();
         setTimeout(function(){
+          this.explosions.forEach(explosion => explosion.destroy());
           this.game.state.start(nextState, false, false)
         }.bind(this), RegexGame.gameConfig.levelTimePad);
         this.transitioned = true;

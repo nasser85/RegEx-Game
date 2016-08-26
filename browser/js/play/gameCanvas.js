@@ -2,6 +2,7 @@ app.directive('gameCanvas', function($window, $injector) {
 
   var linkFn = function(scope, ele, attrs) {
 
+    //phaser-wide settings
     RegexGame.gameConfig = {
       width: 800,
       height: 600,
@@ -44,15 +45,19 @@ app.directive('gameCanvas', function($window, $injector) {
       }
     }
 
+    //create game as property of RegexGame
     RegexGame.game = new Phaser.Game(RegexGame.gameConfig.width, RegexGame.gameConfig.height, Phaser.AUTO, 'playGame');
     RegexGame.game.scope = scope;
 
+    //append states to the game
     RegexGame.game.state.add('Boot', RegexGame.Boot);
     RegexGame.game.state.add('Preload', RegexGame.Preload);
     RegexGame.game.state.add('GameOver', RegexGame.GameOver);
     RegexGame.game.state.add('GameMenu', RegexGame.GameMenu);
     RegexGame.game.state.add('Game', RegexGame.Game);
     RegexGame.game.state.add('NextWave', RegexGame.NextWave);
+
+    //kick off the first state
     RegexGame.game.state.start('Boot');
 
     var w = angular.element($window);
