@@ -20,9 +20,6 @@ RegexGame.GameOver.prototype = {
   init: function(){
       this.groan = this.add.audio('groan');
       this.groan.addMarker('playGroan',0,2);
-      if(this.game.scope.user){
-        this.game.scope.saveToDatabase(this.game.scope.score, this.game.scope.user.id);
-      }
     },
   create: function() {
     let background = this.game.add.tilemap('simpleCity_Layer1');
