@@ -22,7 +22,6 @@ var db = require('./server/db');
 var User = db.model('user');
 var Question = db.model('question');
 var TestCase = db.model('testCase');
-var Score = db.model('score');
 var Promise = require('sequelize').Promise;
 
 var seedUsers = function () {
@@ -215,19 +214,12 @@ var seedQuestions = function () {
   return Promise.all(creatingQuestions);
 };
 
-  var seedScores= function(){
-    return Score.create({score: 1000, userId: 1});
-  }
-
 db.sync({ force: true })
     .then(function () {
       return seedUsers();
     })
     .then(function () {
       return seedQuestions();
-    })
-    .then(function(){
-      return seedScores();
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));

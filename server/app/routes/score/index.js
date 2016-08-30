@@ -6,27 +6,15 @@ var User = db.model('user');
 
 module.exports = router;
 
-
-
-router.get('/topscore', function(req, res, next){
+router.get('/topScores', function(req, res, next){
+	let numScores = req.query.numScores || 1;
 	Score.findAll({
 		order: [['score','DESC']],
-		limit: 1
-	})
-	.then(function(topScore){
-		res.send(topScore);
-	})
-	.catch(next);
-});
-
-router.get('/top10', function(req, res, next){
-	Score.findAll({
-		order: [['score','DESC']],
-		limit: 10,
+		limit: numScores,
 		include: [{model: User, attributes: ['user_name', 'email']}]
 	})
-	.then(function(top10Scores){
-		res.send(top10Scores);
+	.then(function(topScores){
+		res.send(topScores);
 	})
 	.catch(next);
 });
@@ -36,13 +24,11 @@ router.get('/user/:id', function(req, res, next){
 		where: {
 			userId: req.params.id
 		},
-		order: [['score','DESC']]
+		order: [['score','DESC']],
+		limit: 1
 	})
-	.then(function(topUserScore){
-		res.send(topUserScore);
+	.then(function(topScore){
+		res.send(topScore);
 	})
 	.catch(next);
 });
-
-
-

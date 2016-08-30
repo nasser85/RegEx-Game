@@ -1,11 +1,10 @@
 <div class="magictime swashIn transparent" id='bomb-view'>
 
-
     <div class="thumbnail col-xs-12 col-sm-12 col-md-12 transparent">
 
         <div class="shake shake-constant transparent">
         <div ng-class="correct===1 ? 'magictime foolishOut' : 'not-blurry'" >
-        	<img ng-class="correct===3 ? 'magictime holeOut' : 'not-blurry'" src="http://blogradiocorredor.com.br/imagens/10175031032014bomba.png"></img>
+        	<img ng-class="correct===3 ? 'magictime holeOut' : 'not-blurry'" src="TheBomb.png"></img>
         </div>
     	</div>
     </div>
@@ -16,7 +15,6 @@
             <h3 id='current-question' class="magictime">{{currentBomb.question.text}}</h3>
           </div>
         </div>
-
 
         <div class='bomb-progress' ng-if="currentBomb.question.type === 'Generated'">
           <div class="col-xs-12 col-sm-12 col-md-12"><uib-progressbar class="progress-striped active" max="currentBomb.question.subQuestions.length" value="currentBomb.question.index" type="danger"><i></i></uib-progressbar></div>
@@ -40,21 +38,16 @@
         <div class='row'>
           <div ng-if='currentBomb.question.forceAnswer' class='input-margin'></div>
           <div class="transparent col-md-12 col-sm-12 input-container" >
-              <input id='text-answer' ng-model="userform.answer" class="textbox " type="text" enter='diffuse(userform.answer, currentBomb.question, user.id)' esc='leave()'>
-
+              <input id='text-answer' ng-model="userform.answer" class="textbox " type="text" enter='defuse(userform.answer, currentBomb.question, user.id)' esc='leave()'>
               <div ng-if="!answered" class='transparent buttons'>
-
-              <div class='col-md-12 col-sm-12'>
-                <a href="#" ng-click="diffuse(userform.answer, currentBomb.question, user.id)" class="button button-3d-primary button-circle shake-horizontal control ">DEFUSE</a>
-                <a href="#" ng-click="leave()" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane">LEAVE</a>
-              </div>
+                <div class='col-md-12 col-sm-12'>
+                  <a href="#" ng-click="defuse(userform.answer, currentBomb.question, user.id)" class="button button-3d-primary button-circle shake-horizontal control ">DEFUSE</a>
+                  <a href="#" ng-click="leave()" class="button button-3d-primary button-circle shake-slow control flaticon-paper-plane">LEAVE</a>
+                </div>
               </div>
           </div>
         </div>
-</div>
-<diffuse-result ng-if="answered" ></diffuse-result>
-
+      </div>
+      <defuse-result ng-if="answered" ></defuse-result>
   	</div>
-
-
 </div>

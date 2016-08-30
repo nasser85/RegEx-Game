@@ -11,13 +11,14 @@ app.config(function ($stateProvider) {
                 return AuthService.getLoggedInUser();
             },
             highestScore: function(ScoreFactory) {
-                return ScoreFactory.fetchTopScore();
+                return ScoreFactory.fetchTopScores(1);
             }
         }
     });
 });
 
-app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
+
+app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, ValidateAnswerFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
     console.log('inside of PlayCtrl on line 21 of play.js. $scope is', $scope);
     $scope.highestScore = highestScore.length ? highestScore[0].score : 0;
     $scope.questions = questions;
@@ -31,9 +32,11 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.currentBomb = null;
     $scope.questionIndex = 0;
     $scope.answered = false;
-    $scope.correct = 0; // are we still using this?
+
+    //$scope.correct = 0 for unanswered question. 1 for correct and 2 for incorrect answer.
+    $scope.correct = 0; 
     $scope.counter = 0;
-    console.log('inside of PlayCtrl on line 36 of play.js. $scope is', $scope);
+
     $scope.resetVal = function(event){
         event.bubbles = false;
     }
@@ -77,16 +80,14 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         $scope.answered = false;
         $scope.correct = 0;
         RegexGame.game.input.keyboard.enabled = true;
-        player.body.position.x -=5;
-        $scope.$evalAsync;
     }
 
-    $scope.diffuse = function(answer, question, userid){
-        var diffused = false;
+    $scope.defuse = function(answer, question, userid){
+        var defused = false;
         if (question.type === 'Generated') {
-            var generatedCheck = BombFactory.diffuse(answer, question, question.index);
+            var generatedCheck = ValidateAnswerFactory.defuse(answer, question, question.index);
         } else {
-           diffused = BombFactory.diffuse(answer, question);
+           defused = ValidateAnswerFactory.defuse(answer, question);
         }
         if (generatedCheck) {
             if(question.subQuestions.length > question.index+1) {
@@ -102,16 +103,16 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
                 }, 1000);
 
             } else {
-                diffused = true;
+                defused = true;
             }
         }
-        if (diffused) {
+        if (defused) {
             $scope.numCorrect++;
             $scope.currentBomb.frame=1;
             $scope.currentBomb.body.enable=false;
             $scope.correct = 1;
             if(userid){
-                BombFactory.storeUserAnswer(answer, question, userid)
+                ValidateAnswerFactory.storeUserAnswer(answer, question, userid)
                 .catch($log.error);
             }
             $scope.answered = true;
@@ -151,7 +152,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
         }
         UserFactory.storeScore(score, userId)
         .then(function(){
-            return ScoreFactory.fetchTop10();
+            return ScoreFactory.fetchTopScores(10);
         })
         .then(function(top10){
             $scope.topScores = top10;

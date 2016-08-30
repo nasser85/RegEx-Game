@@ -1,11 +1,11 @@
 
-app.factory("BombFactory", function($http){
+app.factory("ValidateAnswerFactory", function($http){
 
-	var bombFactory = {};
+	var validateAnswerFactory = {};
 
-	bombFactory.checkAnswerGenerated = function(userAnswer, q, index) {
+	validateAnswerFactory.checkAnswerGenerated = function(userAnswer, q, index) {
 
-      	let answer = new RegExp(userAnswer);
+      	var answer = new RegExp(userAnswer);
 
         var matchTest = q.match[index].every(function (element) {
           return answer.test(element);
@@ -21,9 +21,9 @@ app.factory("BombFactory", function($http){
     }
 
 
-	bombFactory.diffuse = function(userAnswer, question, index){
+	validateAnswerFactory.defuse = function(userAnswer, question, index){
 		if (question.type === 'Generated') {
-			return bombFactory.checkAnswerGenerated(userAnswer, question, index);
+			return validateAnswerFactory.checkAnswerGenerated(userAnswer, question, index);
 		} else {
 
 			if(question.category === 'match_some'){
@@ -72,17 +72,17 @@ app.factory("BombFactory", function($http){
 	}
 
 
-	bombFactory.storeUserAnswer = function(answer, question, userid){
+	validateAnswerFactory.storeUserAnswer = function(answer, question, userid){
 		return $http.post('/api/user/'+ userid +'/addanswer', {
 			questionId: question.id,
 			user_answer: answer
 		})
 	}
 
-	bombFactory.leave = function(currentBomb){
+	validateAnswerFactory.leave = function(currentBomb){
 		return currentBomb = null;
 	}
 
-	return bombFactory;
+	return validateAnswerFactory;
 
 });

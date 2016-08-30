@@ -5,7 +5,6 @@ app.directive('enter', function () {
                 scope.$apply(function (){
                     scope.$eval(attrs.enter);
                 });
-
                 event.preventDefault();
             }
         });
@@ -19,7 +18,6 @@ app.directive('esc', function () {
                 scope.$apply(function (){
                     scope.$eval(attrs.esc);
                 });
-
                 event.preventDefault();
             }
         });

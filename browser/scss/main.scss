@@ -266,7 +266,7 @@ save-score{
     z-index: 9;
     input {
         padding: 8px;
-        margin: 2px;
+        margin: 5px auto;
     }
 
 }
@@ -314,8 +314,13 @@ save-score{
   width: 100%;
   margin-left: 40%;
   margin-top: 10%;
+  .inputs {
+    margin: 12px 0;
+  }
   inputs:-webkit-input-placeholder {
     color: #b5b5b5;
+    
+  }
 }
 
 inputs-moz-placeholder {
@@ -326,6 +331,7 @@ inputs-moz-placeholder {
 
 
 .inputs {
+
     position: center;
     outline: none;
     display: block;
@@ -350,7 +356,6 @@ inputs-moz-placeholder {
     -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
     -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
     box-shadow: 2px 2px 7px #E8E8E8 inset;
-}
 }
 
 .bomb-progress {

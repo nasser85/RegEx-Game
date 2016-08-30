@@ -4,4 +4,4 @@ app.directive('signUp', function(){
 		templateUrl: 'js/sign-up/game-end-sign-up.html',
 		controller: 'GameEndCtrl'
 	}
-})
+});
