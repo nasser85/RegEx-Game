@@ -110,7 +110,7 @@ gulp.task('buildCSS', function () {
 // Production tasks
 // --------------------------------------------------------------
 
-gulp.task('seedDB', shell.task(['node ./seed.js']));
+//gulp.task('seedDB', shell.task(['node ./seed.js']));
 
 gulp.task('buildCSSProduction', function () {
     return gulp.src('./browser/scss/main.scss')
@@ -138,7 +138,7 @@ gulp.task('buildProduction', ['buildCSSProduction', 'buildJSProduction']);
 
 gulp.task('build', function () {
     if (process.env.NODE_ENV === 'production') {
-        runSeq(['buildJSProduction', 'buildCSSProduction', 'seedDB']);
+        runSeq(['buildJSProduction', 'buildCSSProduction']);
     } else {
         runSeq(['buildJS', 'buildCSS']);
     }
