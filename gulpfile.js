@@ -110,7 +110,7 @@ gulp.task('buildCSS', function () {
 // Production tasks
 // --------------------------------------------------------------
 
-gulp.task('seedDB', shell.task(['node seed.js']));
+gulp.task('seedDB', shell.task(['node ./seed.js']));
 
 gulp.task('buildCSSProduction', function () {
     return gulp.src('./browser/scss/main.scss')
@@ -131,14 +131,14 @@ gulp.task('buildJSProduction', function () {
         .pipe(gulp.dest('./public'));
 });
 
-gulp.task('buildProduction', ['seedDB', 'buildCSSProduction', 'buildJSProduction']);
+gulp.task('buildProduction', ['buildCSSProduction', 'buildJSProduction']);
 
 // Composed tasks
 // --------------------------------------------------------------
 
 gulp.task('build', function () {
     if (process.env.NODE_ENV === 'production') {
-        runSeq(['buildJSProduction', 'buildCSSProduction']);
+        runSeq(['buildJSProduction', 'buildCSSProduction', 'seedDB']);
     } else {
         runSeq(['buildJS', 'buildCSS']);
     }
