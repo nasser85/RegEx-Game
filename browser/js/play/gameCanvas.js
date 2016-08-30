@@ -66,7 +66,7 @@ app.directive('gameCanvas', function($window, $injector) {
     });
   console.log('inside link function at gameCanvas.js line 67. RegexGame is ', RegexGame);
 
-  console.log('scope is ', scope)
+  console.log('scope is ', scope);
   };
 
   return {
