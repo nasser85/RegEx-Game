@@ -1,8 +1,8 @@
 'use strict';
 
-/*var console = {};
-console.log = function(){}
-*/
+var console = {};
+console.log = function(){};
+
 window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
