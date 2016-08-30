@@ -27,7 +27,7 @@ app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, top
 	$scope.diffused = 0;
 	$scope.maxNum = 50;
     $timeout(function() {
-        $scope.userScore = userScore[0].score;
+        $scope.userScore = userScore.length? userScore[0].score : 0;
         userScore.forEach(function(el) {
             $scope.diffused += el.score;
         });
@@ -45,7 +45,7 @@ app.controller('AccountCtrl', function($scope, user, UserFactory, userScore, top
     }, 300)
 
 
-	$scope.topScore = topScore[0].score;
+	$scope.topScore = topScore.length ? topScore[0].score : 0;
 	$scope.first = false;
 	if (topScore[0].userId === $scope.user.id) {
 		$scope.first = true;
