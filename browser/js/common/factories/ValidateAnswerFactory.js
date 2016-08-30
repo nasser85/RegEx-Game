@@ -22,6 +22,9 @@ app.factory("ValidateAnswerFactory", function($http){
 
 
 	validateAnswerFactory.defuse = function(userAnswer, question, index){
+		if (userAnswer.charAt(0) === "/" && userAnswer.charAt(userAnswer.length-1) === "/") {
+			userAnswer = userAnswer.substring(1, userAnswer.length-1);
+		}
 		if (question.type === 'Generated') {
 			return validateAnswerFactory.checkAnswerGenerated(userAnswer, question, index);
 		} else {
