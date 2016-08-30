@@ -19,7 +19,7 @@ app.config(function ($stateProvider) {
 
 app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
     console.log('inside of PlayCtrl on line 21 of play.js. $scope is', $scope);
-    $scope.highestScore = highestScore[0].score;
+    $scope.highestScore = highestScore.length ? highestScore[0].score : 0;
     $scope.questions = questions;
     $scope.score = 0;
     $scope.currentWave = 1;
