@@ -18,6 +18,7 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, BombFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
+    console.log('inside of PlayCtrl on line 21 of play.js. $scope is', $scope);
     $scope.highestScore = highestScore[0].score;
     $scope.questions = questions;
     $scope.score = 0;
@@ -32,7 +33,7 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     $scope.answered = false;
     $scope.correct = 0; // are we still using this?
     $scope.counter = 0;
-
+    console.log('inside of PlayCtrl on line 36 of play.js. $scope is', $scope);
     $scope.resetVal = function(event){
         event.bubbles = false;
     }

@@ -16,5 +16,5 @@ module.exports = {
     "clientSecret": "z5MYQxRtVwayTUJgvtMpjipI",
     "callbackURL": "http://localhost:1337/auth/google/callback"
   },
-  "LOGGING": false
+  "LOGGING": console.log
 };

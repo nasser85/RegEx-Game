@@ -1,7 +1,9 @@
 app.directive('gameCanvas', function($window, $injector) {
 
   var linkFn = function(scope, ele, attrs) {
+  console.log('inside link function at gameCanvas.js line 64. RegexGame is ', RegexGame);
 
+  console.log('scope is ', scope);
     //phaser-wide settings
     RegexGame.gameConfig = {
       width: 800,
