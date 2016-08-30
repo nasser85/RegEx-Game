@@ -138,9 +138,9 @@ gulp.task('buildProduction', ['seedDB', 'buildCSSProduction', 'buildJSProduction
 
 gulp.task('build', function () {
     if (process.env.NODE_ENV === 'production') {
-        runSeq(['buildJSProduction', 'buildCSSProduction', 'seedDB']);
+        runSeq(['buildJSProduction', 'buildCSSProduction']);
     } else {
-        runSeq(['buildJS', 'buildCSS', 'seedDB']);
+        runSeq(['buildJS', 'buildCSS']);
     }
 });
 
