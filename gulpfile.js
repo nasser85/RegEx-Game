@@ -16,6 +16,7 @@ var mocha = require('gulp-mocha');
 var karma = require('karma').server;
 var istanbul = require('gulp-istanbul');
 var notify = require('gulp-notify');
+var shell = require('gulp-shell');
 
 // Development tasks
 // --------------------------------------------------------------
@@ -109,6 +110,8 @@ gulp.task('buildCSS', function () {
 // Production tasks
 // --------------------------------------------------------------
 
+gulp.task('seedDB', shell.task(['node seed.js']));
+
 gulp.task('buildCSSProduction', function () {
     return gulp.src('./browser/scss/main.scss')
         .pipe(sass())
@@ -128,16 +131,16 @@ gulp.task('buildJSProduction', function () {
         .pipe(gulp.dest('./public'));
 });
 
-gulp.task('buildProduction', ['buildCSSProduction', 'buildJSProduction']);
+gulp.task('buildProduction', ['seedDB', 'buildCSSProduction', 'buildJSProduction']);
 
 // Composed tasks
 // --------------------------------------------------------------
 
 gulp.task('build', function () {
     if (process.env.NODE_ENV === 'production') {
-        runSeq(['buildJSProduction', 'buildCSSProduction']);
+        runSeq(['buildJSProduction', 'buildCSSProduction', 'seedDB']);
     } else {
-        runSeq(['buildJS', 'buildCSS']);
+        runSeq(['buildJS', 'buildCSS', 'seedDB']);
     }
 });
 
