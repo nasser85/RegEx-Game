@@ -64,6 +64,9 @@ app.directive('gameCanvas', function($window, $injector) {
     w.bind('resize', function(evt) {
       // If the window is resized
     });
+  console.log('inside link function at gameCanvas.js line 67. RegexGame is ', RegexGame);
+
+  console.log('scope is ', scope)
   };
 
   return {
