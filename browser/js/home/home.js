@@ -8,6 +8,7 @@ app.config(function ($stateProvider) {
 
 app.controller('HomeCtrl', function($scope, $rootScope, AuthService, AUTH_EVENTS, $state) {
 	$scope.user = null;
+    console.log('HomeCtrl loaded in line 11 of home.js');
 
     $scope.isLoggedIn = function () {
         return AuthService.isAuthenticated();

@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var TestCase = require('./testcase');
-var MatchSomeButNotAll = require('./MatchSomeButNotAll');
+var MatchSomeButNotAll = require('./matchSomeButNotAll');
 var Utils = require('./utils');
 
 var arrWords = ['Fullstack', 'programmer', 'Node', 'Salamander', 'Regular', 'Expression', 'Regex', 'Start', 'Begin', 'opening', 'source', 'outset', 'countdown'];

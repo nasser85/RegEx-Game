@@ -17,8 +17,10 @@ app.config(function ($stateProvider) {
     });
 });
 
+
 app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scope, questions, user, ValidateAnswerFactory, QuestionFactory, GeneratedQuestion, UserFactory, ScoreFactory) {
-    $scope.highestScore = highestScore[0].score;
+    console.log('inside of PlayCtrl on line 21 of play.js. $scope is', $scope);
+    $scope.highestScore = highestScore.length ? highestScore[0].score : 0;
     $scope.questions = questions;
     $scope.score = 0;
     $scope.currentWave = 1;
@@ -34,6 +36,10 @@ app.controller('PlayCtrl', function (highestScore, $state, $timeout, $log, $scop
     //$scope.correct = 0 for unanswered question. 1 for correct and 2 for incorrect answer.
     $scope.correct = 0; 
     $scope.counter = 0;
+
+    $scope.resetVal = function(event){
+        event.bubbles = false;
+    }
 
     $scope.currentBombActive = function(){
         if($scope.currentBomb){
