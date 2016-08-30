@@ -19,7 +19,14 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('CreateCtrl', function($scope, user, pendingQuestions, publishedQuestions, BombFactory, CreateFactory) {
-	$scope.user = user;
+	var prompts = ["Enter your Question", "Enter your Answer", "Select the Number of POSITIVE Test Cases", "Enter Your POSITIVE Test Cases", "Select the Number of NEGATIVE Test Cases", "Enter Your NEGATIVE Test Cases"]
+    var placeHolders = ["your question here...", "your answer here...", "your test case here..."]
+    var clues = ['An example would be "Match some but not all!" or "Match All!"', 'This should be a regular expression.', 'These test cases should return TRUE when tested against your regular expression.', 'This should be a regular expression.', 'These test cases should return FALSE when tested against your regular expression.'];
+   $scope.index = 0;
+    $scope.prompt = prompts[$scope.index];
+    $scope.placeHolder = placeHolders[$scope.index];
+    $scope.clue = clues[$scope.index];
+    $scope.user = user;
     $scope.userQuestion = {
         authorId: user.id,
         category: 'match_some',
@@ -82,6 +89,13 @@ app.controller('CreateCtrl', function($scope, user, pendingQuestions, publishedQ
     $scope.submitQuestion = function (question) {
         question.userTestCases = question.testCases;
          CreateFactory.postQuestion(question);
+    }
+
+    $scope.proceed = function () {
+        if ($scope.index === 0) {
+            $scope.index = 1;
+            $scope.$evalAsync();
+        }
     } 
    
     
