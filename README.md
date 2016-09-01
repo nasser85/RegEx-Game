@@ -1,5 +1,7 @@
 [![Stories in Ready](https://badge.waffle.io/nasser85/RegEx-Game.png?label=ready&title=Ready)](https://waffle.io/nasser85/RegEx-Game)
-# RegEx-Game
+# RegEx Race
+* Watch [this presentation](https://www.youtube.com/watch?v=jUGu1AIZCOY&feature=youtu.be) to learn more about how RegEx Race was created.
+
 ## Overview
 This is an second draft of a game to practice RegEx, and will have two main components:
 * Play Game
