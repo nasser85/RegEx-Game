@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('QuestionGeneratorFactory', function (GeneratedQuestion, StackFactory) {
+app.factory('QuestionGeneratorFactory', function (GeneratedQuestion, UtilsFactory, StackFactory) {
   var methods = _.shuffle(Utils.difference(Object.keys(GeneratedQuestion.prototype), ['lastIndex', 'generate']));
 
   var methodStack = new StackFactory();
