@@ -28,7 +28,7 @@ RegexGame.GameOver.prototype = {
 
     this.game.add.image(0,0, 'dudeLogo')
     this.groan.play('playGroan');
-
+    this.saveScore();
     //create buttons and text
     let gameOverText = new TextOrButton('text', this.game, 0, 0, 'GAME OVER :(', null, null, null, 500);
     let outOfTimeText = new TextOrButton('text', this.game, 0,0, 'You didn\'t defuse the bombs in time!', null, null, null, 250)
