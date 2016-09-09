@@ -1,5 +1,5 @@
 app.factory('StackFactory', function () {
-  console.log('stackfactory');
+
   function Node (value, prev) {
     this.value = value;
     this.prev = prev || null;
