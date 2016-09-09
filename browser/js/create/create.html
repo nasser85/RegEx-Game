@@ -18,15 +18,35 @@
 	</div>
 	<div ng-if="view==='create'"class="row">
 		<div class="jumbotron text-center">
-				  <h1 class="display-3">{{prompt}}</h1>
+				  <h1 class="display-3">{{prompts[pos]}}</h1>
+				  <select>
+					  <option value="volvo">1</option>
+					  <option value="saab">2</option>
+					  <option value="opel">3</option>
+					</select>
+				  <fieldset ng-if="pos===0" class="form-group">
+				    <div class="radio">
+				      <label>
+				        <input ng-click="chooseMatch()" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+				        Matching
+				      </label>
+				    </div>
+				    <div class="radio">
+				      <label>
+				        <input ng-click="chooseValidate()" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+				        Validation
+				      </label>
+				    </div>
+				  </fieldset>
 				  <div class="input-group input-group-lg">
-				  <span class="input-group-addon" id="sizing-addon1">/</span>
-				  <input type="text" class="form-control" placeholder="{{placeHolder}}" aria-describedby="sizing-addon1">
-				  <span class="input-group-addon" id="sizing-addon1">/</span>
-				</div>
+					  <span class="input-group-addon" id="sizing-addon1">/</span>
+					  <input id="user-input" type="text" class="form-control" placeholder="{{placeHolders[pos]}}" aria-describedby="sizing-addon1" disabled>
+					  <span class="input-group-addon" id="sizing-addon1">/</span>
+					</div>
 				  <hr class="m-y-2">
-				  <p>{{clue}}</p>
+				  <p>{{clues[pos]}}</p>
 				  <p class="lead">
+				  	<a ng-if="pos>0" class="btn btn-primary btn-lg" role="button" ng-click="back()" ><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Back</a>
 				    <a class="btn btn-primary btn-lg" role="button" ng-click="proceed()" ><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Continue</a>
 				  
 				  </p>
