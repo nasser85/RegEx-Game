@@ -1,7 +1,13 @@
 'use strict';
 
-app.factory('QuestionGeneratorFactory', function (GeneratedQuestion, Utils) {
-  var methods = Utils.difference(Object.keys(GeneratedQuestion.prototype), ['lastIndex', 'generate']);
+app.factory('QuestionGeneratorFactory', function (GeneratedQuestion, StackFactory) {
+  var methods = _.shuffle(Utils.difference(Object.keys(GeneratedQuestion.prototype), ['lastIndex', 'generate']));
+
+  var methodStack = new StackFactory();
+
+  methods.forEach(function (method) {
+    methodStack.push(method);
+  });
 
   return function (numQuestions, difficultyLevel) {
     var arrQuestions = [];
@@ -11,7 +17,12 @@ app.factory('QuestionGeneratorFactory', function (GeneratedQuestion, Utils) {
       question = new GeneratedQuestion();
 
       for (var j = 0; j < difficultyLevel; j++) {
-        var randomMethod = methods[Utils.random(0, methods.length - 1)];
+        if (!methodStack.top) {
+          methods.forEach(function (method) {
+            methodStack.push(method);
+          });
+        }
+        var randomMethod = methodStack.pop().value;
         question = question[randomMethod]();
       }
 
