@@ -8,11 +8,6 @@ var RegexGame = RegexGame || {};
   RegexGame.Game = function () {};
 
   RegexGame.Game.prototype = {
-    quit: function(){
-      console.log('inside of quit');
-      this.game.destroy();
-      this.game.scope.restartGame();
-    },
     //two separate pause/unpause funcs. Once paused, you can only manipulate the game object inputs. 
     pause: function(){
       this.game.paused = true;
