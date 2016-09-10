@@ -4,10 +4,30 @@ var RegexGame = RegexGame || {};
   //these and many properties of Game can become local when modularized into Angular
   let cursors;
   let player;
-
+  
   RegexGame.Game = function () {};
 
   RegexGame.Game.prototype = {
+    //two separate pause/unpause funcs. Once paused, you can only manipulate the game object inputs. 
+    pause: function(){
+      this.game.paused = true;
+      this.pauseButton.frame = 4;
+      //this should be a group that can be created/destroyed en masse. 
+      this.pauseText = new TextOrButton('text', this.game, 0, 20, 'PAUSED', null, null, null, 500);
+      this.resume = new TextOrButton('button', this.game, 30, 10, 'Resume', 100, this.unPause, this);
+    },
+    unPause: function(){
+      console.log('inside of unPause');
+      //these should be in a group in the future. 
+      this.pauseText = this.pauseText || new TextOrButton('text', this.game, 0, 0, 'PAUSED', null, null, null, 500);
+      this.resume = this.resume || new TextOrButton('button', this.game, 30, 10, 'Resume', 100, this.unPause, this)
+      this.pauseText.text.destroy();
+      this.resume.button.destroy();
+
+      this.pauseButton.frame = 3;
+      this.game.paused = false;
+      
+    },
     init: function(track, duration) {
       //angular scope counters
       this.game.scope.numCorrect = 0;
@@ -39,6 +59,13 @@ var RegexGame = RegexGame || {};
 
       //create map via custom constructor
       this.map = new Map(this);
+      
+      //create pause function
+      this.pauseButton = this.game.add.sprite(this.game.width-250, 12, 'pausePlay')
+      this.pauseButton.inputEnabled = true;
+      this.pauseButton.frame = 3;
+      this.pauseButton.events.onInputUp.add(this.pause, this);
+      this.game.input.onDown.add(this.unPause, this);
 
       //add text
       this.scoreText = this.add.text(20, 16, 'Score:'+ this.score, { font: '25px gameFont', fill: 'cyan' });
