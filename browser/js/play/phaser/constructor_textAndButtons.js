@@ -1,20 +1,21 @@
 //hard to use constructor for Menu and Game Over button/text
-var TextOrButton = function(buttonOrText, game,  textX, textY, copy, buttonYOffset, clickMethod, clickContext, textBoundYOffset){
+//in the future, make this a group with children text or buttons, so they can be made and destroyed more easily
 
-  let text;
-  let button;
+var TextOrButton = function(buttonOrText, game,  textX, textY, copy, buttonYOffset, clickMethod, clickContext, textBoundYOffset){
+  this.text;
+  this.button;
 
   switch (buttonOrText) {
     case 'button':
-      text = game.add.text(textX, textY, copy, RegexGame.gameConfig.buttonTextStyle);
-      button = game.add.button(game.width/2-75, game.height/2-buttonYOffset, 'gamebuttons', clickMethod, clickContext);
-      button.addChild(text);
-      button.setFrames(1,0);
+      this.text = game.add.text(textX, textY, copy, RegexGame.gameConfig.buttonTextStyle);
+      this.button = game.add.button(game.width/2-75, game.height/2-buttonYOffset, 'gamebuttons', clickMethod, clickContext);
+      this.button.addChild(this.text);
+      this.button.setFrames(1,0);
       break;
 
     case 'text':
-      text = game.add.text(textX, textY, copy,RegexGame.gameConfig.textStyle);
-      text.setTextBounds(0, game.height-textBoundYOffset, 800, 100)
+      this.text = game.add.text(textX, textY, copy,RegexGame.gameConfig.textStyle);
+      this.text.setTextBounds(0, game.height-textBoundYOffset, 800, 100)
       break;
   }
 
