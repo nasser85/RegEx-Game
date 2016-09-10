@@ -3,7 +3,7 @@ RegexGame.GameOver = function(){
 };
 
 RegexGame.GameOver.prototype = {
-  //custom methods
+  //custom methods - the universal menu options should be part of a menu prototype. 
   goHome: function(){
     this.game.scope.goHome();
   },
