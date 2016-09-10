@@ -13,24 +13,21 @@ var RegexGame = RegexGame || {};
       this.game.destroy();
       this.game.scope.restartGame();
     },
-    //two separate pause/unpause funcs because Phaser didn't like when it was a togglePause
+    //two separate pause/unpause funcs. Once paused, you can only manipulate the game object inputs. 
     pause: function(){
       this.game.paused = true;
       this.pauseButton.frame = 4;
-      //this really should be a group that can be created/destroyed en masse. 
+      //this should be a group that can be created/destroyed en masse. 
       this.pauseText = new TextOrButton('text', this.game, 0, 20, 'PAUSED', null, null, null, 500);
       this.resume = new TextOrButton('button', this.game, 30, 10, 'Resume', 100, this.unPause, this);
-      this.quitGame = new TextOrButton('button', this.game, 30, 10, 'Quit', 50, this.quit, this);
     },
     unPause: function(){
       console.log('inside of unPause');
-      //these really need to be a group in the future. 
+      //these should be in a group in the future. 
       this.pauseText = this.pauseText || new TextOrButton('text', this.game, 0, 0, 'PAUSED', null, null, null, 500);
       this.resume = this.resume || new TextOrButton('button', this.game, 30, 10, 'Resume', 100, this.unPause, this)
-      this.quitGame = this.quitGame || new TextOrButton('button', this.game, 30, 10, 'Quit', 50, this.tryAgain, this);
       this.pauseText.text.destroy();
       this.resume.button.destroy();
-      this.quitGame.button.destroy();
 
       this.pauseButton.frame = 3;
       this.game.paused = false;
