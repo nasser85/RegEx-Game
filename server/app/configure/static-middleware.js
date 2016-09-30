@@ -12,6 +12,7 @@ module.exports = function (app) {
     var browserPath = path.join(root, './browser');
     var assetsPath = path.join(root, './assets');
     var bowerPath = path.join(root, './bower_components');
+    var fontsPath = path.join(root, './node_modules/font-awesome/fonts/');
 
     app.use(favicon(app.getValue('faviconPath')));
     app.use(express.static(npmPath));
@@ -19,5 +20,5 @@ module.exports = function (app) {
     app.use(express.static(browserPath));
     app.use(express.static(assetsPath));
     app.use(express.static(bowerPath));
-
+    app.use('/fonts', express.static(fontsPath));
 };

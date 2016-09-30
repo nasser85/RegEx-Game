@@ -121,14 +121,22 @@ gulp.task('compileCSSFromNodeModules', function () {
 });
 
 gulp.task('buildCSS', ['compileSCSS', 'compileCSSFromNodeModules'], function () {
-  let order = ['./browser/compiled-css/fromNodeModules.css', './browser/compiled-css/fromSCSS.css'];
+
+  let order = [
+    './browser/compiled-css/fromNodeModules.css',
+    './browser/compiled-css/buttons.css',
+    './browser/compiled-css/fromSCSS.css'
+  ];
+
   let production = process.env.NODE_ENV === 'production';
 
   return gulp.src(order)
     .pipe(plumber({
         errorHandler: notify.onError('CSS build failed! Check your gulp process.')
     }))
+    .pipe(sourcemaps.init())
     .pipe(gulpIf(production, minifyCSS()))
+    .pipe(sourcemaps.write())
     .pipe(concat('style.css'))
     .pipe(gulp.dest('./public/'));
 });
