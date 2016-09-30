@@ -1,0 +1,480 @@
+@font-face {
+  font-family: gameFont;
+  src: url(PressStart2P.ttf); }
+
+* {
+  box-sizing: border-box;
+  font-family: gameFont; }
+
+#account .row {
+  margin-top: 5%; }
+  #account .row h5 {
+    padding: 20px;
+    color: cyan;
+    text-align: center; }
+  #account .row .button {
+    margin-top: 20px; }
+
+.social-signup-container {
+  margin: 0 auto; }
+
+#tagline {
+  margin: 25px; }
+
+.btn-social {
+  margin: 10px;
+  height: 40.4px;
+  text-align: center;
+  width: 240px;
+  padding-left: 37px;
+  position: relative;
+  font-family: Arial;
+  font-size: 16px; }
+
+body {
+  background: #6b2348;
+  background-image: url(city.gif);
+  background-repeat: no-repeat;
+  background-height: 100%;
+  background-attachment: fixed; }
+
+#home li {
+  width: 60%;
+  margin-left: 20%; }
+
+#home button {
+  width: 150px; }
+
+.textbox {
+  margin-left: 5%;
+  padding: 1px 20px;
+  font-size: 25px;
+  border: 0;
+  height: 50px;
+  width: 90%;
+  text-align: center;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: 1px 1px 0 0 #FFF, 5px 5px 40px 2px #BBB inset;
+  -moz-box-shadow: 1px 1px 0 0 #FFF, 5px 5px 40px 2px #BBB inset;
+  -webkit-box-shadow: 1px 1px 0 0 #FFF, 5px 5px 40px 2px #BBB inset;
+  -webkit-background-clip: padding-box;
+  outline: 0; }
+
+#text-answer.textbox {
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%; }
+
+.panel {
+  margin: 0 auto;
+  width: 100%; }
+
+.alert {
+  font-family: gameFont;
+  margin-top: 20%;
+  width: 60%;
+  margin-left: 20%;
+  position: absolute;
+  z-index: 9;
+  text-align: center;
+  padding: 25px; }
+
+h3 {
+  font-size: 20px;
+  -webkit-text-fill-color: black;
+  /* Will override color (regardless of order) */
+  -webkit-text-stroke-color: black; }
+
+#question-div {
+  background-color: black; }
+
+.buttons {
+  /*margin-top: 0%;*/
+  margin-left: 30%; }
+
+.diffused-bomb {
+  margin: 15%;
+  padding: 10px;
+  width: 60%;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  /* Safari */ }
+
+.diffused-bomb:hover {
+  cursor: pointer;
+  -webkit-transform: scale(2, 2);
+  -ms-transform: scale(2, 2);
+  transform: scale(2, 2);
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  /* Safari */
+  z-index: 1; }
+
+.questions {
+  margin-top: 20%;
+  position: absolute;
+  z-index: 6; }
+  .questions th {
+    text-align: center;
+    font-size: 25px; }
+  .questions td {
+    font-size: 20px;
+    text-align: center;
+    color: white; }
+
+#account-title {
+  font-size: 18px; }
+
+.thumbnail {
+  border: 0 none;
+  box-shadow: none;
+  height: 100%; }
+  .thumbnail img {
+    width: 100%; }
+  .thumbnail #keyboard {
+    display: inline; }
+    .thumbnail #keyboard .key {
+      width: 40px;
+      height: 40px;
+      background-color: cyan;
+      border-radius: 30%; }
+
+.control {
+  margin: 10px; }
+
+.transparent {
+  background: transparent; }
+
+bomb-view {
+  padding-top: 0%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2; }
+
+#bomb-view {
+  margin: 0 auto;
+  width: 800px;
+  height: 600px; }
+
+.blurry {
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  filter: blur(10px); }
+
+.not-blurry {
+  -webkit-filter: blur(0px);
+  -moz-filter: blur(0px);
+  filter: blur(0px); }
+
+.input-container {
+  margin: 0 auto;
+  width: 100%; }
+
+.stats {
+  color: white;
+  text-align: center;
+  padding: 3px; }
+
+.input-margin {
+  height: 80px; }
+
+.progress {
+  margin-right: 5%; }
+
+#write {
+  margin: 0 0 5px;
+  padding: 5px;
+  width: 20%;
+  margin-left: 40%;
+  height: 50px;
+  font: 1em/1.5 Verdana, Sans-Serif;
+  background: #fff;
+  border: 5px solid black;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px; }
+
+#main {
+  padding-top: 5%;
+  margin: 0 auto; }
+
+.jumbotron {
+  font-family: gameFont;
+  margin-top: 20%;
+  margin-left: 40%;
+  position: absolute;
+  z-index: 9;
+  text-align: center;
+  padding: 25px;
+  border-radius: 30%; }
+
+save-score {
+  color: cyan;
+  padding-top: 5%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9; }
+  save-score input {
+    padding: 8px;
+    margin: 5px auto; }
+
+#save-score {
+  margin: 10px auto;
+  width: 800px;
+  height: 600px;
+  text-align: center; }
+  #save-score button {
+    margin: 5px 0; }
+
+#top-score-container table {
+  text-align: center;
+  margin: 0 auto; }
+
+#top-score-container th, #top-score-container td {
+  border-collapse: collapse;
+  padding: 5px 10px;
+  text-align: center; }
+
+#answers-page .panel {
+  margin-bottom: 20px; }
+  #answers-page .panel .panel-heading {
+    background-color: black;
+    color: white; }
+
+#answers-page button {
+  margin-bottom: 20px; }
+
+.progress-bar {
+  background-color: black; }
+
+.sign-up-form {
+  width: 100%;
+  margin-left: 40%;
+  margin-top: 10%; }
+  .sign-up-form .inputs {
+    margin: 12px 0; }
+  .sign-up-form inputs:-webkit-input-placeholder {
+    color: #b5b5b5; }
+
+inputs-moz-placeholder {
+  color: #b5b5b5; }
+
+.inputs {
+  position: center;
+  outline: none;
+  display: block;
+  width: 270px;
+  padding: 4px 8px;
+  border: 1px dashed #DBDBDB;
+  color: #3F3F3F;
+  font-family: 'Droid Sans', Tahoma, Arial, Verdana sans-serif;
+  font-size: 14px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-transition: background 0.2s linear, box-shadow 0.6s linear;
+  -moz-transition: background 0.2s linear, box-shadow 0.6s linear;
+  -o-transition: background 0.2s linear, box-shadow 0.6s linear;
+  transition: background 0.2s linear, box-shadow 0.6s linear; }
+
+.inputs:focus {
+  background: #F7F7F7;
+  border: dashed 1px #969696;
+  -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
+  -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
+  box-shadow: 2px 2px 7px #E8E8E8 inset; }
+
+.bomb-progress {
+  margin-left: 5%; }
+  .bomb-progress .progress-bar {
+    background-color: blue;
+    position: center;
+    height: 40px; }
+
+#current-question {
+  text-align: center; }
+
+regex-race-logo img {
+  width: 160px;
+  height: 160px;
+  margin-left: 15%;
+  margin-top: -20%; }
+
+regex-race-logo img:hover {
+  border-radius: 100%;
+  border-style: dashed;
+  border-width: 6px;
+  border-color: cyan; }
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #333333; }
+
+#profile h4 {
+  color: cyan; }
+
+fullstack-logo {
+  display: block; }
+  fullstack-logo img {
+    display: block;
+    width: 100%; }
+
+navbar {
+  display: block;
+  background: white;
+  border-bottom: 1px solid black;
+  box-shadow: 1px 1px 14px -3px black; }
+  navbar .container {
+    width: 91%;
+    max-width: 1340px;
+    padding-top: 20px; }
+  navbar fullstack-logo {
+    margin-top: 5px;
+    margin-right: 20px;
+    width: 40px; }
+  navbar a {
+    color: black;
+    font-size: 16px; }
+  navbar .nav > li > a {
+    cursor: pointer;
+    transition: color 0.2s; }
+    navbar .nav > li > a.active {
+      color: #c80a0c; }
+    navbar .nav > li > a:hover {
+      background: none;
+      color: #f31214; }
+    navbar .nav > li > a:focus {
+      background: none; }
+  navbar .login-button {
+    float: right;
+    border: 1px solid black;
+    margin-top: 10px;
+    background: none;
+    outline: none !important; }
+  navbar .welcome {
+    float: right;
+    margin-top: 12px; }
+    navbar .welcome span {
+      color: black;
+      font-size: 16px;
+      margin-right: 5px; }
+    navbar .welcome a {
+      color: #f30046;
+      cursor: pointer; }
+
+#home {
+  padding-top: 1%;
+  color: cyan;
+  margin: 0 auto; }
+  #home h1 {
+    text-align: center; }
+  #home,
+  #home .list-unstyled {
+    text-align: center;
+    display: inline; }
+    #home li,
+    #home .list-unstyled li {
+      display: inline;
+      padding: 0px;
+      margin: 0 auto; }
+    #home ul,
+    #home .list-unstyled ul {
+      display: inline;
+      padding: 0px;
+      margin: 0 auto; }
+    #home button,
+    #home .list-unstyled button {
+      display: inline;
+      padding: 0px;
+      margin: 0 auto; }
+  #home h4 {
+    color: magenta !important; }
+  #home li {
+    margin-bottom: 10px; }
+  #home #regexLogo {
+    width: 700px;
+    margin: auto;
+    display: block; }
+  #home #authButtonGroup {
+    text-align: center;
+    display: block; }
+
+tutorial-section {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 20px 0 60px 0; }
+  tutorial-section > h1 {
+    margin: 20px 0 40px 0;
+    text-align: center;
+    font-weight: bold; }
+
+tutorial-video {
+  display: block;
+  width: 600px;
+  margin: 0 auto; }
+  tutorial-video h1 {
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 15px; }
+  tutorial-video iframe {
+    width: 600px;
+    height: 400px; }
+
+tutorial-section-menu {
+  display: block; }
+  tutorial-section-menu:after {
+    content: "";
+    display: table;
+    clear: both; }
+  tutorial-section-menu ul {
+    margin-left: 23px;
+    list-style-type: none;
+    font-weight: 300; }
+    tutorial-section-menu ul li {
+      float: left;
+      margin-right: 40px;
+      padding: 10px;
+      cursor: pointer; }
+      tutorial-section-menu ul li:hover {
+        background: #f3f3f3; }
+
+#login-form {
+  width: 60%;
+  margin: 0 auto; }
+  #login-form inputs:-webkit-input-placeholder {
+    color: #b5b5b5; }
+  #login-form inputs-moz-placeholder {
+    color: #b5b5b5; }
+  #login-form .inputs {
+    position: center;
+    outline: none;
+    display: block;
+    width: 270px;
+    padding: 4px 8px;
+    border: 1px dashed #DBDBDB;
+    color: #3F3F3F;
+    font-family: 'Droid Sans', Tahoma, Arial, Verdana sans-serif;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: background 0.2s linear, box-shadow 0.6s linear;
+    -moz-transition: background 0.2s linear, box-shadow 0.6s linear;
+    -o-transition: background 0.2s linear, box-shadow 0.6s linear;
+    transition: background 0.2s linear, box-shadow 0.6s linear; }
+  #login-form .inputs:focus {
+    background: #F7F7F7;
+    border: dashed 1px #969696;
+    -webkit-box-shadow: 2px 2px 7px #E8E8E8 inset;
+    -moz-box-shadow: 2px 2px 7px #E8E8E8 inset;
+    box-shadow: 2px 2px 7px #E8E8E8 inset; }
