@@ -1,2 +1,0 @@
-<div ng-class="currentBomb || saveScore ? 'blurry' : 'not-blurry'" id="playGame"></div>
-        <div ng-class="correct===1 ? 'magictime foolishOut' : 'not-blurry'" >
