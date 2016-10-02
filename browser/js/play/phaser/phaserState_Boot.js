@@ -5,8 +5,8 @@ RegexGame.Boot = function(){};
 RegexGame.Boot.prototype = {
   preload: function() {
    //assets we'll use in the loading screen
-    this.load.image('logo', 'regexlogo.png');
-    this.load.image('preloadbar', 'preloader-bar.png');
+    this.load.image('logo', './images/regexlogo.png');
+    this.load.image('preloadbar', './images/preloader-bar.png');
   },
   create: function() {
    //loading screen will have a white background

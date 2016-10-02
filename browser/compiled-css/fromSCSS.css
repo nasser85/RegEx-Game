@@ -1,6 +1,6 @@
 @font-face {
   font-family: gameFont;
-  src: url(PressStart2P.ttf); }
+  src: url(/fonts/PressStart2P.ttf); }
 
 * {
   box-sizing: border-box;
@@ -33,7 +33,7 @@
 
 body {
   background: #6b2348;
-  background-image: url(city.gif);
+  background-image: url(./images/city.gif);
   background-repeat: no-repeat;
   background-height: 100%;
   background-attachment: fixed; }
