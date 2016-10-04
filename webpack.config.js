@@ -7,16 +7,13 @@ module.exports = function (environment) {
     entry: "./app",
     output: {
       path: path.join(__dirname, './public/'),
-      filename: "main.js"
+      filename: "bundle.js"
     },
     module: {
       loaders: [{
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
-          query: {
-            presets: ['es2015']
-          }
+          loader: 'ng-annotate!babel?presets[]=es2015'
       }]
     }
   };

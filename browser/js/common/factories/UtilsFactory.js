@@ -1,6 +1,4 @@
-'use strict';
-
-app.factory('Utils', function () {
+module.exports = function () {
   return {
     range: function (start, end) {
       return _.range(start, end + 1);
@@ -41,4 +39,4 @@ app.factory('Utils', function () {
       return res.data;
     }
   };
-});
+};

@@ -43,7 +43,9 @@ gulp.task('lintJS', function () {
 gulp.task('buildJS', ['lintJS'], function () {
   var config = require('./webpack.config')(process.env.NODE_ENV);
 
-  return webpackStream(config);
+  return gulp.src('./browser/app.js')
+    .pipe(webpackStream(config))
+    .pipe(gulp.dest('./public'));
 });
 
 gulp.task('testServerJS', function () {
@@ -131,14 +133,13 @@ gulp.task('buildCSS', ['compileSCSS', 'compileCSSFromNodeModules'], function () 
     .pipe(gulp.dest('./public/'));
 });
 
+// remove...
 gulp.task('buildJSProduction', function () {
-    return gulp.src(['./browser/js/app.js', './browser/js/**/*.js'])
+    return gulp.src('./browser/js/play/phaser/*.js')
         .pipe(concat('main.js'))
         .pipe(babel({
             presets: ['es2015']
         }))
-        .pipe(ngAnnotate())
-        .pipe(uglify())
         .pipe(gulp.dest('./public'));
 });
 

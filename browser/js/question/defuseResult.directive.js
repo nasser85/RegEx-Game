@@ -1,6 +1,3 @@
-app.directive('defuseResult', function(){
-	return {
-		restrict: "E",
-		templateUrl: 'js/question/defuseResult.html'
-	}
-})
+module.exports = function (app) {
+  app.directive('defuseResult', require('./directive').defuseResult);
+};

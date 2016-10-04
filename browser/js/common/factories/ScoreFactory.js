@@ -1,4 +1,4 @@
-app.factory('ScoreFactory', function($http, Utils){
+module.exports = function($http, Utils){
 	var scoreFactory = {};
 	var baseUrl = "/api/score/";
 
@@ -13,5 +13,5 @@ app.factory('ScoreFactory', function($http, Utils){
 	}
 
 	return scoreFactory;
-})
+};
 

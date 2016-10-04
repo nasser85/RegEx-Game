@@ -1,5 +1,4 @@
-
-app.factory("ValidateAnswerFactory", function($http){
+module.exports = function($http){
 
 	var validateAnswerFactory = {};
 
@@ -88,4 +87,4 @@ app.factory("ValidateAnswerFactory", function($http){
 
 	return validateAnswerFactory;
 
-});
+};

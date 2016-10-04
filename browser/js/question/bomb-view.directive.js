@@ -1,6 +1,3 @@
-app.directive('bombView', function(){
-	return {
-		restrict: "E",
-		templateUrl: 'js/question/question.html'
-	}
-})
+module.exports = function (app) {
+  app.directive('bombView', require('./directive').bombView);
+};
