@@ -16,18 +16,18 @@ module.exports = function (environment) {
     }
   };
 
-  if (environment === 'production') {
-    config.plugins = [
-      new webpack.optimize.UglifyJsPlugin({
-          compress: {
-              warnings: false
-          },
-          output: {
-              comments: false
-          }
-      })
-    ]
-  }
+  // if (environment === 'production') {
+  //   config.plugins = [
+  //     new webpack.optimize.UglifyJsPlugin({
+  //         compress: {
+  //             warnings: false
+  //         },
+  //         output: {
+  //             comments: false
+  //         }
+  //     })
+  //   ]
+  // }
 
   return config;
 };
