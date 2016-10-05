@@ -1,6 +1,4 @@
-'use strict';
-
-app.factory('GeneratedQuestion', function (CharacterCodeFactory, Utils) {
+module.exports = function (CharacterCodeFactory, Utils) {
   var Codes = CharacterCodeFactory;
 
   function Question () {
@@ -95,4 +93,4 @@ app.factory('GeneratedQuestion', function (CharacterCodeFactory, Utils) {
   };
 
   return Question;
-});
+};

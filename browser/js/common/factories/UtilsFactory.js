@@ -1,12 +1,12 @@
-'use strict';
+var lodash = require('lodash');
 
-app.factory('Utils', function () {
+module.exports = function () {
   return {
     range: function (start, end) {
-      return _.range(start, end + 1);
+      return lodash.range(start, end + 1);
     },
     random: function (lower, upper) {
-      return _.random(lower, upper);
+      return lodash.random(lower, upper);
     },
     randomRange: function (lower, upper, minLength, maxLength) {
       do {
@@ -20,7 +20,7 @@ app.factory('Utils', function () {
       return this.range(lowerIndex, upperIndex);
     },
     difference: function (arrA, arrB) {
-      return _.difference(arrA, arrB);
+      return lodash.difference(arrA, arrB);
     },
     fromCodePoint: function (num) {
       return String.fromCodePoint(num);
@@ -41,4 +41,4 @@ app.factory('Utils', function () {
       return res.data;
     }
   };
-});
+};

@@ -69,3 +69,5 @@ Player.prototype.update = function() {
     }
 
 };
+
+module.exports = Player;

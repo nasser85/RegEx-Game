@@ -1,6 +1,4 @@
-'use strict';
-
-app.factory('CharacterCodeFactory', function (Utils) {
+module.exports = function (Utils) {
 
   var whitespace = [9, 10, 11, 12, 13, 32];
   var allCharacters = Utils.range(32, 127).concat(whitespace);
@@ -32,4 +30,4 @@ app.factory('CharacterCodeFactory', function (Utils) {
     symbols: symbols,
     alphanumeric: alphanumeric
   };
-});
+};

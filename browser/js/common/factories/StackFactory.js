@@ -1,4 +1,4 @@
-app.factory('StackFactory', function () {
+module.exports = function () {
 
   function Node (value, prev) {
     this.value = value;
@@ -28,4 +28,4 @@ app.factory('StackFactory', function () {
   };
 
   return Stack;
-});
+};

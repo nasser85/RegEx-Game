@@ -1,11 +1,15 @@
-
-app.factory("ValidateAnswerFactory", function($http){
+module.exports = function($http){
 
 	var validateAnswerFactory = {};
 
 	validateAnswerFactory.checkAnswerGenerated = function(userAnswer, q, index) {
+      	var answer;
 
-      	var answer = new RegExp(userAnswer);
+      	try {
+      		answer = new RegExp(userAnswer);
+      	} catch (err) {
+      		return false;
+      	}
 
         var matchTest = q.match[index].every(function (element) {
           return answer.test(element);
@@ -22,6 +26,9 @@ app.factory("ValidateAnswerFactory", function($http){
 
 
 	validateAnswerFactory.defuse = function(userAnswer, question, index){
+		if (!userAnswer) {
+			return false;
+		}
 		if (userAnswer.charAt(0) === "/" && userAnswer.charAt(userAnswer.length-1) === "/") {
 			userAnswer = userAnswer.substring(1, userAnswer.length-1);
 		}
@@ -32,7 +39,14 @@ app.factory("ValidateAnswerFactory", function($http){
 			if(question.category === 'match_some'){
 
 				for (var j = 0; j < question.testCases.length; j++) {
-					let regexAnswer = new RegExp(userAnswer);
+
+					let regexAnswer;
+					try {
+						regexAnswer = new RegExp(userAnswer);
+					} catch (err) {
+						return false;
+					}
+
 					var testCase = question.testCases[j];
 					var arr = regexAnswer.exec(testCase.content);
 					if(testCase.match){
@@ -63,7 +77,14 @@ app.factory("ValidateAnswerFactory", function($http){
 				return result;
 
 			}else if(question.category === 'match_all'){
-				let regexAnswer = new RegExp(userAnswer);
+
+				let regexAnswer;
+				try {
+					regexAnswer = new RegExp(userAnswer);
+				} catch (err) {
+					return false;
+				}
+
 				for(var i = 0; i < question.testCases.length; i++){
 					if(regexAnswer.test(question.testCases[i].content) == false){
 						return false;
@@ -88,4 +109,4 @@ app.factory("ValidateAnswerFactory", function($http){
 
 	return validateAnswerFactory;
 
-});
+};

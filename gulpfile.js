@@ -1,6 +1,5 @@
 'use strict';
 
-// All used modules.
 var gulp = require('gulp');
 var babel = require('gulp-babel');
 var runSeq = require('run-sequence');
@@ -10,7 +9,6 @@ var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var livereload = require('gulp-livereload');
 var minifyCSS = require('gulp-minify-css');
-var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var eslint = require('gulp-eslint');
@@ -21,11 +19,9 @@ var notify = require('gulp-notify');
 var shell = require('gulp-shell');
 var cssImport = require('gulp-cssimport');
 var gulpIf = require('gulp-if');
+var webpackStream = require('webpack-stream');
+var path = require('path');
 
-// Development tasks
-// --------------------------------------------------------------
-
-// Live reload business.
 gulp.task('reload', function () {
     livereload.reload();
 });
@@ -35,27 +31,21 @@ gulp.task('reloadCSS', function () {
 });
 
 gulp.task('lintJS', function () {
-
-    return gulp.src(['./browser/js/**/*.js', './server/**/*.js'])
-        .pipe(plumber({
-            errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
-        }))
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failOnError());
-
+  return gulp.src(['./browser/js/**/*.js', './server/**/*.js'])
+      .pipe(plumber({
+          errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
+      }))
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failOnError());
 });
 
 gulp.task('buildJS', ['lintJS'], function () {
-    return gulp.src(['./browser/js/app.js', './browser/js/**/*.js'])
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(concat('main.js'))
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./public'));
+  var config = require('./webpack.config')(process.env.NODE_ENV);
+
+  return gulp.src('./browser/app.js')
+    .pipe(webpackStream(config))
+    .pipe(gulp.dest('./public'));
 });
 
 gulp.task('testServerJS', function () {
@@ -143,33 +133,11 @@ gulp.task('buildCSS', ['compileSCSS', 'compileCSSFromNodeModules'], function () 
     .pipe(gulp.dest('./public/'));
 });
 
-// Production tasks
-// --------------------------------------------------------------
-
-//gulp.task('seedDB', shell.task(['node ./seed.js']));
-
-gulp.task('buildJSProduction', function () {
-    return gulp.src(['./browser/js/app.js', './browser/js/**/*.js'])
-        .pipe(concat('main.js'))
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(ngAnnotate())
-        .pipe(uglify())
-        .pipe(gulp.dest('./public'));
-});
-
-gulp.task('buildProduction', ['buildCSS', 'buildJSProduction']);
-
 // Composed tasks
 // --------------------------------------------------------------
 
 gulp.task('build', function () {
-    if (process.env.NODE_ENV === 'production') {
-        runSeq(['buildJSProduction', 'buildCSS']);
-    } else {
-        runSeq(['buildJS', 'buildCSS']);
-    }
+  runSeq(['buildJS', 'buildCSS']);
 });
 
 gulp.task('default', function () {

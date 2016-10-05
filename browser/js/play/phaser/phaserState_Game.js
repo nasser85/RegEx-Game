@@ -1,24 +1,25 @@
-var RegexGame = RegexGame || {};
+var TextOrButton = require('./constructor_textAndButtons');
+var Map = require('./constructor_map');
+var BombGroup = require('./constructor_bombGroup');
+var Player = require('./constructor_player');
+var Explosion = require('./constructor_explosion');
 
-  //initialize global (for now) vars.
-  //these and many properties of Game can become local when modularized into Angular
-  let cursors;
-  let player;
-  
+module.exports = function (RegexGame) {
+
   RegexGame.Game = function () {};
 
   RegexGame.Game.prototype = {
-    //two separate pause/unpause funcs. Once paused, you can only manipulate the game object inputs. 
+    //two separate pause/unpause funcs. Once paused, you can only manipulate the game object inputs.
     pause: function(){
       this.game.paused = true;
       this.pauseButton.frame = 4;
-      //this should be a group that can be created/destroyed en masse. 
+      //this should be a group that can be created/destroyed en masse.
       this.pauseText = new TextOrButton('text', this.game, 0, 20, 'PAUSED', null, null, null, 500);
       this.resume = new TextOrButton('button', this.game, 30, 10, 'Resume', 100, this.unPause, this);
     },
     unPause: function(){
       console.log('inside of unPause');
-      //these should be in a group in the future. 
+      //these should be in a group in the future.
       this.pauseText = this.pauseText || new TextOrButton('text', this.game, 0, 0, 'PAUSED', null, null, null, 500);
       this.resume = this.resume || new TextOrButton('button', this.game, 30, 10, 'Resume', 100, this.unPause, this)
       this.pauseText.text.destroy();
@@ -26,7 +27,7 @@ var RegexGame = RegexGame || {};
 
       this.pauseButton.frame = 3;
       this.game.paused = false;
-      
+
     },
     init: function(track, duration) {
       //angular scope counters
@@ -59,7 +60,7 @@ var RegexGame = RegexGame || {};
 
       //create map via custom constructor
       this.map = new Map(this);
-      
+
       //create pause function
       this.pauseButton = this.game.add.sprite(this.game.width-250, 12, 'pausePlay')
       this.pauseButton.inputEnabled = true;
@@ -73,12 +74,12 @@ var RegexGame = RegexGame || {};
 
       //create bombs and player
       this.bombs = new BombGroup(this.game, this.game.scope.questions, 'bomb');
-      player = new Player(this.game, 32, this.world.height - 150, 'regularDude');
+      window.player = new Player(this.game, 32, this.world.height - 150, 'regularDude');
     },
 
 
     update: function() {
-      cursors = this.input.keyboard.createCursorKeys();
+      window.cursors = this.input.keyboard.createCursorKeys();
 
       //player + bomb collision
       if(this.physics.arcade.collide(player, this.bombs, this.bombs.engage, null, this)) {
@@ -129,3 +130,4 @@ var RegexGame = RegexGame || {};
       }
     }
   };
+};
