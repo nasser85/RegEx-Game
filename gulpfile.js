@@ -133,16 +133,6 @@ gulp.task('buildCSS', ['compileSCSS', 'compileCSSFromNodeModules'], function () 
     .pipe(gulp.dest('./public/'));
 });
 
-// remove...
-gulp.task('buildJSProduction', function () {
-    return gulp.src('./browser/js/play/phaser/*.js')
-        .pipe(concat('main.js'))
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest('./public'));
-});
-
 // Composed tasks
 // --------------------------------------------------------------
 

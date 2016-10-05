@@ -1,10 +1,12 @@
+var lodash = require('lodash');
+
 module.exports = function () {
   return {
     range: function (start, end) {
-      return _.range(start, end + 1);
+      return lodash.range(start, end + 1);
     },
     random: function (lower, upper) {
-      return _.random(lower, upper);
+      return lodash.random(lower, upper);
     },
     randomRange: function (lower, upper, minLength, maxLength) {
       do {
@@ -18,7 +20,7 @@ module.exports = function () {
       return this.range(lowerIndex, upperIndex);
     },
     difference: function (arrA, arrB) {
-      return _.difference(arrA, arrB);
+      return lodash.difference(arrA, arrB);
     },
     fromCodePoint: function (num) {
       return String.fromCodePoint(num);

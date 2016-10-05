@@ -36,3 +36,5 @@ Timer.prototype.update = function () {
     this.kill();
   }
 };
+
+module.exports = Timer;

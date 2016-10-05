@@ -1,5 +1,5 @@
-const path = require('path');
-const webpack = require('webpack');
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = function (environment) {
   var config = {
@@ -10,11 +10,9 @@ module.exports = function (environment) {
       filename: "bundle.js"
     },
     module: {
-      loaders: [{
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'ng-annotate!babel?presets[]=es2015'
-      }]
+      loaders: [
+        { test: /\.js$/, exclude: /node_modules/, loader: 'ng-annotate!babel?presets[]=es2015' }
+      ]
     }
   };
 

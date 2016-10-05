@@ -18,3 +18,5 @@ Explosion.prototype = Object.create(Phaser.Sprite.prototype);
 Explosion.prototype.constructor = Explosion;
 
 Explosion.prototype.update = function () {};
+
+module.exports = Explosion;

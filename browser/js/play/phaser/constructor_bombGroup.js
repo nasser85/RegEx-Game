@@ -1,6 +1,10 @@
-//creates bomb phaser group in the game. houses player+bomb collision logic
+var lodash = require('lodash');
+var Timer = require('./constructor_timer');
+var Explosion = require('./constructor_explosion');
 
+//creates bomb phaser group in the game. houses player+bomb collision logic
 var BombGroup = function (game, arrQuestions, image) {
+
   //create phaser group
   Phaser.Group.call(this, game);
 
@@ -8,11 +12,11 @@ var BombGroup = function (game, arrQuestions, image) {
 
   //create children of group
   for (var i = 0; i < arrQuestions.length; i++) {
-    var x = _.random(bombRadius*3, game.width - bombRadius);
+    var x = lodash.random(bombRadius*3, game.width - bombRadius);
     var sprite = this.create(x, 0 - bombRadius, image,0);
     sprite.scale.setTo(0.5, 0.5);
     sprite.anchor.setTo(0.5);
-    sprite.heightToStopFalling = _.random(200, game.height - bombRadius);
+    sprite.heightToStopFalling = lodash.random(200, game.height - bombRadius);
 
     //basic props for the child bomb
     game.physics.enable(sprite, Phaser.Physics.ARCADE);
@@ -108,3 +112,5 @@ BombGroup.prototype.engage = function (player, bomb) {
   this.game.scope.$evalAsync();
 
 };
+
+module.exports = BombGroup;

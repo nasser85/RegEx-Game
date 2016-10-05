@@ -1,5 +1,7 @@
+var lodash = require('lodash');
+
 module.exports = function (GeneratedQuestion, Utils, StackFactory) {
-  var methods = _.shuffle(Utils.difference(Object.keys(GeneratedQuestion.prototype), ['lastIndex', 'generate']));
+  var methods = lodash.shuffle(Utils.difference(Object.keys(GeneratedQuestion.prototype), ['lastIndex', 'generate']));
 
   var methodStack = new StackFactory();
 

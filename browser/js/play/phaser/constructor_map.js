@@ -24,3 +24,5 @@ Map.prototype.getRandProp = (obj) => {
     let keys = Object.keys(obj);
     return obj[keys[Math.floor(Math.random() * keys.length)]];
 }
+
+module.exports = Map;

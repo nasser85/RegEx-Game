@@ -1,7 +1,7 @@
 //hard to use constructor for Menu and Game Over button/text
 //in the future, make this a group with children text or buttons, so they can be made and destroyed more easily
 
-var TextOrButton = function(buttonOrText, game,  textX, textY, copy, buttonYOffset, clickMethod, clickContext, textBoundYOffset){
+module.exports = function (buttonOrText, game,  textX, textY, copy, buttonYOffset, clickMethod, clickContext, textBoundYOffset){
   this.text;
   this.button;
 
@@ -18,5 +18,4 @@ var TextOrButton = function(buttonOrText, game,  textX, textY, copy, buttonYOffs
       this.text.setTextBounds(0, game.height-textBoundYOffset, 800, 100)
       break;
   }
-
-}
+};

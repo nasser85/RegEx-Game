@@ -1,10 +1,14 @@
+window.PIXI = require('phaser/build/custom/pixi');
+window.p2 = require('phaser/build/custom/p2');
+window.Phaser = require('phaser/build/custom/phaser-split');
+
 require('jquery');
 
 var angular = require('angular');
 
-// var console = {
-//   log: function () {}
-// };
+window.console = {
+  log: function () {}
+};
 
 var app = angular.module('FullstackGeneratedApp', [
   require('./fsa/fsa-pre-built'),

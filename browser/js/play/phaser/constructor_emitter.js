@@ -5,3 +5,5 @@ var Emitter = function (game, x, y, image) {
     emitter.start(false, 3000, 100)
     return emitter
 };
+
+module.exports = Emitter;
