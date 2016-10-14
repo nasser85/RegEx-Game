@@ -23,9 +23,9 @@ For registered users, you will be able to see
 * The profile pages of other users
 
 ### Major updates since first review:
-* Enhanced bomb diffuse view, including
+* Enhanced bomb defuse view, including
 ** Timer
 ** Improved CSS
 * Massive modularization of Phaser and Angular code
-* Nearly complete scaffolding for supporting inifinite waves of bombs (until we run out of questions) both on front and back end (ability to ask DB for next wave of questions and attach them to the DOM)
+* Complete scaffolding for supporting inifinite waves of bombs (until we run out of questions) both on front and back end (ability to ask DB for next wave of questions and attach them to the DOM)
 
