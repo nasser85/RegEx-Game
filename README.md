@@ -29,3 +29,37 @@ For registered users, you will be able to see
 * Massive modularization of Phaser and Angular code
 * Complete scaffolding for supporting inifinite waves of bombs (until we run out of questions) both on front and back end (ability to ask DB for next wave of questions and attach them to the DOM)
 
+## Getting 'Local'
+
+Fork and clone the repository.  
+
+```bash
+npm install
+```
+```bash
+bower install
+```
+```bash
+gulp build && gulp
+```
+```bash
+npm start
+``` 
+run localhost:1337 in the browser and that's it!  
+
+### Contributing
+
+Fork it!  
+Create your feature branch:   
+```bash
+    git checkout -b my-new-feature
+```
+Commit your changes: 
+```bash
+   git commit -m 'Add some feature'
+```
+Push to the branch: 
+```bash
+    git push origin my-new-feature
+```
+Submit a pull request  
